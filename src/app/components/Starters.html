@@ -1,0 +1,28 @@
+<div class="kottu-labs-starter-wrapper clearfix">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2" *ngFor="let item of otherMenus; let i = index;" [ngStyle]="item.type != '2' && {'display': 'none'}">
+        <div class="kottu-labs-starter-item clearfix" *ngIf="item.type == '2'">
+          <div class="kottu-labs-starter-item-title">
+            {{item.name}}
+          </div>
+          <div class="kottu-labs-starter-item-image">
+            <img src="{{kImg1}}"/>
+          </div>
+          <div class="kottu-labs-starter-item-price">
+            <span *ngIf="!item.newPrice">Rs. {{item.price}}/=</span>
+            <span *ngIf="item.newPrice">Rs. {{item.newPrice}}/=</span>
+          </div>
+          <div class="kottu-labs-starter-item-footer clearfix">
+              <div class="col-01">
+                <input type="number" [(ngModel)]="this[i]" min="1" max="99" (ngModelChange)="toggleQuantity(this[i], i, item.price)">
+              </div>
+              <div class="col-02">
+                <button type="button" [disabled]="!this[i]">Add to Cart</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

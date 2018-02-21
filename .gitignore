@@ -1,0 +1,8 @@
+/.gitattributes
+/.idea
+/.tmp
+/dist
+/node_modules
+/.editorconfig
+/front-end.iml
+/.yo-rc.json

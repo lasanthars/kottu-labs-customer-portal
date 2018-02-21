@@ -1,0 +1,68 @@
+
+// ===== common mixing classes // ================================================================
+
+.block { display: block; }
+.inline { display: inline; }
+.none { display: none; }
+.inline-block { display: inline-block;}
+.table-cell { display: table-cell;}
+// -- / display  
+
+// -- floats
+
+.f-left { float: left; }
+.f-right { float: right; }
+.f-none { float: none; }
+.clr-bth { clear: both; }
+.clearfix:after{clear:both;content:' ';display:block;font-size:0;line-height:0;visibility:hidden;width:0;height:0}* html .clearfix,*:first-child+html .clearfix{zoom:1}
+// -- / floats
+
+// -- position
+
+.absolute { position: absolute;}
+.relative { position: relative;}
+.fixed { position: fixed;}
+// -- / position
+
+
+//-- / Clear Default Styles
+
+// -- images
+@mixin bg-img ($img, $repeat: no-repeat, $position: left top) {
+	background-image: url(#{$img-path}#{$img});
+	background-repeat: $repeat;
+	background-position: $position;
+}
+
+// -- images
+@mixin mask-img ($maskImg, $repeat: no-repeat, $position: left top) {
+	mask: url(#{$icon-path}#{$maskImg}) $repeat $position;
+	-webkit-mask:url(#{$icon-path}#{$maskImg}) $repeat $position;
+}
+
+// -- borders
+.border-radius-none{
+    border-radius:0px;
+}
+@mixin border-top ($bdr-color, $bdr-width: 1px, $bdr-type: solid){
+	border-top: $bdr-width $bdr-type $bdr-color;
+}
+@mixin border-bottom ($bdr-color, $bdr-width: 1px, $bdr-type: solid){
+	border-bottom: $bdr-width $bdr-type $bdr-color;
+}
+@mixin border-left ($bdr-color, $bdr-width: 1px, $bdr-type: solid){
+	border-left: $bdr-width $bdr-type $bdr-color;
+}
+@mixin border-right ($bdr-color, $bdr-width: 1px, $bdr-type: solid){
+	border-right: $bdr-width $bdr-type $bdr-color;
+}
+@mixin border($bdr-color, $bdr-width: 1px, $bdr-type: solid){
+	border: $bdr-width $bdr-type $bdr-color;
+}
+
+//-- / Shadow
+
+@mixin box-shadow($blur, $spread, $sh-color, $shadow-type:outset, $h-shadow:0px, $v-shadow:0px){
+	box-shadow:$h-shadow $v-shadow $blur $spread $sh-color $shadow-type;
+}
+// ===== / common mixing classes // ==============================================================

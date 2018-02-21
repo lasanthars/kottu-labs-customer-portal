@@ -1,0 +1,504 @@
+body{
+  background-color: rgba($default-color, 0.9);
+}
+button[disabled]{
+  opacity:0.4;
+}
+#uiBlockerLoader{
+  background-color:rgba($default-color, 0.85);
+  position: fixed;
+  text-align: center;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  color:$primary-color;
+  padding-top:10%;
+  z-index: 999;
+  font: normal 18px 'Chelsea Market', cursive;
+  letter-spacing: 1px;
+  display:none;
+}
+#{$preffix}{
+  &-header-wrapper{
+    @include bg-img('white-about-us.png', repeat, left top);
+    background-size: 80% auto;
+    min-height:$header-height + px;
+    position:fixed;
+    left:0;
+    top:0;
+    right:0;
+    z-index: $header-zIndex + 1;
+  }
+  &-view-cart{
+    transition: all 0.2s;
+    background-color:$default-color;
+    border-radius: 10px;
+    font-size:24px;
+    text-transform: uppercase;
+    border-color:transparent;
+    padding:3px 12px;
+    color:$primary-color;
+    &:hover, &:focus{
+      background-color:$coporate-color;
+    }
+  }
+  &-hotline-wrapper{
+    background-color:rgba($default-color, 0.85);
+    padding:5px 0;
+    color:$primary-color;
+    text-align:center;
+    position:fixed;
+    left:0;
+    top:$header-height + 5 + px;
+    right:0;
+    z-index: $header-zIndex;
+    div{
+      text-transform: uppercase;
+      font: 300 23px 'Archivo Black', sans-serif;
+      @media (max-width: 767px) {
+        font: 300 18px 'Archivo Black', sans-serif;
+      }
+    }
+    @media (max-width: 1200px) {
+      top:$header-height + px;
+    }
+  }
+  &-Banner-wrapper{
+    @include bg-img('home-image.jpg', no-repeat, center top);
+    background-size: cover;
+    min-height:570px;
+    position:relative;
+    top:$header-height + px;
+    a{
+      text-decoration: none;
+    }
+  }
+  &-signature-kottu, &-own-kottu{
+    @include bg-img('menu_bg.png', no-repeat, center top);
+    background-size: cover;
+    max-width:400px;
+    height: 350px;
+    text-align:center;
+    margin:100px 5% 0;
+    @extend .inline-block;
+    vertical-align:middle;
+    width:49%;
+    cursor:pointer;
+    img{
+      height:270px;
+      margin-top:40px;
+    }
+    h3{
+      font:normal 28px 'Jockey One', sans-serif;
+      color:$primary-color;
+      padding-top:25px;
+    }
+    @media (max-width: 1199px) {
+      height: 340px;
+      margin:100px 5% 0;
+      width: 35%;
+    }
+    @media (max-width: 991px) {
+      height: auto;
+      margin:40px 5% 0;
+      width: 50%;
+      background-size: contain;
+      h3{
+        font-size:24px;
+        padding:0;
+        margin:0;
+      }
+      img{
+        margin-top:20px;
+        height: auto;
+      }
+    }
+  }
+  &-desc-wrapper{
+    position: relative;
+    top:$header-height + px;
+    @include bg-img('red-cover-about.png', repeat, center top);
+    background-size: cover;
+    padding: 40px 10px;
+    text-align: center;
+    color:$primary-color;
+    p{
+      font: normal 21px 'Basic', sans-serif;
+      margin:0 auto;
+    }
+    p.descTwo{
+      padding-top:30px;
+      max-width:640px;
+    }
+    p:nth-child(1){
+      max-width:400px;
+    }
+    h2{
+      font: normal 21px 'Lobster', cursive;
+      font-size: 60px;
+    }
+
+  }
+  &-desc-images{
+    margin-top: 40px;
+    >div{
+      padding-bottom: 15px;
+    }
+  }
+  &-location-wrapper{
+    position: relative;
+    top:$header-height + px;
+    @include bg-img('red-about-us.png', repeat, center top);
+    background-size: cover;
+    padding: 40px 10px;
+    text-align: center;
+    color:$location-info;
+    h2{
+      font: normal 21px 'Lobster', cursive;
+      font-size: 42px;
+      padding-bottom:15px;
+    }
+    p{
+      font: normal 16px 'Chelsea Market', cursive;
+      padding: 20px 0;
+      margin:0 auto;
+      max-width:720px;
+    }
+    ul{
+      text-align:left;
+      margin: 0 auto;
+      max-width:570px;
+      padding-top:20px;
+      @media (max-width: 640px) {
+        text-align:center;
+      }
+      li{
+        list-style: none;
+        font: bold 20px 'Chelsea Market', cursive;
+        padding-bottom: 10px;
+        span{
+          @extend .inline-block;
+          width:24px;
+          vertical-align: middle;
+        }
+        label{
+          padding-left: 15px;
+          @extend .inline-block;
+          @media (max-width: 640px) {
+            display: block;
+          }
+        }
+        @media (max-width: 640px) {
+          text-align:center;
+        }
+      }
+    }
+  }
+  &-footer{
+    position: relative;
+    top:$header-height + px;
+    padding: 40px 0;
+    color: $icons-color;
+    a{
+      transition: all 0.2s;
+      margin:0 5px;
+      color: $icons-color;
+      &:hover,&:focus{
+        color: $coporate-color;
+      }
+    }
+    @media (max-width: 460px) {
+      text-align: center;
+    }
+    &-icons{
+      @media (max-width: 460px) {
+        display: block;
+        float: none!important;
+        padding-bottom: 15px;
+      }
+    }
+  }
+  &-signature-menu {
+    &-info {
+      background-color: rgba($default-color, 0.7);
+      max-width: 270px;
+      padding: 15px;
+      margin: 25px auto 25px auto;
+      p {
+        font: normal 16px 'Chelsea Market', cursive;
+      }
+    }
+    &-wrapper{
+      padding:20px 10px;
+      background-color: rgba($primary-color, 0.2);
+      .col-lg-3,.col-md-3{
+        &:nth-child(odd){
+          .kottu-labs-signature-menu-item{
+            background-color: $location-info;
+          }
+          .kottu-labs-signature-menu-ingredients-title, .kottu-labs-signature-menu-total{
+            background-color: rgba($default-color, 0.54);
+          }
+        }
+        &:nth-child(even){
+          .kottu-labs-signature-menu-item{
+            background-color: $menu-bg;
+          }
+          .kottu-labs-signature-menu-ingredients-title, .kottu-labs-signature-menu-total{
+            background-color: rgba($primary-color, 0.54);
+            color: $default-color;
+          }
+        }
+      }
+    }
+    &-item{
+      font-family: 'Chelsea Market', cursive;
+      margin-bottom: 30px;
+      h3{
+        font-size:17px;
+      }
+    }
+    &-ingredients-title{
+      padding:5px;
+      font:normal 15px 'Jockey One', sans-serif;
+      letter-spacing: 1px;
+    }
+    &-total{
+      padding:5px;
+      font-size:16px;
+    }
+    &-btn{
+      border:none;
+      font-size:14px;
+      text-transform: uppercase;
+      background-color:$default-color;
+      padding: 5px 10px;
+      width:100%;
+      box-sizing: border-box;
+    }
+    &-inputs{
+      font-size:13px;
+      padding:10px 10px;
+      color: $default-color;
+      text-align: left;
+      input,select{
+        width:100%;
+      }
+      label{
+        color: $primary-color;
+      }
+    }
+    &-ingredients{
+      font:normal 13px 'Chelsea Market', cursive!important;
+      text-align:left;
+      max-width:initial!important;
+      padding:3px 5px 3px 15px;
+    }
+  }
+  &-custom-kottu{
+    &-wrapper {
+      position: relative;
+      top: $header-height + px;
+      @include bg-img('red-about-us-one.png', repeat, center top);
+      background-size: cover;
+      padding: 40px 10px;
+      text-align: center;
+      color: $primary-color;
+      .kottu-labs-signature-menu-wrapper{
+        .col-lg-3{
+          &:nth-child(even){
+            .kottu-labs-custom-kottu-menu-item{
+              background-color: rgba($default-color, 0.5);
+            }
+          }
+        }
+      }
+    }
+    &-quantity{
+      background-color: $quantity;
+      padding: 10px 20px;
+      max-width:580px;
+      margin:30px auto;
+      font:normal 20px 'Chelsea Market', cursive!important;
+      color:$primary-color;
+      input{
+        padding:6px;
+        color: $default-color;
+        border: 1px solid $coporate-color;
+      }
+    }
+    &-menu-item{
+      h3{
+        padding-top: 15px;
+      }
+    }
+    &-lbls{
+      span{
+        background-color: rgba($default-color, 0.54);
+        margin:5px 0 5px;
+        padding: 5px;
+        display:block;
+      }
+    }
+    &-select{
+      color: $default-color;
+      select{
+        margin:5px 0 5px;
+        width:90%;
+        padding:3px;
+      }
+    }
+    &-heading{
+      background-color: rgba($default-color, 0.54);
+      color: $primary-color;
+      padding: 5px;
+      margin-top:10px;
+      h4{
+        margin:0;
+        padding:0;
+        font:normal 15px 'Jockey One', sans-serif;
+        letter-spacing: 1px;
+      }
+    }
+    &-ingredients{
+      font:normal 13px 'Chelsea Market', cursive;
+      text-align:left;
+      padding:5px 0 0 2px;
+      vertical-align: middle;
+      display: inline-block;
+    }
+    &-check{
+      vertical-align: middle;
+      display: inline-block;
+    }
+    &-check-wrapper{
+      text-align: left;
+      display: block;
+      padding: 0 5px;
+    }
+    &-menu-total{
+      padding:5px;
+      font-size:16px;
+      background-color: rgba($default-color, 0.54);
+    }
+    &-check{
+      background-color: $quantity;
+      border-radius: 50%;
+      padding:14px 16px;
+      margin-top:15px;
+    }
+  }
+  &-custom-kottu-cart-btn{
+    border:none;
+    margin-top:25px;
+    background-color:$location-info;
+    font:normal 26px 'Chelsea Market', cursive;
+    padding:8px 15px;
+    box-sizing: border-box;
+    width:50%;
+    transition: all 0.25s;
+    &:hover,&:focus{
+      background-color:$default-color;
+    }
+    @media (max-width:991px){
+      width:100%;
+    }
+  }
+  &-menu-wrapper{
+    position: relative;
+    top:$header-height + px;
+    @include bg-img('red-cover-about.png', repeat, center top);
+    background-size: cover;
+    text-align: center;
+  }
+  &-inner-header{
+    &-wrapper {
+      background-color: $menu-bg;
+      padding: 15px 0 10px;
+      color: $primary-color;
+      text-align: center;
+    }
+    &-title{
+      padding: 0 5px;
+      border-bottom: 3px solid $location-info;
+      display:inline-block;
+      font: 300 20px 'Chelsea Market', cursive;
+      @media (max-width: 767px) {
+        font: 300 18px 'Chelsea Market', cursive;
+      }
+    }
+  }
+  &-main-menus-wrapper{
+    padding:40px 0 40px;
+  }
+  &-main-menus-item{
+    display:block;
+    text-align: center;
+    font: 600 18px 'Chelsea Market', cursive;
+    color:$primary-color;
+    margin-bottom: 15px;
+    &:hover,&:focus{
+      text-decoration: none;
+      color:$primary-color;
+    }
+    img{
+      display: block;
+    }
+    span{
+      background-color: rgba($default-color, 0.55);
+      padding:15px 5px;
+      display: block;
+    }
+  }
+  &-starter-wrapper{
+    padding:40px 0 40px;
+  }
+  &-starter-item{
+    background-color: rgba($default-color, 0.55);
+    font:normal 14px 'News Cycle', sans-serif;
+    text-align: center;
+    min-height:230px;
+    margin-bottom:25px;
+    &-title, &-price{
+      padding:5px;
+      color: $primary-color;
+    }
+    &-footer{
+      display: block;
+      padding:5px 5px 10px;
+      .col-01{
+        float:left;
+        width:29%;
+        margin:0 1.5%;
+      }
+      .col-02{
+        float:left;
+        width:65%;
+        margin:0 1.5%;
+      }
+      input{
+        color: $default-color;
+        width:100%;
+        border: none;
+        padding:2px;
+        box-sizing: border-box;
+      }
+      button{
+        background-color: $default-color;
+        border: none;
+        color: $primary-color;
+        padding: 3px 2px 3px;
+        box-sizing: border-box;
+        display:block;
+        width: 100%;
+      }
+    }
+    @media (max-width: 991px) {
+      font-size:22px;
+    }
+  }
+}
+.sebm-google-map-container{
+  height:250px;
+}
