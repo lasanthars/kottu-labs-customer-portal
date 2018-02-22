@@ -31,40 +31,30 @@ export class SignatureKottuMenuComponent {
     this.getAllSignatureMenus();
   }
 
-  // convertToTotal(menu: any, index: number, quantity: any, type: string) {
-  //   if (type === 'numeric') {
-  //     if (quantity === undefined || quantity === '') {
-  //       this.menus[index].setmenu = price * 1;
-  //     } else {
-  //       this.total = price * quantity;
-  //     }
-  //   } else {
-  //     if (quantity === undefined || quantity === '') {
-  //       this.total = price[0].price * 1;
-  //     } else {
-  //       this.total = price[0].price * quantity;
-  //     }
-  //   }
-  // }
+  convertTotalPortion(event:any, menu: any, index: number, model: number) {
+      this.assignNewPrice(event.target.value, menu, index, model, 'portion');
+  }
 
-  convertTotalPortion(event:any, menu: any, index: number, model: number, type: string) {
+  convertToTotalQuantity(portionId: string, menu: any, index: number, model: number) {
+      const element = (document.getElementById(portionId)) as HTMLSelectElement;
+      const selectedPortion = element.options[element.selectedIndex].text;
+      console.log(selectedPortion);
+      this.assignNewPrice(selectedPortion, menu, index, model, 'quantity');
+  }
+
+  private assignNewPrice (selected: string, menu: any, index: number, model: number, type: string) {
       for (let key of Object.keys(menu)) {
-          if (menu[key].name === event.target.value && model === undefined) {
-             this.menus[index].setmenu.newPrice = menu[key].price;
+          if (type === 'portion' && menu[key].name === selected) {
+              if (model === undefined) {
+                  this.menus[index].setmenu.newPrice = menu[key].price;
+              } else {
+                  this.menus[index].setmenu.newPrice = menu[key].price * model;
+              }
+          } else if(type === 'quantity' && menu[key].name === selected){
+              this.menus[index].setmenu.newPrice = menu[key].price * model;
+          } else if(type === 'quantity' && selected === 'Select') {
+              this.menus[index].setmenu.newPrice = this.menus[index].setmenu.price * model;
           }
       }
   }
-
-  convertToTotalQuantity(menu: any, index: number, model: number, type: string) {
-
-  }
-
-  // changePortion(event: any, obj: object, index: number, quantity: number) {
-  //   this.total = 0;
-  //   for (let key of Object.keys(obj)) {
-  //     if (event.target.value === obj[key].name) {
-  //
-  //     }
-  //   }
-  // }
 }
