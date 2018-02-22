@@ -34,7 +34,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 5000, // Convert images < 5kb to base64 strings
-          name: 'images/[hash]-[name].[ext]'
+          name: 'images\[hash]-[name].[ext]'
         }
       },
       {
