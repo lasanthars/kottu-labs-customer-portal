@@ -39,13 +39,14 @@
                 <label>Quantity</label>
               </div>
               <div class="col-lg-7">
-                <input name="input{{i}}" value="1" type="number" min="0" max="999" [(ngModel)]="this[i]" (ngModelChange)="convertToTotalQuantity('portioDropDown' + i, menu.portions, i, this[i])"/>
+                <input name="input{{i}}" value="1" type="number" min="1" max="999" [(ngModel)]="this[i]" (ngModelChange)="convertToTotalQuantity('portioDropDown' + i, menu.portions, i, this[i])"/>
               </div>
             </div>
           </div>
-          <button type="button" class="kottu-labs-signature-menu-btn" [disabled]="this[i] <= 0 || this[i] === ''|| this[i] === undefined">Add to cart</button>
+          <button type="button" class="kottu-labs-signature-menu-btn" data-toggle="modal" data-target=".bs-example-modal-lg" [disabled]="this[i] <= 0 || this[i] === ''|| this[i] === undefined">Add to cart</button>
         </div>
       </div>
     </div>
   </div>
+  <kottu-lab-modal-window></kottu-lab-modal-window>
 </div>

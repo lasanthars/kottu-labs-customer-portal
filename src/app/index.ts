@@ -25,6 +25,7 @@ import {MainMenusComponent} from './components/MainMenus';
 import {StartersComponent} from './components/Starters';
 import {BeveragesComponent} from './components/Beverages';
 import {DesertsComponent} from './components/Deserts';
+import {ModalWindowComponent} from './components/ModalWindow';
 
 import {HttpService} from './services';
 
@@ -34,7 +35,7 @@ import {HttpService} from './services';
     FormsModule,
     HttpModule,
     routing,
-    AgmCoreModule.forRoot({apiKey: 'AIzaSyCPayHIwppZWiBbsZoB0-KGVV9l6ylMVk0'}),
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyCPayHIwppZWiBbsZoB0-KGVV9l6ylMVk0'})
   ],
   declarations: [
     RootComponent,
@@ -56,7 +57,8 @@ import {HttpService} from './services';
     MainMenusComponent,
     StartersComponent,
     BeveragesComponent,
-    DesertsComponent
+    DesertsComponent,
+    ModalWindowComponent
   ],
   providers: [HttpService],
   bootstrap: [RootComponent]

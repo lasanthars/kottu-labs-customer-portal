@@ -4,21 +4,6 @@ body{
 button[disabled]{
   opacity:0.4;
 }
-#uiBlockerLoader{
-  background-color:rgba($default-color, 0.85);
-  position: fixed;
-  text-align: center;
-  left:0;
-  right:0;
-  top:0;
-  bottom:0;
-  color:$primary-color;
-  padding-top:10%;
-  z-index: 999;
-  font: normal 18px 'Chelsea Market', cursive;
-  letter-spacing: 1px;
-  display:none;
-}
 #{$preffix}{
   &-header-wrapper{
     @include bg-img('white-about-us.png', repeat, left top);
@@ -301,7 +286,7 @@ button[disabled]{
       position: relative;
       top: $header-height + px;
       @include bg-img('red-about-us-one.png', repeat, center top);
-      background-size: cover;
+      background-size: contain;
       padding: 40px 10px;
       text-align: center;
       color: $primary-color;
@@ -409,7 +394,7 @@ button[disabled]{
     position: relative;
     top:$header-height + px;
     @include bg-img('red-cover-about.png', repeat, center top);
-    background-size: cover;
+    background-size: contain;
     text-align: center;
   }
   &-inner-header{
@@ -497,6 +482,46 @@ button[disabled]{
     }
     @media (max-width: 991px) {
       font-size:22px;
+    }
+  }
+  &-modal{
+    &-wrapper {
+      background-color: $location-info;
+      border-radius: 0;
+      color: $primary-color;
+      text-align: center;
+      box-shadow: none;
+      h2 {
+        font: normal 23px 'Chelsea Market', cursive;
+        padding: 20px 5px 0;
+        width:70%;
+        margin:0 auto;
+      }
+      p {
+        font: normal 18px 'News Cycle', sans-serif;
+        padding: 20px 5px 0;
+        width:70%;
+        margin:0 auto;
+      }
+    }
+    &-buttons{
+      display: block;
+      text-align: center;
+      width:100%;
+      padding-bottom:15px;
+      button{
+        background-color: rgba($default-color, 0.95);
+        font: 700 22px 'Chelsea Market', cursive;
+        border:2px solid $primary-color;
+        padding: 10px;
+        display: block;
+        margin:15px auto;
+        width:60%;
+        transition: all 0.25s;
+        &:hover, &:focus{
+          background-color: $btn-over;
+        }
+      }
     }
   }
 }

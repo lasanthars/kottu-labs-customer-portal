@@ -85,7 +85,7 @@ module.exports = {
   devtool: 'source-map',
   output: {
     path: path.join(process.cwd(), conf.paths.tmp),
-    publicPath: "/",
+    // publicPath: "/",
     filename: 'index.js'
   },
   resolve: {
