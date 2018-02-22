@@ -15,7 +15,7 @@
           </div>
           <div class="kottu-labs-starter-item-footer clearfix">
               <div class="col-01">
-                <input type="number" [(ngModel)]="this[i]" min="1" max="99" (ngModelChange)="toggleQuantity(this[i], i, item.price)">
+                <input type="number" [(ngModel)]="this[i]" [placeholder]="1" min="1" max="99" (ngModelChange)="toggleQuantity(this[i], i, item.price)">
               </div>
               <div class="col-02">
                 <button type="button" [disabled]="!this[i]">Add to Cart</button>

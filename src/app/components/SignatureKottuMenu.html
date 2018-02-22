@@ -28,12 +28,7 @@
                 <label>Quantity</label>
               </div>
               <div class="col-lg-7">
-                <!--<select>-->
-                  <!--<option>Small</option>-->
-                  <!--<option>Medium</option>-->
-                  <!--<option>Large</option>-->
-                <!--</select>-->
-                <select (change)="convertTotalPortion($event, menu.portions, i, this[i], 'select')">
+                <select (change)="convertTotalPortion($event, menu.portions, i, this[i])">
                   <option [value]="-1" [selected]="selected">Select</option>
                   <option *ngFor="let portion of menu.portions" [ngValue]="portion.id">{{portion.name}}</option>
                 </select>
@@ -44,7 +39,7 @@
                 <label>Nos</label>
               </div>
               <div class="col-lg-7">
-                <input name="input{{i}}" value="1" type="number" min="0" max="999" [(ngModel)]="this[i]" (ngModelChange)="convertToTotalQuantity(menu.setmenu, i, this[i], 'numeric')"/>
+                <input name="input{{i}}" value="1" type="number" min="0" max="999" [(ngModel)]="this[i]" (ngModelChange)="convertToTotalQuantity(menu.setmenu, i, this[i])"/>
               </div>
             </div>
           </div>

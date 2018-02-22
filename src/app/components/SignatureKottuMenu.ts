@@ -48,7 +48,11 @@ export class SignatureKottuMenuComponent {
   // }
 
   convertTotalPortion(event:any, menu: any, index: number, model: number, type: string) {
-
+      for (let key of Object.keys(menu)) {
+          if (menu[key].name === event.target.value && model === undefined) {
+             this.menus[index].setmenu.newPrice = menu[key].price;
+          }
+      }
   }
 
   convertToTotalQuantity(menu: any, index: number, model: number, type: string) {
