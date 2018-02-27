@@ -31,29 +31,36 @@ export class SignatureKottuMenuComponent {
     this.getAllSignatureMenus();
   }
 
-  convertTotalPortion(event:any, menu: any, index: number, model: number) {
+  convertTotalPortion(event: any, menu: any, index: number, model: number) {
       this.assignNewPrice(event.target.value, menu, index, model, 'portion');
   }
 
   convertToTotalQuantity(portionId: string, menu: any, index: number, model: number) {
       const element = (document.getElementById(portionId)) as HTMLSelectElement;
       const selectedPortion = element.options[element.selectedIndex].text;
-      console.log(selectedPortion);
       this.assignNewPrice(selectedPortion, menu, index, model, 'quantity');
   }
 
   private assignNewPrice (selected: string, menu: any, index: number, model: number, type: string) {
-      for (let key of Object.keys(menu)) {
-          if (type === 'portion' && menu[key].name === selected) {
-              if (model === undefined) {
-                  this.menus[index].setmenu.newPrice = menu[key].price;
-              } else {
-                  this.menus[index].setmenu.newPrice = menu[key].price * model;
-              }
-          } else if(type === 'quantity' && menu[key].name === selected){
-              this.menus[index].setmenu.newPrice = menu[key].price * model;
-          } else if(type === 'quantity' && selected === 'Select') {
+      if (type === 'portion' && selected === '-1') {
+          if (model === undefined) {
+              this.menus[index].setmenu.newPrice = this.menus[index].setmenu.price;
+          } else {
               this.menus[index].setmenu.newPrice = this.menus[index].setmenu.price * model;
+          }
+      } else {
+          for (let key of Object.keys(menu)) {
+              if ((type === 'portion' && menu[key].name === selected)) {
+                  if (model === undefined) {
+                      this.menus[index].setmenu.newPrice = menu[key].price;
+                  } else {
+                      this.menus[index].setmenu.newPrice = menu[key].price * model;
+                  }
+              } else if (type === 'quantity' && menu[key].name === selected) {
+                  this.menus[index].setmenu.newPrice = menu[key].price * model;
+              } else if (type === 'quantity' && selected === 'Select') {
+                  this.menus[index].setmenu.newPrice = this.menus[index].setmenu.price * model;
+              }
           }
       }
   }

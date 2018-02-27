@@ -26,6 +26,9 @@ import {StartersComponent} from './components/Starters';
 import {BeveragesComponent} from './components/Beverages';
 import {DesertsComponent} from './components/Deserts';
 import {ModalWindowComponent} from './components/ModalWindow';
+import {ViewCartComponent} from './containers/ViewCart';
+import {MyCartComponent} from './components/MyCart';
+
 
 import {HttpService} from './services';
 
@@ -58,7 +61,9 @@ import {HttpService} from './services';
     StartersComponent,
     BeveragesComponent,
     DesertsComponent,
-    ModalWindowComponent
+    ModalWindowComponent,
+    ViewCartComponent,
+    MyCartComponent
   ],
   providers: [HttpService],
   bootstrap: [RootComponent]

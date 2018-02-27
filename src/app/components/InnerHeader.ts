@@ -7,4 +7,12 @@ import {Component, Input} from '@angular/core';
 export class InnerHeaderComponent {
   @Input()
   public title: string = '';
+
+    checkforMainTitle(heading) {
+      if(heading === 'Kottu Mains' || heading === 'OrderCart'){
+        return true;
+      } else {
+          return false;
+      }
+    }
 }
