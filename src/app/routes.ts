@@ -4,6 +4,7 @@ import {AppComponent} from './containers/App';
 import {SignatureKottuComponent} from './containers/SignatureKottu';
 import {CustomKottuComponent} from './containers/CustomKottu';
 import {MenusComponent} from './containers/Menus';
+import {ViewCartComponent} from './containers/ViewCart';
 
 @Component({
   selector: 'kottu-labs-root',
@@ -27,6 +28,10 @@ export const routes: Routes = [
   {
     path: 'Menu',
     component: MenusComponent
+  },
+  {
+      path: 'YourCart',
+      component: ViewCartComponent
   }
 ];
 

@@ -1,5 +1,6 @@
-<div class="kottu-labs-inner-header-wrapper">
-  <div class="container">
-    <div class="kottu-labs-inner-header-title">{{title}}</div>
+<div class="kottu-labs-inner-header-wrapper" [ngClass]="{'kottu-labs-inner-header-red': checkforMainTitle(title)}">
+  <div class="container" *ngIf="!checkforMainTitle(title)">
+    <div class="kottu-labs-inner-header-title"><span>{{title}}</span></div>
   </div>
+  <div *ngIf="checkforMainTitle(title)" class="kottu-labs-inner-header-title">{{title}}</div>
 </div>
