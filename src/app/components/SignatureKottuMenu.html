@@ -43,7 +43,7 @@
               </div>
             </div>
           </div>
-          <button type="button" class="kottu-labs-signature-menu-btn" data-toggle="modal" data-target=".bs-example-modal-lg" [disabled]="this[i] <= 0 || this[i] === ''|| this[i] === undefined">Add to cart</button>
+          <button type="button" class="kottu-labs-signature-menu-btn" data-toggle="modal" data-target=".bs-example-modal-lg" [disabled]="this[i] <= 0 || this[i] === ''|| this[i] === undefined" (click)="addOrderToCart(menu.setmenu, this[i], 'portioDropDown' + i)">Add to cart</button>
         </div>
       </div>
     </div>

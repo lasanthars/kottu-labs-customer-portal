@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 const logo = require( '../../images/logo.png');
 
 @Component({
@@ -7,15 +8,16 @@ const logo = require( '../../images/logo.png');
 })
 export class NavigationComponent {
   public brandName: any;
+  private router: any;
 
-  constructor() {
+  constructor(private _router: Router) {
+    this.router = _router;
     this.brandName = logo;
   }
 
   scollToElement(element: any) {
-    console.log(element);
-    // $('html, body').animate({
-    //   scrollTop: $(element).offset().top
-    // }, 600);
+    if(this.router.url === '/'){
+      document.querySelector('#' + element).scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }

@@ -9,7 +9,7 @@ img{
   li{
     a{
       transition: all 0.35s;
-      color: $default-color;
+      color: $primary-color;
       cursor: pointer;
       &:hover, &:focus{
         background-color:transparent;
@@ -66,4 +66,7 @@ img{
   .collapsing {
     overflow: hidden!important;
   }
+}
+.navbar-brand{
+  padding-top: 5px;
 }

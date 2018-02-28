@@ -2,12 +2,20 @@ import {Injectable} from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+// import { catchError, map, tap } from 'rxjs/operators';
 
 import * as apiCalls from '../constants/ApiCalls';
 
 import { SignatureMenuInterface } from '../interface/SignatureMenuInterface';
 import { CustomMenuInterface } from '../interface/CustomMenuInterface';
 import { OtherMenuInterface } from '../interface/OtherMenuInterface';
+import { OrderInterface } from '../interface/OrderInterface';
+import { CartInterface } from '../interface/CartInterface';
+
+import { ORDERS } from '../constants/OrderData';
+import { CART } from '../constants/CartData';
 
 @Injectable()
 export class HttpService {
@@ -15,6 +23,7 @@ export class HttpService {
   private getSigMenusUrl = apiCalls.SIGATURE_MENUS;
   private getCustomMenusUrl = apiCalls.CUSTOM_MENUS;
   private getOtherMenusUrl = apiCalls.OTHER_MENUS;
+  private placeOrderUrl = apiCalls.POST_ORDER;
 
   constructor(private http: Http) { }
 
@@ -42,13 +51,56 @@ export class HttpService {
       .catch(this.handleError);
   }
 
-  showUiBlocker() {
-    document.getElementById('uiBlockerLoader').style.display = 'block';
-  }
 
-  hideUiBlocker() {
-    document.getElementById('uiBlockerLoader').style.display = 'none';
-  }
+
+    getOrders(): Observable<OrderInterface[]> {
+        if (localStorage.finalOrder) {
+            return of(JSON.parse(localStorage.finalOrder));
+        } else {
+            return of(ORDERS);
+        }
+    }
+
+    getCart(): Observable<CartInterface[]> {
+        if (localStorage.myCart) {
+            return of(JSON.parse(localStorage.myCart));
+        } else {
+            return of(CART);
+        }
+    }
+
+    pushCart(cart: any): Observable<CartInterface[]> {
+        this.showUiBlocker();
+        if (cart.length === 0 && localStorage.myCart) {
+            localStorage.removeItem("myCart");
+        } else if(cart.length > 0 && localStorage.myCart) {
+            localStorage.myCart = JSON.stringify(cart);
+        } else {
+            localStorage.setItem("myCart", JSON.stringify(cart));
+        }
+        return of(CART);
+    }
+
+    pushOrder(order: any): Observable<OrderInterface[]> {
+        this.showUiBlocker();
+        console.log(order);
+        if (order.length === 0 && localStorage.finalOrder) {
+            localStorage.removeItem("finalOrder");
+        } else if(order.length > 0 && localStorage.finalOrder) {
+            localStorage.setItem("finalOrder", JSON.stringify(order));
+        } else {
+            localStorage.setItem("finalOrder", JSON.stringify(order));
+        }
+        return of(ORDERS);
+    }
+
+      showUiBlocker() {
+        document.getElementById('uiBlockerLoader').style.display = 'block';
+      }
+
+      hideUiBlocker() {
+        document.getElementById('uiBlockerLoader').style.display = 'none';
+      }
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only

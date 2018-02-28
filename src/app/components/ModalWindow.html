@@ -1,12 +1,12 @@
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static">
+<div class="modal fade" id="{{modalid}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="kottu-labs-modal-wrapper">
             <h2>We've added it to your cart!</h2>
             <p>Would you like to proceed to pay or add more items to your cart?</p>
             <div class="kottu-labs-modal-buttons">
-                <button type="button">PROCEED TO PAY</button>
-                <button type="button" data-dismiss="modal" routerLink="/Menu">CHOOSE AD-ONS</button>
-                <button type="button">ADD ANOTHER SIGNATURE KOTTU TO CART</button>
+                <button type="button" data-dismiss="modal" routerLink="/YourCart">PROCEED TO PAY</button>
+                <button type="button" data-dismiss="modal" routerLink="{{urls[0]}}">CHOOSE AD-ONS</button>
+                <button type="button" data-dismiss="modal" routerLink="{{urls[1]}}">choose a kottu</button>
             </div>
         </div>
     </div>

@@ -4,10 +4,25 @@ body{
 button[disabled]{
   opacity:0.4;
 }
+p.bg-info{
+  padding:10px;
+  font: 300 18px 'Chelsea Market', cursive;
+  color: $default-color;
+}
+input[type="number"]{
+  box-shadow: 1px 2px 5px 0px rgba($menu-bg, 0.35) inset;
+  border:1px solid rgba($menu-bg, 0.7);
+  transition:all 0.2s;
+  text-align: center;
+  &:hover,&focus{
+    border:1px solid rgba($default-color, 0.95);
+  }
+}
 #{$preffix}{
   &-header-wrapper{
-    @include bg-img('white-about-us.png', repeat, left top);
-    background-size: 80% auto;
+    //@include bg-img('white-about-us.png', repeat, left top);
+    //background-size: 80% auto;
+    background-color:$menu-bg;
     min-height:$header-height + px;
     position:fixed;
     left:0;
@@ -17,30 +32,31 @@ button[disabled]{
   }
   &-view-cart{
     transition: all 0.2s;
-    background-color:$default-color;
-    border-radius: 10px;
+    background-color: $genuine-red;
+    border-radius: 14px;
     font-size:24px;
     text-transform: uppercase;
     border-color:transparent;
     padding:3px 12px;
     color:$primary-color;
+    font-family: 'Jockey One', sans-serif;
     &:hover, &:focus{
-      background-color:$coporate-color;
+      background-color:$location-info;
     }
   }
   &-hotline-wrapper{
-    background-color:rgba($default-color, 0.85);
+    background-color:rgba($default-color, 0.65);
     padding:5px 0;
     color:$primary-color;
     text-align:center;
     position:fixed;
     left:0;
-    top:$header-height + 5 + px;
+    top:$header-height + px;
     right:0;
     z-index: $header-zIndex;
     div{
       text-transform: uppercase;
-      font: 300 23px 'Archivo Black', sans-serif;
+      font: 300 17px 'Archivo Black', sans-serif;
       @media (max-width: 767px) {
         font: 300 18px 'Archivo Black', sans-serif;
       }
@@ -71,13 +87,13 @@ button[disabled]{
     width:49%;
     cursor:pointer;
     img{
-      height:270px;
-      margin-top:40px;
+      height:150px;
+      margin-top:85px;
     }
     h3{
-      font:normal 28px 'Jockey One', sans-serif;
+      font:normal 25px 'Jockey One', sans-serif;
       color:$primary-color;
-      padding-top:25px;
+      margin-top:10px;
     }
     @media (max-width: 1199px) {
       height: 340px;
@@ -103,11 +119,11 @@ button[disabled]{
   &-desc-wrapper{
     position: relative;
     top:$header-height + px;
-    @include bg-img('red-cover-about.png', repeat, center top);
-    background-size: cover;
-    padding: 40px 10px;
+    @include bg-img('white-about-us.png', repeat, left top);
+    background-size: contain;
+    padding: 40px 0px 0;
     text-align: center;
-    color:$primary-color;
+    color:$txt-color;
     p{
       font: normal 21px 'Basic', sans-serif;
       margin:0 auto;
@@ -123,10 +139,16 @@ button[disabled]{
       font: normal 21px 'Lobster', cursive;
       font-size: 60px;
     }
-
+    .kottu-labs-view-cart{
+      margin-top: 20px;
+      padding-left:35px;
+      padding-right:35px;
+    }
   }
   &-desc-images{
     margin-top: 40px;
+    background-color: $menu-bg;
+    padding: 20px 10px 10px;
     >div{
       padding-bottom: 15px;
     }
@@ -134,33 +156,35 @@ button[disabled]{
   &-location-wrapper{
     position: relative;
     top:$header-height + px;
-    @include bg-img('red-about-us.png', repeat, center top);
-    background-size: cover;
+    @include bg-img('red-cover-about.png', repeat, center top);
+    background-size: contain;
     padding: 40px 10px;
     text-align: center;
-    color:$location-info;
+    color:$primary-color;
     h2{
-      font: normal 21px 'Lobster', cursive;
+      font: normal 21px 'Jockey One', sans-serif;
       font-size: 42px;
       padding-bottom:15px;
+      text-transform: uppercase;
     }
     p{
-      font: normal 16px 'Chelsea Market', cursive;
-      padding: 20px 0;
-      margin:0 auto;
-      max-width:720px;
+      font: normal 20px 'Basic', sans-serif;
+      padding: 0px 0 20px;
+      max-width:600px;
+      text-align:left;
     }
     ul{
       text-align:left;
-      margin: 0 auto;
+      margin-left:0;
       max-width:570px;
       padding-top:20px;
+      padding-left:0px;
       @media (max-width: 640px) {
         text-align:center;
       }
       li{
         list-style: none;
-        font: bold 20px 'Chelsea Market', cursive;
+        font: bold 20px 'Basic', sans-serif;
         padding-bottom: 10px;
         span{
           @extend .inline-block;
@@ -184,23 +208,50 @@ button[disabled]{
     position: relative;
     top:$header-height + px;
     padding: 40px 0;
-    color: $icons-color;
+    font: normal 16px Chelsea Market,cursive;
+    color:$icons-color;
     a{
       transition: all 0.2s;
       margin:0 5px;
-      color: $icons-color;
+      color: $coporate-color;
       &:hover,&:focus{
         color: $coporate-color;
+        text-decoration: none;
       }
     }
     @media (max-width: 460px) {
       text-align: center;
     }
     &-icons{
+      span{
+        display: block;
+        padding-bottom: 15px;
+      }
+      .copyrights{
+        display:block;
+        padding-top:10px;
+        font-size:12px;
+        color:$icons-color;
+      }
       @media (max-width: 460px) {
         display: block;
         float: none!important;
         padding-bottom: 15px;
+      }
+    }
+    &-copyrights{
+      text-align: center;
+      padding-top:20px;
+      display:block;
+    }
+    &-links{
+      span{
+        display: block;
+        padding-bottom: 15px;
+      }
+      a{
+        display: block;
+        padding-bottom: 5px;
       }
     }
   }
@@ -210,6 +261,7 @@ button[disabled]{
       max-width: 270px;
       padding: 15px;
       margin: 25px auto 25px auto;
+      color: $primary-color;
       p {
         font: normal 16px 'Chelsea Market', cursive;
       }
@@ -240,6 +292,7 @@ button[disabled]{
     &-item{
       font-family: 'Chelsea Market', cursive;
       margin-bottom: 30px;
+      color:$primary-color;
       h3{
         font-size:17px;
       }
@@ -310,7 +363,7 @@ button[disabled]{
       input{
         padding:6px;
         color: $default-color;
-        border: 1px solid $coporate-color;
+        border: 1px solid $default-color;
       }
     }
     &-menu-item{
@@ -393,21 +446,36 @@ button[disabled]{
   &-menu-wrapper{
     position: relative;
     top:$header-height + px;
-    @include bg-img('red-cover-about.png', repeat, center top);
+    @include bg-img('white-about-us.png', repeat, center top);
     background-size: contain;
     text-align: center;
   }
   &-inner-header{
     &-wrapper {
-      background-color: $menu-bg;
       padding: 15px 0 10px;
-      color: $primary-color;
       text-align: center;
+      .container{
+        background-color: $inner-header-short;
+        .kottu-labs-inner-header-title{
+          padding:10px;
+          color:$primary-color;
+          border-bottom:none;
+          span{
+            display:block;
+            border-bottom: 3px solid $location-info;
+            padding:0 3px 3px 0;
+          }
+        }
+      }
+    }
+    &-red{
+      background-color: $inner-header;
     }
     &-title{
       padding: 0 5px;
       border-bottom: 3px solid $location-info;
       display:inline-block;
+      color:$primary-color;
       font: 300 20px 'Chelsea Market', cursive;
       @media (max-width: 767px) {
         font: 300 18px 'Chelsea Market', cursive;
@@ -431,7 +499,7 @@ button[disabled]{
       display: block;
     }
     span{
-      background-color: rgba($default-color, 0.55);
+      background-color: $menus-color;
       padding:15px 5px;
       display: block;
     }
@@ -440,7 +508,7 @@ button[disabled]{
     padding:40px 0 40px;
   }
   &-starter-item{
-    background-color: rgba($default-color, 0.55);
+    background-color: rgba($menus-color, 0.9);
     font:normal 14px 'News Cycle', sans-serif;
     text-align: center;
     min-height:230px;
@@ -518,9 +586,132 @@ button[disabled]{
         margin:15px auto;
         width:60%;
         transition: all 0.25s;
+        text-transform: uppercase;
         &:hover, &:focus{
           background-color: $btn-over;
         }
+      }
+    }
+  }
+  &-cart{
+    &-wrapper{
+      padding:40px 0;
+      .row{
+        margin-top:10px;
+      }
+    }
+    &-title{
+      padding: 15px 0;
+      display: block;
+      color: $primary-color;
+      font: 400 18px 'Chelsea Market', cursive;
+      background-color: rgba($default-color, 0.55);
+      @media (max-width:991px){
+        display: none;
+      }
+      
+    }
+    &-content{
+      color: $default-color;
+      font: normal 18px 'News Cycle', sans-serif;
+      background-color: rgba($primary-color, 0.55);
+      border: 1px solid rgba($default-color, 0.45);
+      margin:0 15px;
+      padding:10px 0;
+      .col-2{
+        text-align: center;
+      }
+      input{
+        transition: all 0.2s;
+        margin:5px 0 0;
+        width:70%;
+        border:2px solid rgba($menu-bg, 0.7);
+        padding:4px;
+        font-weight:bold;
+        text-align:center;
+        &:focus{
+          border:2px solid $default-color;
+        }
+        &[readonly="readonly"]{
+          opacity: 0.65;
+          &:focus,&:hover{
+            border:2px solid rgba($menu-bg, 0.7);
+          }
+        }
+        @media (max-width:991px){
+          right:0;
+          width:40%;
+        }
+      }
+    }
+    &-item{
+      font: 800 19px 'News Cycle', sans-serif;
+      text-align: left;
+      margin:0;
+      @media (max-width:991px){
+        text-align: center;
+      }
+    }
+    &-ingredients{
+      font: 500 16px 'News Cycle', sans-serif;
+      text-align: left;
+      margin:0;
+      padding-bottom:10px;
+      @media (max-width:991px){
+        text-align: center;
+      }
+    }
+    &-item-price{
+      font: 800 19px 'News Cycle', sans-serif;
+      padding-top: 5px;
+      display:block;
+      @media (max-width:991px){
+        padding-bottom: 15px;
+      }
+    }
+    &-footer{
+      font: 400 18px 'Chelsea Market', cursive;
+      color:$primary-color;
+      margin:10px 15px 0;
+      .col-md-7,.col-md-3{
+        background-color: rgba($default-color, 0.55);
+      }
+      p{
+        display: block;
+        padding-bottom:10px;
+        @media (max-width:991px){
+          text-align: center;
+        }
+      }
+    }
+    &-sub-total-label{
+      text-align: left;
+      padding-top:10px;
+    }
+    &-sub-total{
+      text-align: right;
+      padding-top:10px;
+      padding-right:5%;
+      @media (max-width:991px){
+        padding-right:0;
+      }
+    }
+    &-action-btn{
+      background-color: rgba($default-color, 0.55);
+      color:$primary-color;
+      float:left;
+      width:100%;
+      padding: 13px 0;
+      transition: all 0.2s;
+      margin-top: 10px;
+      &:hover,&:focus{
+        color:$primary-color;
+        background-color: rgba($default-color, 1);
+        text-decoration: none;
+      }
+      span{
+        display: block;
+        font: 400 13px 'News Cycle', sans-serif;
       }
     }
   }
