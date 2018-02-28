@@ -51,6 +51,53 @@ export class HttpService {
       .catch(this.handleError);
   }
 
+    // post the order
+    // placeOrder(): Promise<OrderInterface[]> {
+    //     return this.http.post(this.placeOrderUrl, {headers: this.headers})
+    //         .toPromise()
+    //         .then(response => response.json() as OrderInterface[])
+    //         .catch(this.handleError);
+    // }
+
+    getOrders(): Observable<OrderInterface[]> {
+        if (localStorage.finalOrder) {
+            return of(JSON.parse(localStorage.finalOrder));
+        } else {
+            return of(ORDERS);
+        }
+    }
+
+    getCart(): Observable<CartInterface[]> {
+        if (localStorage.finalOrder) {
+            return of(JSON.parse(localStorage.myCart));
+        } else {
+            return of(CART);
+        }
+    }
+
+    pushCart(cart: any): Observable<CartInterface[]> {
+        if (localStorage.myCart) {
+            localStorage.myCart = JSON.stringify(cart);
+        } else {
+            localStorage.setItem("myCart", JSON.stringify(cart));
+        }
+        return of(cart);
+    }
+
+    pushOrder(order: any): Observable<OrderInterface[]> {
+        if (localStorage.finalOrder) {
+            localStorage.finalOrder = JSON.stringify(order);
+        } else {
+            localStorage.setItem("finalOrder", JSON.stringify(order));
+        }
+        return of(order);
+    }
+
+    // add order to Cart
+    addToCart() {
+
+    }
+
 
 
     getOrders(): Observable<OrderInterface[]> {

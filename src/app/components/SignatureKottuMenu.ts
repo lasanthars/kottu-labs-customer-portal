@@ -77,6 +77,7 @@ export class SignatureKottuMenuComponent {
               } else if (type === 'quantity' && selected === 'Select') {
                   this.menus[index].setmenu.newPrice = this.menus[index].setmenu.price * model;
               }
+              }
           }
       }
   }
