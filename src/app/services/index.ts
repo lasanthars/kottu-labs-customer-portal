@@ -68,47 +68,6 @@ export class HttpService {
     }
 
     getCart(): Observable<CartInterface[]> {
-        if (localStorage.finalOrder) {
-            return of(JSON.parse(localStorage.myCart));
-        } else {
-            return of(CART);
-        }
-    }
-
-    pushCart(cart: any): Observable<CartInterface[]> {
-        if (localStorage.myCart) {
-            localStorage.myCart = JSON.stringify(cart);
-        } else {
-            localStorage.setItem("myCart", JSON.stringify(cart));
-        }
-        return of(cart);
-    }
-
-    pushOrder(order: any): Observable<OrderInterface[]> {
-        if (localStorage.finalOrder) {
-            localStorage.finalOrder = JSON.stringify(order);
-        } else {
-            localStorage.setItem("finalOrder", JSON.stringify(order));
-        }
-        return of(order);
-    }
-
-    // add order to Cart
-    addToCart() {
-
-    }
-
-
-
-    getOrders(): Observable<OrderInterface[]> {
-        if (localStorage.finalOrder) {
-            return of(JSON.parse(localStorage.finalOrder));
-        } else {
-            return of(ORDERS);
-        }
-    }
-
-    getCart(): Observable<CartInterface[]> {
         if (localStorage.myCart) {
             return of(JSON.parse(localStorage.myCart));
         } else {
@@ -130,7 +89,6 @@ export class HttpService {
 
     pushOrder(order: any): Observable<OrderInterface[]> {
         this.showUiBlocker();
-        console.log(order);
         if (order.length === 0 && localStorage.finalOrder) {
             localStorage.removeItem("finalOrder");
         } else if(order.length > 0 && localStorage.finalOrder) {

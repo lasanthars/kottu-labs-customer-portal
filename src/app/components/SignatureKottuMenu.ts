@@ -15,10 +15,14 @@ export class SignatureKottuMenuComponent {
   menus: SignatureMenuInterface[];
   finalOrder: OrderInterface[];
   cartInfo: CartInterface[];
+  public modalId: string;
   public kImg1: any;
+  public modalInfo: any[];
 
   constructor(private menuService: HttpService) {
     this.kImg1 = k1;
+      this.modalId = 'signatureModalDialog';
+      this.modalInfo =['/Menu', '/CustomKottu']
   }
 
   getAllSignatureMenus(): void {
@@ -57,38 +61,56 @@ export class SignatureKottuMenuComponent {
       this.assignNewPrice(selectedPortion, menu, index, model, 'quantity');
   }
 
-  private assignNewPrice (selected: string, menu: any, index: number, model: number, type: string) {
-      if (type === 'portion' && selected === '-1') {
-          if (model === undefined) {
-              this.menus[index].setmenu.newPrice = this.menus[index].setmenu.price;
-          } else {
-              this.menus[index].setmenu.newPrice = this.menus[index].setmenu.price * model;
-          }
-      } else {
-          for (let key of Object.keys(menu)) {
-              if ((type === 'portion' && menu[key].name === selected)) {
-                  if (model === undefined) {
-                      this.menus[index].setmenu.newPrice = menu[key].price;
-                  } else {
-                      this.menus[index].setmenu.newPrice = menu[key].price * model;
-                  }
-              } else if (type === 'quantity' && menu[key].name === selected) {
-                  this.menus[index].setmenu.newPrice = menu[key].price * model;
-              } else if (type === 'quantity' && selected === 'Select') {
+      private assignNewPrice (selected: string, menu: any, index: number, model: number, type: string) {
+          if (type === 'portion' && selected === '-1') {
+              if (model === undefined) {
+                  this.menus[index].setmenu.newPrice = this.menus[index].setmenu.price;
+              } else {
                   this.menus[index].setmenu.newPrice = this.menus[index].setmenu.price * model;
               }
+          } else {
+              for (let key of Object.keys(menu)) {
+                  if ((type === 'portion' && menu[key].name === selected)) {
+                      if (model === undefined) {
+                          this.menus[index].setmenu.newPrice = menu[key].price;
+                      } else {
+                          this.menus[index].setmenu.newPrice = menu[key].price * model;
+                      }
+                  } else if (type === 'quantity' && menu[key].name === selected) {
+                      this.menus[index].setmenu.newPrice = menu[key].price * model;
+                  } else if (type === 'quantity' && selected === 'Select') {
+                      this.menus[index].setmenu.newPrice = this.menus[index].setmenu.price * model;
+                  }
+                  }
               }
+      }
+
+      retreiveItemPrice(selectedMenu, selectedText: string){
+          for (let portionIndex of Object.keys(selectedMenu)) {
+            if(selectedMenu[portionIndex].name === selectedText) {
+                return selectedMenu[portionIndex].price;
+            }
           }
       }
-  }
 
-    addOrderToCart(item: any, quantity: number, portion: string){
+    blockCharacters(event: any) {
+        const pattern = /[0-9\+\-\ ]/g;
+        let inputChar = String.fromCharCode(event.charCode);
+        console.log(inputChar);
+        if (event.keyCode != 8 && !pattern.test(inputChar)) {
+            event.preventDefault();
+        }
+    }
+
+    addOrderToCart(selectedMenu: any, quantity: number, portion: string){
         this.getCartDetails();
         this.getFinalOrder();
+        const item = selectedMenu.setmenu;
         const element = (document.getElementById(portion)) as HTMLSelectElement;
         const selectedPortion = element.options[element.selectedIndex].text;
         let isDuplicate = false;
         const today = new Date();
+        const unitPrice = this.retreiveItemPrice(selectedMenu.portions, selectedPortion);
         const cart = {
             item: '',
             itemId: '',
@@ -113,17 +135,17 @@ export class SignatureKottuMenuComponent {
         };
         if (this.finalOrder[0].orderDetailDTO.length === 0) {
             newObj.orderDetail.itemId = item['id'];
-            newObj.orderDetail.price = item['price'];
-            newObj.orderDetail.total = item['price'] * quantity;
+            newObj.orderDetail.price = unitPrice;
+            newObj.orderDetail.total = unitPrice * quantity;
             newObj.orderDetail.qty = quantity;
             this.finalOrder[0].orderDetailDTO.push(newObj);
-            this.finalOrder[0].order.grossTotal = item['price'] * quantity;
-            this.finalOrder[0].order.nettTotal = item['price'] * quantity;
+            this.finalOrder[0].order.grossTotal = item['newPrice'];
+            this.finalOrder[0].order.nettTotal = item['newPrice'];
             cart.item = item['name'] + " (" + selectedPortion + ")";
             cart.itemId = item['id'];
             cart.qty = quantity;
-            cart.price = item['price'];
-            cart.total = item['price'] * quantity;
+            cart.price = unitPrice;
+            cart.total = unitPrice * quantity;
             this.cartInfo[0].cart.push(cart);
         } else {
             for (let key of Object.keys(this.finalOrder[0].orderDetailDTO)) {
@@ -131,13 +153,13 @@ export class SignatureKottuMenuComponent {
                     this.finalOrder[0].order.grossTotal -= this.finalOrder[0].orderDetailDTO[key].orderDetail.total;
                     this.finalOrder[0].order.nettTotal  -= this.finalOrder[0].orderDetailDTO[key].orderDetail.total;
                     this.finalOrder[0].orderDetailDTO[key].orderDetail.qty += quantity;
-                    this.finalOrder[0].orderDetailDTO[key].orderDetail.total = item['price'] * this.finalOrder[0].orderDetailDTO[key].orderDetail.qty;
+                    this.finalOrder[0].orderDetailDTO[key].orderDetail.total = unitPrice * this.finalOrder[0].orderDetailDTO[key].orderDetail.qty;
                     this.finalOrder[0].order.grossTotal += this.finalOrder[0].orderDetailDTO[key].orderDetail.total;
                     this.finalOrder[0].order.nettTotal  += this.finalOrder[0].orderDetailDTO[key].orderDetail.total;
                     for (let index of Object.keys(this.cartInfo[0].cart)) {
                         if(this.cartInfo[0].cart[index].itemId === item['id']){
                             this.cartInfo[0].cart[index].qty += quantity;
-                            this.cartInfo[0].cart[index].total = item['price'] * this.cartInfo[0].cart[index].qty;
+                            this.cartInfo[0].cart[index].total = unitPrice * this.cartInfo[0].cart[index].qty;
                             break;
                         }
                     }
@@ -147,24 +169,25 @@ export class SignatureKottuMenuComponent {
             }
             if(!isDuplicate) {
                 newObj.orderDetail.itemId = item['id'];
-                newObj.orderDetail.price = item['price'];
-                newObj.orderDetail.total = item['price'] * quantity;
+                newObj.orderDetail.price = unitPrice;
+                newObj.orderDetail.total = unitPrice * quantity;
                 newObj.orderDetail.isCustom = false;
                 newObj.orderDetail.qty = quantity;
                 this.finalOrder[0].orderDetailDTO.push(newObj);
-                this.finalOrder[0].order.grossTotal += item['price'] * quantity;
-                this.finalOrder[0].order.nettTotal += item['price'] * quantity;
+                this.finalOrder[0].order.grossTotal += unitPrice * quantity;
+                this.finalOrder[0].order.nettTotal += unitPrice * quantity;
                 cart.item = item['name'] + " (" + selectedPortion + ")";
                 cart.itemId = item['id'];
                 cart.qty = quantity;
-                cart.price = item['price'];
-                cart.total = item['price'] * quantity;
+                cart.price = unitPrice;
+                cart.total = unitPrice * quantity;
                 this.cartInfo[0].cart.push(cart);
             }
 
         }
         this.finalOrder[0].order.orderDate = today.toJSON();
-        this.menuService.pushCart(this.cartInfo).subscribe(result => this.cartInfo = result);
-        this.menuService.pushOrder(this.finalOrder).subscribe(result => this.finalOrder = result);
+        this.menuService.pushCart(this.cartInfo).subscribe(result => {this.cartInfo = result; this.menuService.hideUiBlocker()});
+        this.menuService.pushOrder(this.finalOrder).subscribe(result => {this.finalOrder = result; this.menuService.hideUiBlocker()});
     }
 }
+

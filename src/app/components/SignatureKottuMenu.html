@@ -20,7 +20,7 @@
           </div>
           <div class="kottu-labs-signature-menu-total clearfix">
             <span *ngIf="menu.setmenu.newPrice">Total - Rs.{{menu.setmenu.newPrice}}/=</span>
-            <span *ngIf="!menu.setmenu.newPrice">Total - Rs.{{menu.setmenu.price}}/=</span>
+            <span *ngIf="!menu.setmenu.newPrice">Total - Rs.{{menu.portions[0].price}}/=</span>
           </div>
           <div class="kottu-labs-signature-menu-inputs clearfix">
             <div class="row">
@@ -29,8 +29,7 @@
               </div>
               <div class="col-lg-7">
                 <select [attr.id]="'portioDropDown' + i" (change)="convertTotalPortion($event, menu.portions, i, this[i])">
-                  <option [value]="-1" [selected]="selected">Select</option>
-                  <option *ngFor="let portion of menu.portions" [ngValue]="portion.id">{{portion.name}}</option>
+                  <option *ngFor="let portion of menu.portions" [ngValue]="portion.id" [attr.selected]="portion.name === 'Small Kottu' ? true : null" >{{portion.name}}</option>
                 </select>
               </div>
             </div>
@@ -39,14 +38,14 @@
                 <label>Quantity</label>
               </div>
               <div class="col-lg-7">
-                <input name="input{{i}}" value="1" type="number" min="1" max="999" [(ngModel)]="this[i]" (ngModelChange)="convertToTotalQuantity('portioDropDown' + i, menu.portions, i, this[i])"/>
+                <input name="input{{i}}" pattern="[1-9][+]" (keypress)="blockCharacters($event)"  value="1" type="number" min="1" max="999" [(ngModel)]="this[i]" (ngModelChange)="convertToTotalQuantity('portioDropDown' + i, menu.portions, i, this[i])"/>
               </div>
             </div>
           </div>
-          <button type="button" class="kottu-labs-signature-menu-btn" data-toggle="modal" data-target=".bs-example-modal-lg" [disabled]="this[i] <= 0 || this[i] === ''|| this[i] === undefined" (click)="addOrderToCart(menu.setmenu, this[i], 'portioDropDown' + i)">Add to cart</button>
+          <button type="button" class="kottu-labs-signature-menu-btn" data-toggle="modal" data-target="#signatureModalDialog" [disabled]="this[i] <= 0 || this[i] === ''|| this[i] === undefined" (click)="addOrderToCart(menu, this[i], 'portioDropDown' + i)">Add to cart</button>
         </div>
       </div>
     </div>
   </div>
-  <kottu-lab-modal-window></kottu-lab-modal-window>
+  <kottu-lab-modal-window [urls]="[modalInfo[0], modalInfo[1]]" [modalid]="modalId"></kottu-lab-modal-window>
 </div>
