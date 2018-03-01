@@ -15,7 +15,7 @@
           </div>
           <div class="kottu-labs-starter-item-footer clearfix">
               <div class="col-01">
-                <input type="number" [(ngModel)]="this[i]" [placeholder]="1" min="1" max="99" (ngModelChange)="toggleQuantity(this[i], i, item.price)">
+                <input type="number" [(ngModel)]="this[i]" (keypress)="blockCharacters($event)" [placeholder]="1" min="1" max="99" (ngModelChange)="toggleQuantity(this[i], i, item.price)">
               </div>
               <div class="col-02">
                 <button type="button" data-toggle="modal" data-target="#beveragesModalDialog" (click)="addOrderToCart(item, this[i])" [disabled]="!this[i]">Add to Cart</button>
@@ -25,5 +25,5 @@
       </div>
     </div>
   </div>
-  <kottu-lab-modal-window [urls]="[addonUrl, kottuUrl]" [modalid]="modalId"></kottu-lab-modal-window>
+  <kottu-lab-modal-window [urls]="[modalInfo]" [modalid]="modalId"></kottu-lab-modal-window>
 </div>

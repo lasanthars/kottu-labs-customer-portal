@@ -56,6 +56,13 @@ export class DesertsComponent {
     this.otherMenus[index].newPrice = newPrice;
   }
 
+    blockCharacters(event: any) {
+        let inputChar = event.charCode;
+        if (event.keyCode === 48 || event.keyCode === 43 || event.keyCode === 45) {
+            event.preventDefault();
+        }
+    }
+
     addOrderToCart(item: object, quantity: number) {
         this.getCartDetails();
         this.getFinalOrder();
@@ -66,6 +73,7 @@ export class DesertsComponent {
             itemId: '',
             ingredients: [],
             qty: 0,
+            portion: '',
             price: 0,
             total: 0,
             isEdit: false

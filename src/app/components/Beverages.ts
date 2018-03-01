@@ -16,15 +16,13 @@ export class BeveragesComponent {
   cartInfo: CartInterface[];
   public kImg1: any;
   public modalId: string;
-  public addonUrl: string;
-  public kottuUrl: string;
+  public modalInfo: any[];
 
 
   constructor(private starterService: HttpService) {
     this.kImg1 = k1;
     this.modalId = 'beveragesModalDialog';
-    this.addonUrl = '/Menu';
-    this.kottuUrl = '/SignatureKottu';
+    this.modalInfo =['/Menu', '/SignatureKottu', 'Add another Kottu']
   }
 
   getAllOtherMenus(): void {
@@ -55,6 +53,12 @@ export class BeveragesComponent {
     this.otherMenus[index].newPrice = newPrice;
   }
 
+    blockCharacters(event: any) {
+        if (event.keyCode === 48 || event.keyCode === 43 || event.keyCode === 45) {
+            event.preventDefault();
+        }
+    }
+
   addOrderToCart(item: object, quantity: number) {
       this.getCartDetails();
       this.getFinalOrder();
@@ -65,6 +69,7 @@ export class BeveragesComponent {
           itemId: '',
           ingredients: [],
           qty: 0,
+          portion: '',
           price: 0,
           total: 0,
           isEdit: false

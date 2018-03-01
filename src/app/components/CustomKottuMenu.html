@@ -2,7 +2,7 @@
   <div class="container">
     <div class="kottu-labs-custom-kottu-quantity">
       <span>I would like to order
-        <input name="customKottuMenu" type="number" min="1" max="999" [(ngModel)]="customKottuMenu" (change)="createNewCustomMenu(customKottuMenu)"/>
+        <input name="customKottuMenu" type="number" (keypress)="blockCharacters($event)" min="1" max="999" [(ngModel)]="customKottuMenu" (change)="createNewCustomMenu(customKottuMenu)"/>
       </span> kottu portion(s)
     </div>
     <div class="kottu-labs-signature-menu-info">
@@ -19,9 +19,8 @@
               <span>Portion</span>
             </div>
             <div class="col-md-6 kottu-labs-custom-kottu-select">
-              <select (change)="changePortion($event, menu.portions, 'portion', i)">
-                <option [value]="-1" [selected]="selected">Select</option>
-                <option *ngFor="let portion of menu.portions" [ngValue]="portion.id">{{portion.name}}</option>
+              <select [attr.id]="'portionDropDown' + i" (change)="changePortion($event, menu.portions, 'portion', i, 'carbsDropDown' + i)">
+                <option *ngFor="let portion of menu.portions" [ngValue]="portion.id" [attr.selected]="portion.name === menu.portions[0].name ? true : null" >{{portion.name}}</option>
               </select>
             </div>
           </div>
@@ -30,9 +29,8 @@
               <span>Carb</span>
             </div>
             <div class="col-md-6 kottu-labs-custom-kottu-select">
-              <select (change)="changePortion($event, menu.carbs, 'carb', i)">
-                <option [value]="-1" [selected]="selected">Select</option>
-                <option *ngFor="let carb of menu.carbs" [ngValue]="carb.id" >{{carb.name}}</option>
+              <select [attr.id]="'carbsDropDown' + i" (change)="changePortion($event, menu.carbs, 'carb', i, 'portionDropDown' + i)">
+                <option *ngFor="let carb of menu.carbs;" [ngValue]="carb.id" [attr.selected]="carb.name === menu.carbs[0].name ? true : null" >{{carb.name}}</option>
               </select>
             </div>
           </div>
@@ -42,7 +40,7 @@
           <div class="row">
             <div class="col-sm-6" *ngFor="let ingredient of menu.ingredients; let k = index;" [ngStyle]="ingredient.type != '1' && {'display': 'none'}">
               <div class="kottu-labs-custom-kottu-check-wrapper" *ngIf="ingredient.type == '1'">
-                <input [attr.name]="i.toString()+k.toString()" [attr.id]="i.toString()+k.toString()" type="checkbox" (change)="calculateAddons($event, ingredient.price, i)" class="kottu-labs-custom-kottu-check"/>
+                <input [attr.name]="i.toString()+k.toString()" [attr.id]="i.toString()+k.toString()" type="checkbox" (change)="calculateAddons($event, ingredient.price, ingredient.id, i)" class="kottu-labs-custom-kottu-check"/>
                 <label [attr.for]="i.toString()+k.toString()" class="kottu-labs-custom-kottu-ingredients">{{ingredient.name}}</label>
               </div>
             </div>
@@ -53,7 +51,7 @@
           <div class="row">
             <div class="col-sm-6" style="padding-right:0px" *ngFor="let ingredient of menu.ingredients; let j = index;" [ngStyle]="ingredient.type != '2' && {'display': 'none'}">
               <div class="kottu-labs-custom-kottu-check-wrapper" *ngIf="ingredient.type == '2'">
-                <input [attr.name]="i.toString()+j.toString()" [attr.id]="i.toString()+j.toString()" type="checkbox" (change)="calculateAddons($event, ingredient.price, i)" class="kottu-labs-custom-kottu-check"/>
+                <input [attr.name]="i.toString()+j.toString()" [attr.id]="i.toString()+j.toString()" type="checkbox" (change)="calculateAddons($event, ingredient.price, ingredient.id, i)" class="kottu-labs-custom-kottu-check"/>
                 <label [attr.for]="i.toString()+j.toString()" class="kottu-labs-custom-kottu-ingredients">{{ingredient.name}}</label>
               </div>
             </div>
@@ -63,12 +61,12 @@
             <span>Total - Rs.{{menu.totalPrice}}/=</span>
           </div>
         </div>
-        <div class="kottu-labs-custom-kottu-check" *ngIf="menu.totalPrice > 0" >
+        <div class="kottu-labs-custom-kottu-check" *ngIf="itemCompleted" >
           <i class="fas fa-check fa-2x"></i>
         </div>
       </div>
     </div>
-    <button type="button" data-toggle="modal" data-target=".bs-example-modal-lg" class="kottu-labs-custom-kottu-cart-btn" [disabled]="customKottuMenu <= 0">Add to cart</button>
+    <button type="button" data-toggle="modal" data-target="#customKottuModalDialog" class="kottu-labs-custom-kottu-cart-btn" [disabled]="!itemCompleted">Add to cart</button>
   </div>
-  <kottu-lab-modal-window></kottu-lab-modal-window>
+  <kottu-lab-modal-window [urls]="[modalInfo]" [modalid]="modalId"></kottu-lab-modal-window>
 </div>

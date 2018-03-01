@@ -28,7 +28,7 @@
                 <label>Portion</label>
               </div>
               <div class="col-lg-7">
-                <select [attr.id]="'portioDropDown' + i" (change)="convertTotalPortion($event, menu.portions, i, this[i])">
+                <select [attr.id]="'portionDropDown' + i" (change)="convertTotalPortion($event, menu.portions, i, this[i])">
                   <option *ngFor="let portion of menu.portions" [ngValue]="portion.id" [attr.selected]="portion.name === 'Small Kottu' ? true : null" >{{portion.name}}</option>
                 </select>
               </div>
@@ -38,7 +38,7 @@
                 <label>Quantity</label>
               </div>
               <div class="col-lg-7">
-                <input name="input{{i}}" pattern="[1-9][+]" (keypress)="blockCharacters($event)"  value="1" type="number" min="1" max="999" [(ngModel)]="this[i]" (ngModelChange)="convertToTotalQuantity('portioDropDown' + i, menu.portions, i, this[i])"/>
+                <input name="input{{i}}" (keypress)="blockCharacters($event)"  value="1" type="number" min="1" max="999" [(ngModel)]="this[i]" (ngModelChange)="convertToTotalQuantity('portionDropDown' + i, menu.portions, i, this[i])"/>
               </div>
             </div>
           </div>
@@ -47,5 +47,5 @@
       </div>
     </div>
   </div>
-  <kottu-lab-modal-window [urls]="[modalInfo[0], modalInfo[1]]" [modalid]="modalId"></kottu-lab-modal-window>
+  <kottu-lab-modal-window [urls]="[modalInfo]" [modalid]="modalId"></kottu-lab-modal-window>
 </div>

@@ -22,7 +22,7 @@ export class SignatureKottuMenuComponent {
   constructor(private menuService: HttpService) {
     this.kImg1 = k1;
       this.modalId = 'signatureModalDialog';
-      this.modalInfo =['/Menu', '/CustomKottu']
+      this.modalInfo =['/Menu', '/SignatureKottu', 'Add another Kottu'];
   }
 
   getAllSignatureMenus(): void {
@@ -94,10 +94,7 @@ export class SignatureKottuMenuComponent {
       }
 
     blockCharacters(event: any) {
-        const pattern = /[0-9\+\-\ ]/g;
-        let inputChar = String.fromCharCode(event.charCode);
-        console.log(inputChar);
-        if (event.keyCode != 8 && !pattern.test(inputChar)) {
+        if (event.keyCode === 48 || event.keyCode === 43 || event.keyCode === 45) {
             event.preventDefault();
         }
     }
@@ -116,6 +113,7 @@ export class SignatureKottuMenuComponent {
             itemId: '',
             ingredients: [],
             qty: 0,
+            portion: '',
             price: 0,
             total: 0,
             isEdit: false
