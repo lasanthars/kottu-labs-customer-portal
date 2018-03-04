@@ -543,6 +543,19 @@ input[type="number"]{
         float:left;
         width:65%;
         margin:0 1.5%;
+        position:relative;
+        .cart-tooltip{
+          position:absolute;
+          background-color: rgba($default-color, 0.85);
+          white-space: nowrap;
+          font-size:13px;
+          color:$primary-color;
+          border-radius: 3px;
+          padding: 2px 5px;
+          display: none;
+          top:-28px;
+          z-index: 5;
+        }
       }
       input{
         color: $default-color;

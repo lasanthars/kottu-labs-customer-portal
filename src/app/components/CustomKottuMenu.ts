@@ -54,7 +54,8 @@ export class CustomKottuMenuComponent {
         qty: 1,
         price: 0,
         total: 0,
-        isEdit: true
+        isEdit: true,
+        isKottu: true
     }];
     this.timer = [];
   }
@@ -180,7 +181,8 @@ export class CustomKottuMenuComponent {
           qty: 1,
           price: 0,
           total: 0,
-          isEdit: true
+          isEdit: true,
+          isKottu: true
       };
       const newObj = {
           ingredients: [],

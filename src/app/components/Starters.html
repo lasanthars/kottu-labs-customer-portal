@@ -18,12 +18,13 @@
                 <input type="number" [(ngModel)]="this[i]" [placeholder]="1" min="1" max="99" (ngModelChange)="toggleQuantity(this[i], i, item.price)">
               </div>
               <div class="col-02">
-                <button type="button" data-toggle="modal" data-target="#starterModalDialog" [disabled]="!this[i]" (click)="addOrderToCart(item, this[i])">Add to Cart</button>
+                <div *ngIf="checkKottu()" id="cartTooltipStarter_{{i}}" class="cart-tooltip"></div>
+                <button type="button" data-toggle="modal" data-target="#starterModalDialog" [disabled]="!this[i]" (click)="addOrderToCart(item, this[i], 'cartTooltipStarter_' + i)">Add to Cart</button>
               </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <kottu-lab-modal-window [urls]="[modalInfo]" [modalid]="modalId"></kottu-lab-modal-window>
+  <kottu-lab-modal-window *ngIf="!checkKottu()" [urls]="[modalInfo]" [modalid]="modalId"></kottu-lab-modal-window>
 </div>

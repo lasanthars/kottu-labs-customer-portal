@@ -18,12 +18,29 @@ export class DesertsComponent {
   public modalInfo: any[];
   public kImg1: any;
   public modalId: string;
+  public isKottuAvailable: boolean;
 
   constructor(private starterService: HttpService) {
+    this.getAllOtherMenus();
+    this.getCartDetails();
     this.kImg1 = k1;
     this.modalId = 'desertsModalDialog';
     this.modalInfo =['/Menu', '/SignatureKottu', 'Add another Kottu'];
+    this.isKottuAvailable = false;
   }
+
+    checkKottu() {
+        this.isKottuAvailable = false;
+        if(this.cartInfo){
+            for (let key of Object.keys(this.cartInfo[0].cart)) {
+                if(this.cartInfo[0].cart[key].isKottu){
+                    this.isKottuAvailable = true;
+                    break;
+                }
+            }
+        }
+        return this.isKottuAvailable;
+    }
 
   getAllOtherMenus(): void {
     this.starterService
@@ -44,11 +61,6 @@ export class DesertsComponent {
           .subscribe(list => {this.cartInfo = list; this.starterService.hideUiBlocker();});
   }
 
-  ngOnInit(): void {
-    this.starterService.showUiBlocker('Preparing starters...');
-    this.getAllOtherMenus();
-  }
-
   toggleQuantity(value: number, index: number, price: number) {
     const newPrice = price * value;
     this.otherMenus[index].newPrice = newPrice;
@@ -61,7 +73,7 @@ export class DesertsComponent {
         }
     }
 
-    addOrderToCart(item: object, quantity: number) {
+    addOrderToCart(item: object, quantity: number, tooltip: string) {
         this.getCartDetails();
         this.getFinalOrder();
         let isDuplicate = false;
@@ -74,7 +86,8 @@ export class DesertsComponent {
             portion: '',
             price: 0,
             total: 0,
-            isEdit: false
+            isEdit: false,
+            isKottu: false
         };
         const newObj = {
             ingredients: [''],
@@ -144,7 +157,15 @@ export class DesertsComponent {
 
         }
         this.finalOrder[0].order.orderDate = today.toJSON();
-        this.starterService.pushCart(this.cartInfo).subscribe(result => {this.cartInfo = result; this.starterService.hideUiBlocker();});
+        this.starterService.pushCart(this.cartInfo).subscribe(result => {this.cartInfo = result;
+            if(this.isKottuAvailable) {
+                document.getElementById(tooltip).innerHTML = quantity + ' item(s) added.';
+                document.getElementById(tooltip).style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById(tooltip).style.display = 'none';
+                },1500);
+            }
+            this.starterService.hideUiBlocker();});
         this.starterService.pushOrder(this.finalOrder).subscribe(result => {this.finalOrder = result; this.starterService.hideUiBlocker();});
     }
 }

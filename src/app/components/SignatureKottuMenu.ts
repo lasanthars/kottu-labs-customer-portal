@@ -116,7 +116,8 @@ export class SignatureKottuMenuComponent {
             portion: '',
             price: 0,
             total: 0,
-            isEdit: false
+            isEdit: false,
+            isKottu: true
         };
         const newObj = {
             ingredients: [''],

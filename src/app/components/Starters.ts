@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { OtherMenuInterface } from '../interface/OtherMenuInterface';
 import { HttpService } from '../services';
 import { OrderInterface } from '../interface/OrderInterface';
@@ -16,8 +16,13 @@ export class StartersComponent {
   public modalInfo: any[];
   public modalId: string;
   public kImg1: any;
+  public isKottuAvailable: boolean;
 
   constructor(private starterService: HttpService) {
+    this.getAllOtherMenus();
+    this.getCartDetails();
+    this.starterService.showUiBlocker('Preparing menu(s)');
+    this.isKottuAvailable = false;
     this.kImg1 = k1;
     this.modalId = 'starterModalDialog';
     this.modalInfo =['/Menu', '/SignatureKottu', 'Add another Kottu'];
@@ -30,10 +35,6 @@ export class StartersComponent {
         this.otherMenus = menus;
         this.starterService.hideUiBlocker();
       });
-  }
-
-  ngOnInit(): void {
-    this.getAllOtherMenus();
   }
 
   toggleQuantity(value: number, index: number, price: number) {
@@ -59,7 +60,19 @@ export class StartersComponent {
         }
     }
 
-  addOrderToCart(item: object, quantity: number) {
+    checkKottu() {
+        this.isKottuAvailable = false;
+        if(this.cartInfo){
+            for (let key of Object.keys(this.cartInfo[0].cart)) {
+                if(this.cartInfo[0].cart[key].isKottu){
+                    this.isKottuAvailable = true;
+                    break;
+                }
+            }
+        }
+        return this.isKottuAvailable;
+    }
+  addOrderToCart(item: object, quantity: number, tooltip: string) {
       this.getCartDetails();
       this.getFinalOrder();
       let isDuplicate = false;
@@ -72,7 +85,8 @@ export class StartersComponent {
           portion: '',
           price: 0,
           total: 0,
-          isEdit: false
+          isEdit: false,
+          isKottu: false
       };
       const newObj = {
           ingredients: [''],
@@ -142,7 +156,17 @@ export class StartersComponent {
 
      }
      this.finalOrder[0].order.orderDate = today.toJSON();
-     this.starterService.pushCart(this.cartInfo).subscribe(result => {this.cartInfo = result; this.starterService.hideUiBlocker();});
+     this.starterService.pushCart(this.cartInfo).subscribe(result => {
+         this.cartInfo = result;
+         if(this.isKottuAvailable) {
+            document.getElementById(tooltip).innerHTML = quantity + ' item(s) added.';
+            document.getElementById(tooltip).style.display = 'block';
+             setTimeout(() => {
+                 document.getElementById(tooltip).style.display = 'none';
+             },1500);
+         }
+         this.starterService.hideUiBlocker();
+     });
      this.starterService.pushOrder(this.finalOrder).subscribe(result => {this.finalOrder = result; this.starterService.hideUiBlocker()});
   }
 }
