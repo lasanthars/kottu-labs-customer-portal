@@ -22,6 +22,7 @@ export class MyCartComponent implements OnInit{
     }
 
     ngOnInit(): void {
+        this.cartService.showUiBlocker('Preparing your cart...');
         this.getCartDetails();
         this.getFinalOrder();
         this.newGrossTotal = 0;

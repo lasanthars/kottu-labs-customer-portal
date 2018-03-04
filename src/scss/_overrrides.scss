@@ -19,6 +19,9 @@ img{
         padding: 10px 12px;
       }
     }
+    a.active-link{
+      color: $coporate-color;
+    }
   }
 }
 .navbar-toggle{
@@ -71,5 +74,5 @@ img{
   padding-top: 5px;
 }
 .modal{
-  background-color: rgba(#000000, 0.85);
+  background-color: rgba($default-color, 0.85);
 }

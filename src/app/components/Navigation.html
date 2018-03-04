@@ -8,17 +8,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><img src="{{brandName}}"/></a>
+      <a class="navbar-brand" href="/"><img src="{{brandName}}"/></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink="/Menu">Menu</a></li>
-        <li><a href="#">New Items</a></li>
+        <li><a routerLink="/Menu" routerLinkActive="active-link">Menu</a></li>
+        <li><a href="#" routerLinkActive="active-link">New Items</a></li>
         <li><a routerLink="/" fragment="kottuLabLocationMap" (click)="scollToElement('kottuLabLocationMap')">Pick up location</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li><a href="#">About us</a></li>
+        <li><a href="#" routerLinkActive="active-link">Gallery</a></li>
+        <li><a href="#"routerLinkActive="active-link">About us</a></li>
         <li>
           <button type="button" routerLink="/YourCart" class="kottu-labs-view-cart">view cart</button>
         </li>

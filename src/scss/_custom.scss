@@ -708,7 +708,7 @@ input[type="number"]{
           border:2px solid $default-color;
         }
         &[readonly="readonly"]{
-          opacity: 0.65;
+          opacity: 0.45;
           &:focus,&:hover{
             border:2px solid rgba($menu-bg, 0.7);
           }
