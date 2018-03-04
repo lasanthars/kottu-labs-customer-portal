@@ -6,16 +6,16 @@
       <div class="col-md-2"><div class="kottu-labs-cart-title">Price</div></div>
       <div class="col-md-1"></div>
     </div>
-    <div class="row" *ngFor="let item of cartInfo[0].cart">
+    <div class="row" *ngFor="let item of cartInfo[0].cart; let j = index;">
       <div class="col-md-10">
         <div class="row">
           <div class="kottu-labs-cart-content clearfix">
             <div class="col-md-7">
-              <p class="kottu-labs-cart-item">{{item.item}}</p>
-              <!--<p class="kottu-labs-cart-ingredients" *ngIf="item.ingredients.length && item.ingredients.length > 0">{{item.ingredients.toString()}}</p>-->
+              <p class="kottu-labs-cart-item">{{item.item}} <span *ngIf="item.portion">({{item.portion}})</span></p>
+              <p class="kottu-labs-cart-ingredients" *ngIf="item.ingredients.length > 0"><strong>Ingredients: </strong>{{item.ingredients.toString()}}</p>
             </div>
             <div class="col-md-3">
-              <input type="number" min="1" max="99" [(ngModel)]="item.qty" readonly="readonly"/>
+              <input id="cartEdit{{j}}" type="number" min="1" max="99" (keypress)="blockCharacters($event)" [(ngModel)]="item.qty" (ngModelChange)="toggleValue(item, item.qty, j);" readonly="readonly"/>
             </div>
             <div class="col-md-2">
                 <span class="kottu-labs-cart-item-price">Rs {{item.total}}/=</span>
@@ -24,10 +24,10 @@
         </div>
       </div>
       <div class="col-md-1">
-          <a role="button" class="kottu-labs-cart-action-btn" href="/"><i class="fas fa-pencil-alt fa-lg"></i><span>Edit</span></a>
+          <a *ngIf="!item.isEdit" role="button" class="kottu-labs-cart-action-btn" (click)="setReadOnly('cartEdit' + j)"><i class="fas fa-pencil-alt fa-lg"></i><span>Edit</span></a>
       </div>
       <div class="col-md-1">
-        <a role="button" class="kottu-labs-cart-action-btn" data-toggle="modal" data-target=".bs-example-modal-confirm" (click)="assignToConfirm(item)"><i class="fas fa-trash-alt fa-lg"></i><span>Delete</span></a>
+        <a role="button" class="kottu-labs-cart-action-btn" data-toggle="modal" data-target=".bs-example-modal-confirm" (click)="assignToConfirm(item, j)"><i class="fas fa-trash-alt fa-lg"></i><span>Delete</span></a>
        </div>
     </div>
     <div class="row">
@@ -36,7 +36,7 @@
               <p class="kottu-labs-cart-sub-total-label">Sub Total</p>
           </div>
           <div class="col-md-3">
-              <p class="kottu-labs-cart-sub-total">Rs {{calculateSum()}}/=</p>
+              <p class="kottu-labs-cart-sub-total">Rs {{cartGrandTotal}}/=</p>
           </div>
         </div>
     </div>
@@ -48,5 +48,17 @@
       </div>
     </div>
   </div>
+  <div class="container">
+    <div class="row">
+      <div class="kottu-labs-cart-checkout-button clearfix">
+        <div class="col-md-7">
+        </div>
+        <div class="col-md-3">
+          <button *ngIf="cartInfo[0].cart.length > 0" type="button" data-toggle="modal" data-target="#customerFormModel" (click)="checkout()">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <kottu-lab-customer-form-window [modalid]="customerFormModel"></kottu-lab-customer-form-window>
   <kottu-lab-confirm-window [item]="itemToDelete" [total]="newGrossTotal"></kottu-lab-confirm-window>
 </div>

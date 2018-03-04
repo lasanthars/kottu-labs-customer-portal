@@ -77,10 +77,12 @@ export class BeveragesComponent {
       const newObj = {
           ingredients: [''],
           orderDetail: {
+              carbId: '',
               id: '',
               isCustom: false,
               itemId: '',
               orderId: '',
+              portionId: '',
               price: 0,
               qty: 0,
               setmenuId: '',

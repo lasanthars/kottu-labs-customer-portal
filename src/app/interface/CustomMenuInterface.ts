@@ -3,6 +3,4 @@ export class CustomMenuInterface {
     portions: [{id: string, displayName: string, name: string, price: number, setmenu_type: number}];
     carbs: [{id: string, name: string, price: number}];
     totalPrice: number;
-    previousCarbPrice: number;
-    previousPortionPrice: number;
 }

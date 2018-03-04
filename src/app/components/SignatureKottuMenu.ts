@@ -35,7 +35,7 @@ export class SignatureKottuMenuComponent {
   }
 
   ngOnInit(): void {
-    this.menuService.showUiBlocker();
+    this.menuService.showUiBlocker('Preparing the signature kottu list...');
     this.getAllSignatureMenus();
   }
 
@@ -121,10 +121,12 @@ export class SignatureKottuMenuComponent {
         const newObj = {
             ingredients: [''],
             orderDetail: {
+                carbId: '',
                 id: '',
                 isCustom: false,
                 itemId: '',
                 orderId: '',
+                portionId: '',
                 price: 0,
                 qty: 0,
                 setmenuId: '',

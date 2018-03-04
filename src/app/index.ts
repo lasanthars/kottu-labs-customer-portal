@@ -29,6 +29,7 @@ import {ModalWindowComponent} from './components/ModalWindow';
 import {ViewCartComponent} from './containers/ViewCart';
 import {MyCartComponent} from './components/MyCart';
 import {ConfirmWindowComponent} from './components/ConfirmWindow';
+import {CustomerFormWindowComponent} from './components/CustomerForm';
 
 
 import {HttpService} from './services';
@@ -65,7 +66,8 @@ import {HttpService} from './services';
     ModalWindowComponent,
     ViewCartComponent,
     MyCartComponent,
-    ConfirmWindowComponent
+    ConfirmWindowComponent,
+    CustomerFormWindowComponent
   ],
   providers: [HttpService],
   bootstrap: [RootComponent]

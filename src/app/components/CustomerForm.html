@@ -1,0 +1,72 @@
+<div class="modal fade" id="{{modalid}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="kottu-labs-customer-modal-wrapper">
+            <h2>Customer Form</h2>
+            <!--<p *ngIf="orderError">Something went wrong. your order has not been placed. Please try again shortly.</p>-->
+            <div *ngIf="orderError" class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                Something went wrong. your order has not been placed. Please try again shortly.
+            </div>
+            <p>Email Address is act as your user name. Please remember it to an easy checkout. (mandatory fields are marked with *)</p>
+            <form (ngSubmit)="onSubmit()" #customerForm="ngForm">
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" class="form-control" id="email" (blur)="checkIfExisting(this.customer.email, email.valid)"
+                           required
+                           [(ngModel)]="this.customer.email" name="email"
+                           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                           #email="ngModel" placeholder="sample@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" class="form-control" id="name"
+                           required
+                           [(ngModel)]="customer.name" name="name"
+                           #name="ngModel" placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="contactNo1">Contact No - Primary *</label>
+                    <input type="text" class="form-control" id="contactNo1"
+                           required
+                           [(ngModel)]="customer.contactNo1" name="contactNo1" pattern="[0-9]{10}"
+                           #contactNo1="ngModel" placeholder="077XXXXXXX">
+                </div>
+                <div class="form-group">
+                    <label for="contactNo2">Contact No - Secondary</label>
+                    <input type="text" class="form-control" id="contactNo2" placeholder="077XXXXXXX" pattern="[0-9]{10}" [(ngModel)]="customer.contactNo2" name="contactNo2" #contactNo2="ngModel">
+                </div>
+                <div class="form-group">
+                    <label for="addressLine1">AddressLine1 *</label>
+                    <input type="text" class="form-control" id="addressLine1"
+                           required
+                           [(ngModel)]="customer.addressLine1" name="addressLine1"
+                           #addressLine1="ngModel" placeholder="#21 New Castle Road. Rajagiriya">
+                </div>
+                <div class="form-group">
+                    <label for="city">City *</label>
+                    <input type="text" class="form-control" id="city"
+                           required
+                           [(ngModel)]="customer.city" name="city" placeholder="Rajagiriya"
+                           #city="ngModel">
+                </div>
+                <div class="form-group">
+                    <label for="notes">Special Notes</label>
+                    <textarea class="form-control" rows="3" id="notes" placeholder="special requirements" [(ngModel)]="customer.notes" name="notes" #notes="ngModel"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" data-dismiss="modal"  class="kottu-labs-customer-modal-button">Cancel</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="kottu-labs-customer-modal-button" [disabled]="!customerForm.form.valid">Place Order</button>
+                    </div>
+                </div>
+            </form>
+            <div class="kottu-labs-modal-buttons">
+                <!--<button type="button" data-dismiss="modal" routerLink="/YourCart">PROCEED TO PAY</button>-->
+                <!--<button type="button" data-dismiss="modal" routerLink="{{urls[0][1]}}">{{urls[0][2]}}</button>-->
+                <!--<button type="button" data-dismiss="modal" routerLink="{{urls[0][0]}}">CHOOSE AD-ONS</button>-->
+            </div>
+        </div>
+    </div>
+</div>

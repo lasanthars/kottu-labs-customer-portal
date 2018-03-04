@@ -26,21 +26,26 @@ export class ConfirmWindowComponent {
 
     getFinalOrder(): void {
         this.cartService.getOrders()
-            .subscribe(orders => {this.finalOrder = orders;});
+            .subscribe(orders => {this.finalOrder = orders; this.cartService.hideUiBlocker();});
 
     }
 
-    removeItem(item: any, total: number) {
+    removeItem(index: number, item: any, total: number) {
         this.getFinalOrder();
         this.getCartDetails();
         this.finalOrder[0].order.grossTotal = total - item.total;
         this.finalOrder[0].order.nettTotal = total - item.total;
-        const newCart = this.cartInfo[0].cart.filter(list => {
-            return list.itemId !== item.itemId
-        });
-        this.cartInfo[0].cart = newCart;
-        const newFinalOrder = this.finalOrder[0].orderDetailDTO.filter(thing => thing.orderDetail.itemId !== item.itemId);
-        this.finalOrder[0].orderDetailDTO = newFinalOrder;
+        if(!item.isEdit) {
+            const newCart = this.cartInfo[0].cart.filter(list => {
+                return list.itemId !== item.itemId
+            });
+            this.cartInfo[0].cart = newCart;
+            const newFinalOrder = this.finalOrder[0].orderDetailDTO.filter(thing => thing.orderDetail.itemId !== item.itemId);
+            this.finalOrder[0].orderDetailDTO = newFinalOrder;
+        } else {
+            this.cartInfo[0].cart.splice(index, 1);
+            this.finalOrder[0].orderDetailDTO.splice(index, 1);
+        }
         this.cartService.pushCart(this.cartInfo).subscribe(result => {
             this.cartInfo = result;
             this.cartService.hideUiBlocker();

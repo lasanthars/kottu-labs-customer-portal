@@ -13,16 +13,14 @@ export class StartersComponent {
   otherMenus: OtherMenuInterface[];
   finalOrder: OrderInterface[];
   cartInfo: CartInterface[];
+  public modalInfo: any[];
   public modalId: string;
   public kImg1: any;
-  public addonUrl: string;
-  public kottuUrl: string;
 
   constructor(private starterService: HttpService) {
     this.kImg1 = k1;
     this.modalId = 'starterModalDialog';
-    this.addonUrl = '/Menu';
-    this.kottuUrl = '/SignatureKottu';
+    this.modalInfo =['/Menu', '/SignatureKottu', 'Add another Kottu'];
   }
 
   getAllOtherMenus(): void {
@@ -79,10 +77,12 @@ export class StartersComponent {
       const newObj = {
           ingredients: [''],
           orderDetail: {
+              carbId: '',
               id: '',
               isCustom: false,
               itemId: '',
               orderId: '',
+              portionId: '',
               price: 0,
               qty: 0,
               setmenuId: '',
