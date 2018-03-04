@@ -15,16 +15,14 @@ export class DesertsComponent {
   otherMenus: OtherMenuInterface[];
   finalOrder: OrderInterface[];
   cartInfo: CartInterface[];
+  public modalInfo: any[];
   public kImg1: any;
   public modalId: string;
-  public addonUrl: string;
-  public kottuUrl: string;
 
   constructor(private starterService: HttpService) {
     this.kImg1 = k1;
     this.modalId = 'desertsModalDialog';
-    this.addonUrl = '/Menu';
-    this.kottuUrl = '/SignatureKottu';
+    this.modalInfo =['/Menu', '/SignatureKottu', 'Add another Kottu'];
   }
 
   getAllOtherMenus(): void {

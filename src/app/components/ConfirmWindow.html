@@ -1,10 +1,10 @@
 <div class="modal fade bs-example-modal-confirm" tabindex="-1" role="dialog" aria-labelledby="ConfirmModal" data-backdrop="static">
     <div class="modal-dialog" role="document">
-        <div class="kottu-labs-modal-wrapper">
+        <div class="kottu-labs-modal-wrapper kottu-labs-small-modal-wrapper">
             <h2>Are you sure?</h2>
-            <div class="kottu-labs-modal-buttons">
-                <button type="button" data-dismiss="modal" (click)="removeItem(item[0], item[1], total)">Yes</button>
-                <button type="button" data-dismiss="modal">No</button>
+            <div class="kottu-labs-modal-buttons clearfix">
+                <div class="col-md-6"><button type="button" data-dismiss="modal">No</button></div>
+                <div class="col-md-6"><button type="button" data-dismiss="modal" (click)="removeItem(item[0], item[1], total)">Yes</button></div>
             </div>
         </div>
     </div>
