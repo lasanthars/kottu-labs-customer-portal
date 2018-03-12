@@ -156,20 +156,21 @@ input[type="number"]{
   &-location-wrapper{
     position: relative;
     top:$header-height + px;
-    @include bg-img('red-cover-about.png', repeat, center top);
+    //@include bg-img('red-cover-about.png', repeat, center top);
+    @include bg-img('white-about-us.png', repeat, left top);
     background-size: contain;
     padding: 40px 10px;
-    text-align: center;
-    color:$primary-color;
     h2{
       font: normal 21px 'Jockey One', sans-serif;
-      font-size: 42px;
+      font-size: 35px;
       padding-bottom:15px;
       text-transform: uppercase;
+      margin-top:0px;
+      line-height:21px;
+      color:$genuine-red;
     }
     p{
       font: normal 20px 'Basic', sans-serif;
-      padding: 0px 0 20px;
       max-width:600px;
       text-align:left;
     }
@@ -184,15 +185,17 @@ input[type="number"]{
       }
       li{
         list-style: none;
-        font: bold 20px 'Basic', sans-serif;
+        font: normal 20px 'Basic', sans-serif;
         padding-bottom: 10px;
         span{
           @extend .inline-block;
           width:24px;
           vertical-align: middle;
+          color:$genuine-red;
         }
         label{
           padding-left: 15px;
+          font-weight:normal;
           @extend .inline-block;
           @media (max-width: 640px) {
             display: block;
@@ -809,5 +812,5 @@ input[type="number"]{
   }
 }
 .sebm-google-map-container{
-  height:250px;
+  height:280px;
 }
