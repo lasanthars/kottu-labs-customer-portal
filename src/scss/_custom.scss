@@ -471,8 +471,8 @@ input[type="number"]{
     &-wrapper {
       padding: 15px 0 10px;
       text-align: center;
+      background-color:rgba($default-color, 0.52);
       .container{
-        background-color: $inner-header-short;
         .kottu-labs-inner-header-title{
           padding:10px;
           color:$primary-color;
