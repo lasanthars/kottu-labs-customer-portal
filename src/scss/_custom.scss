@@ -38,6 +38,7 @@ input[type="number"]{
     text-transform: uppercase;
     border-color:transparent;
     padding:3px 12px;
+    margin-top:10px;
     color:$primary-color;
     font-family: 'Jockey One', sans-serif;
     &:hover, &:focus{
@@ -75,51 +76,50 @@ input[type="number"]{
       text-decoration: none;
     }
   }
-  &-signature-kottu, &-own-kottu{
-    @include bg-img('menu_bg.png', no-repeat, center top);
-    background-size: cover;
-    max-width:400px;
-    height: 350px;
-    text-align:center;
-    margin:100px 5% 0;
-    @extend .inline-block;
-    vertical-align:middle;
-    width:49%;
-    cursor:pointer;
-    img{
-      height:150px;
-      margin-top:85px;
-    }
-    h3{
-      font:normal 25px 'Jockey One', sans-serif;
-      color:$primary-color;
-      margin-top:10px;
-    }
-    @media (max-width: 1199px) {
-      height: 340px;
-      margin:100px 5% 0;
-      width: 35%;
-    }
-    @media (max-width: 991px) {
-      height: auto;
-      margin:40px 5% 0;
-      width: 50%;
-      background-size: contain;
-      h3{
-        font-size:24px;
-        padding:0;
-        margin:0;
+  &-banner-text{
+    color:$primary-color;
+    font:normal 50px 'Jockey One', sans-serif;
+    padding:100px 0 40px 0;
+  }
+  &-signature-kottu{
+    a {
+      text-align: center;
+      @extend .inline-block;
+      vertical-align: middle;
+      border-left:1px solid $primary-color;
+      cursor: pointer;
+      padding:15px 20px;
+      img {
+        height: 90px;
       }
-      img{
-        margin-top:20px;
-        height: auto;
+      span {
+        font: normal 25px 'Basic', sans-serif;
+        color: $primary-color;
+        margin-top: 10px;
+        display: block;
+        font-size:18px;
+        max-width:165px;
+      }
+      @media (max-width: 480px) {
+        display:block;
+        border-left:none;
+        border-top:1px solid $primary-color;
+        span{
+          max-width: none;
+        }
+        &:first-child{
+          border-top:none;
+        }
+      }
+      &:first-child{
+        border-left:none;
       }
     }
   }
   &-desc-wrapper{
     position: relative;
     top:$header-height + px;
-    @include bg-img('white-about-us.png', repeat, left top);
+    @include bg-img('page-cover.png', repeat, left top);
     background-size: contain;
     padding: 40px 0px 0;
     text-align: center;
@@ -138,6 +138,7 @@ input[type="number"]{
     h2{
       font: normal 21px 'Lobster', cursive;
       font-size: 60px;
+      color:$menu-bg;
     }
     .kottu-labs-view-cart{
       margin-top: 20px;
@@ -157,17 +158,18 @@ input[type="number"]{
     position: relative;
     top:$header-height + px;
     //@include bg-img('red-cover-about.png', repeat, center top);
-    @include bg-img('white-about-us.png', repeat, left top);
+    @include bg-img('page-cover.png', repeat, left top);
     background-size: contain;
     padding: 40px 10px;
     h2{
-      font: normal 21px 'Jockey One', sans-serif;
-      font-size: 35px;
+      font: normal 35px 'Jockey One', sans-serif;
       padding-bottom:15px;
       text-transform: uppercase;
       margin-top:0px;
       line-height:21px;
-      color:$genuine-red;
+      display: inline-block;
+      color:$menu-bg;
+      border-bottom:2px solid $menu-bg;
     }
     p{
       font: normal 20px 'Basic', sans-serif;
@@ -189,7 +191,7 @@ input[type="number"]{
         padding-bottom: 10px;
         span{
           @extend .inline-block;
-          width:24px;
+          width:30px;
           vertical-align: middle;
           color:$genuine-red;
         }
@@ -463,8 +465,8 @@ input[type="number"]{
   &-menu-wrapper{
     position: relative;
     top:$header-height + px;
-    @include bg-img('white-about-us.png', repeat, center top);
-    background-size: contain;
+    @include bg-img('page-cover.png', repeat, center top);
+    background-size: cover;
     text-align: center;
   }
   &-inner-header{

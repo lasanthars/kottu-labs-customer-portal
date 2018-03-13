@@ -20,7 +20,7 @@ import {SignatureKottuMenuComponent} from './components/SignatureKottuMenu';
 import {CustomKottuComponent} from './containers/CustomKottu';
 import {CustomKottuMenuComponent} from './components/CustomKottuMenu';
 import {MenusComponent} from './containers/Menus';
-import {InnerHeaderComponent} from './components/InnerHeader';
+import {MenuContentsComponent} from './components/MenuContents';
 import {MainMenusComponent} from './components/MainMenus';
 import {StartersComponent} from './components/Starters';
 import {BeveragesComponent} from './components/Beverages';
@@ -58,7 +58,7 @@ import {HttpService} from './services';
     CustomKottuComponent,
     CustomKottuMenuComponent,
     MenusComponent,
-    InnerHeaderComponent,
+    MenuContentsComponent,
     MainMenusComponent,
     StartersComponent,
     BeveragesComponent,

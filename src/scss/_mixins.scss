@@ -25,7 +25,17 @@
 // -- / position
 
 
-//-- / Clear Default Styles
+@font-face {
+	font-family: 'Aller';
+	src: url('../fonts/Aller.eot');
+	src: url('../fonts/Aller.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/Aller.woff2') format('woff2'),
+	url('../fonts/Aller.woff') format('woff'),
+	url('../fonts/Aller.ttf') format('truetype'),
+	url('../fonts/Aller.svg#Aller') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 
 // -- images
 @mixin bg-img ($img, $repeat: no-repeat, $position: left top) {

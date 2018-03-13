@@ -1,15 +1,14 @@
 <div class="kottu-labs-Banner-wrapper clearfix">
   <div class="container" style="text-align: center;">
+      <div class="kottu-labs-banner-text">Welcome to our LAB!</div>
       <div class="kottu-labs-signature-kottu">
+          <a routerLink="/CustomKottu">
+              <img src="{{ownKottu}}"/>
+              <span>like to create your own kottu</span>
+          </a>
         <a routerLink="/SignatureKottu">
-          <img src="{{sigKottu}}"/><br>
-          <h3>ORDER A SIGNATURE KOTTU</h3>
-        </a>
-      </div>
-      <div class="kottu-labs-own-kottu">
-        <a routerLink="/CustomKottu">
-          <img src="{{ownKottu}}"/><br>
-          <h3>CREATE YOUR OWN KOTTU</h3>
+          <img src="{{sigKottu}}"/>
+          <span>or choose from our signature kottu’s</span>
         </a>
       </div>
   </div>
