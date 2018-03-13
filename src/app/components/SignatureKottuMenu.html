@@ -29,7 +29,7 @@
               </div>
               <div class="col-lg-7">
                 <select [attr.id]="'portionDropDown' + i" (change)="convertTotalPortion($event, menu.portions, i, this[i])">
-                  <option *ngFor="let portion of menu.portions" [ngValue]="portion.id" [attr.selected]="portion.name === 'Small Kottu' ? true : null" >{{portion.name}}</option>
+                  <option *ngFor="let portion of menu.portions" [value]="portion.id" [attr.selected]="portion.name === 'Small Kottu' ? true : null" >{{portion.name}}</option>
                 </select>
               </div>
             </div>

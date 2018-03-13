@@ -30,6 +30,9 @@ import {ViewCartComponent} from './containers/ViewCart';
 import {MyCartComponent} from './components/MyCart';
 import {ConfirmWindowComponent} from './components/ConfirmWindow';
 import {CustomerFormWindowComponent} from './components/CustomerForm';
+import {PromosComponent} from './containers/Promos';
+import {PromosContentsComponent} from './components/PromosContents';
+import {InnerHeaderComponent} from './components/InnerHeader';
 
 
 import {HttpService} from './services';
@@ -67,7 +70,10 @@ import {HttpService} from './services';
     ViewCartComponent,
     MyCartComponent,
     ConfirmWindowComponent,
-    CustomerFormWindowComponent
+    CustomerFormWindowComponent,
+    PromosComponent,
+    PromosContentsComponent,
+    InnerHeaderComponent
   ],
   providers: [HttpService],
   bootstrap: [RootComponent]

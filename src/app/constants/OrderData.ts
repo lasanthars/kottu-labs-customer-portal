@@ -10,7 +10,8 @@ export const ORDERS: OrderInterface[] = [
             notes: '',
             orderDate: '',
             status: 0,
-            tax: 0
+            tax: 0,
+            paymentType:0
         },
         orderDetailDTO: []
     }

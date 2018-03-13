@@ -15,11 +15,13 @@ export class CustomerFormWindowComponent {
     cartInfo: CartInterface[];
     public isExistingCustomer: boolean;
     public orderError: boolean;
+    public payment: number;
     constructor(private customerService: HttpService) {
         this.getCustomerInfo();
         this.getFinalOrder();
         this.isExistingCustomer = false;
         this.orderError = false;
+        this.payment = 0;
     }
     @Input()
     public modalid: any = '';
@@ -32,12 +34,14 @@ export class CustomerFormWindowComponent {
     onSubmit() {
         this.submitted = true;
         const today = new Date();
+        this.finalOrder[0].order.notes = this.customer.notes;
         this.finalOrder[0].order.orderDate = today.toJSON();
         if (!this.isExistingCustomer) {
             this.customerService
                 .saveCustomer(this.customer)
                 .then(customer => {
-                    this.customerService.hideUiBlocker();
+                    this.finalOrder[0].order.customerId = customer['id'];
+                    this.placeFinalOrder();
                     this.orderError = false;
                 }).catch(e => {
                     this.customerService.hideUiBlocker();
@@ -45,7 +49,11 @@ export class CustomerFormWindowComponent {
             });
         } else {
             this.finalOrder[0].order.customerId = this.customer.id;
+            this.placeFinalOrder();
         }
+    }
+
+    placeFinalOrder(){
         this.customerService
             .placeOrder(this.finalOrder[0])
             .then(order => {
@@ -63,8 +71,8 @@ export class CustomerFormWindowComponent {
                     },1000);
                 }
             }).catch(e => {
-               this.customerService.hideUiBlocker();
-               this.orderError = true;
+            this.customerService.hideUiBlocker();
+            this.orderError = true;
         });
     }
 
@@ -96,5 +104,9 @@ export class CustomerFormWindowComponent {
                     this.customerService.hideUiBlocker();
                 });
         }
+    }
+    changePaymentType(event: any){
+        this.payment = event.target.value;
+        this.finalOrder[0].order.paymentType = event.target.value;
     }
 }

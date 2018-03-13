@@ -94,12 +94,12 @@ img{
       color:$primary-color;
       background-color:transparent;
       border-color:transparent;
-      border-bottom:3px solid $menus-color;
+      border-bottom:3px solid $location-info;
       &:hover, &:focus{
         color:$primary-color;
         background-color:transparent;
         border-color:transparent;
-        border-bottom:3px solid $menus-color;
+        border-bottom:3px solid $location-info;
       }
     }
   }

@@ -6,7 +6,7 @@ button[disabled]{
 }
 p.bg-info{
   padding:10px;
-  font: 300 18px 'Chelsea Market', cursive;
+  font: 300 18px 'Basic', sans-serif;
   color: $default-color;
 }
 input[type="number"]{
@@ -471,14 +471,14 @@ input[type="number"]{
   }
   &-inner-header{
     &-wrapper {
-      padding: 15px 0 10px;
+      padding: 5px 0 10px;
       text-align: center;
       background-color:rgba($default-color, 0.52);
       .container{
         .kottu-labs-inner-header-title{
-          padding:10px;
-          color:$primary-color;
-          border-bottom:none;
+          //padding:10px;
+          //color:$primary-color;
+          //border-bottom:none;
           span{
             display:block;
             border-bottom: 3px solid $location-info;
@@ -495,7 +495,7 @@ input[type="number"]{
       border-bottom: 3px solid $location-info;
       display:inline-block;
       color:$primary-color;
-      font: 300 20px 'Chelsea Market', cursive;
+      font: 300 20px 'Basic', sans-serif;
       @media (max-width: 767px) {
         font: 300 18px 'Chelsea Market', cursive;
       }
@@ -596,6 +596,7 @@ input[type="number"]{
         padding: 20px 5px 0;
         width:70%;
         margin:0 auto;
+        color:$primary-color;
       }
       p {
         font: normal 18px 'News Cycle', sans-serif;
@@ -643,7 +644,7 @@ input[type="number"]{
       box-shadow: none;
       padding: 25px;
       h2 {
-        font: normal 23px 'Chelsea Market', cursive;
+        font: normal 23px 'Basic', sans-serif;
         padding: 0px 5px;
       }
       p {
@@ -681,10 +682,10 @@ input[type="number"]{
       }
     }
     &-title{
-      padding: 15px 0;
+      padding: 5px 0;
       display: block;
       color: $primary-color;
-      font: 400 18px 'Chelsea Market', cursive;
+      font: 400 18px 'Basic', sans-serif;
       background-color: rgba($default-color, 0.55);
       @media (max-width:991px){
         display: none;
@@ -750,7 +751,7 @@ input[type="number"]{
       }
     }
     &-footer{
-      font: 400 18px 'Chelsea Market', cursive;
+      font: 400 18px 'Basic', sans-serif;
       color:$primary-color;
       margin:10px 15px 0;
       .col-md-7,.col-md-3{
@@ -758,7 +759,7 @@ input[type="number"]{
       }
       p{
         display: block;
-        padding-bottom:10px;
+        padding-bottom:0px;
         @media (max-width:991px){
           text-align: center;
         }
@@ -799,7 +800,7 @@ input[type="number"]{
         border:none;
         margin-top:25px;
         background-color:$location-info;
-        font:normal 26px 'Chelsea Market', cursive;
+        font:normal 26px 'Basic', sans-serif;
         padding:8px 15px;
         box-sizing: border-box;
         color: $primary-color;
@@ -810,6 +811,31 @@ input[type="number"]{
           background-color:$default-color;
         }
       }
+    }
+  }
+  &-promos{
+    &-wrapper{
+      padding:20px 15px;
+      background-color:$promo-bg;
+      text-align:left;
+      color:$primary-color;
+      font-family:'Basic', sans-serif;
+      margin:60px 0;
+      h2{
+        font-size:25px;
+        margin-top: 0;
+      }
+      p{
+        font-size:15px;
+      }
+    }
+    &-border{
+      border-bottom:1px dashed $txt-color;
+      height: 40px;
+    }
+    &-heading{
+      font:normal 25px 'Jockey One', sans-serif;
+      margin-bottom:60px;
     }
   }
 }

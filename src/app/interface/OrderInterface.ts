@@ -7,7 +7,8 @@ export class OrderInterface {
         notes: string,
         orderDate: any,
         status: number,
-        tax: number
+        tax: number,
+        paymentType: number
     };
     orderDetailDTO: any[];
 };

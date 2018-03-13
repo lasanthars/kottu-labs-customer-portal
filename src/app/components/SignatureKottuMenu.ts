@@ -105,6 +105,7 @@ export class SignatureKottuMenuComponent {
         const item = selectedMenu.setmenu;
         const element = (document.getElementById(portion)) as HTMLSelectElement;
         const selectedPortion = element.options[element.selectedIndex].text;
+        const selectedPortionId = element.options[element.selectedIndex].value;
         let isDuplicate = false;
         const today = new Date();
         const unitPrice = this.retreiveItemPrice(selectedMenu.portions, selectedPortion);
@@ -139,6 +140,7 @@ export class SignatureKottuMenuComponent {
             newObj.orderDetail.price = unitPrice;
             newObj.orderDetail.total = unitPrice * quantity;
             newObj.orderDetail.qty = quantity;
+            newObj.orderDetail.portionId = selectedPortionId;
             this.finalOrder[0].orderDetailDTO.push(newObj);
             this.finalOrder[0].order.grossTotal = item['newPrice'];
             this.finalOrder[0].order.nettTotal = item['newPrice'];
@@ -184,7 +186,7 @@ export class SignatureKottuMenuComponent {
                 cart.total = unitPrice * quantity;
                 this.cartInfo[0].cart.push(cart);
             }
-
+            newObj.orderDetail.portionId = selectedPortionId;
         }
         this.finalOrder[0].order.orderDate = today.toJSON();
         this.menuService.pushCart(this.cartInfo).subscribe(result => {this.cartInfo = result; this.menuService.hideUiBlocker()});
