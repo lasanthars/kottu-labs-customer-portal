@@ -1,14 +1,15 @@
 <div class="kottu-labs-desc-wrapper clearfix">
   <div class="container">
     <div class="kottu-labs-signature-menu-info">
-      <p>Large Kottu : Serves 200 g</p>
-      <p>Medium Kottu : Serves 300g</p>
-      <p>Small Kottu : Serves 200g</p>
+      <!--<p>Large Kottu : Serves 200 g</p>-->
+      <!--<p>Medium Kottu : Serves 300g</p>-->
+      <!--<p>Small Kottu : Serves 200g</p>-->
+      <p>Note: One portion of kottu serves one to two persons</p>
     </div>
     <div class="kottu-labs-signature-menu-wrapper row">
       <div class="col-md-3" *ngFor="let menu of menus; let i = index">
         <div class="kottu-labs-signature-menu-item">
-          <img src="{{kImg1}}"/>
+          <img src="{{kImages[i]}}"/>
           <h3>{{menu.setmenu.name}}</h3>
           <p class="kottu-labs-signature-menu-ingredients">{{menu.setmenu.description}}</p>
           <div class="kottu-labs-signature-menu-total clearfix">
@@ -35,8 +36,8 @@
               </div>
             </div>
           </div>
-          <button type="button" class="kottu-labs-signature-menu-btn" data-toggle="modal" data-target="#signatureModalDialog" [disabled]="this[i] <= 0 || this[i] === ''|| this[i] === undefined" (click)="addOrderToCart(menu, this[i], 'portionDropDown' + i)">Add to cart</button>
         </div>
+        <button type="button" class="kottu-labs-signature-menu-btn" data-toggle="modal" data-target="#signatureModalDialog" [disabled]="this[i] <= 0 || this[i] === ''|| this[i] === undefined" (click)="addOrderToCart(menu, this[i], 'portionDropDown' + i)">Add to cart</button>
       </div>
     </div>
   </div>

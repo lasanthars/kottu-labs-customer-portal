@@ -5,7 +5,12 @@ import { HttpService } from '../services';
 import {OrderInterface} from "../interface/OrderInterface";
 import { CartInterface } from '../interface/CartInterface';
 
-const k1 = require( '../../images/sea_food_kottu.jpg');
+const k1 = require( '../../images/Kadala-Invasion.jpg');
+const k2 = require( '../../images/Fish_n_Strings.jpg');
+const k3 = require( '../../images/Crabbin_with_Pittu.jpg');
+const k4 = require( '../../images/Beef-it-up.jpg');
+const k5 = require( '../../images/Devilled_Dalla.jpg');
+const k6 = require( '../../images/Cheese_n_Chicken-Liver.jpg');
 
 @Component({
   selector: 'kottu-lab-signature-kottu-menu',
@@ -16,13 +21,13 @@ export class SignatureKottuMenuComponent {
   finalOrder: OrderInterface[];
   cartInfo: CartInterface[];
   public modalId: string;
-  public kImg1: any;
+  public kImages: any[];
   public modalInfo: any[];
 
   constructor(private menuService: HttpService) {
-    this.kImg1 = k1;
-      this.modalId = 'signatureModalDialog';
-      this.modalInfo =['/Menu', '/SignatureKottu', 'Add another Kottu'];
+    this.kImages = [k1,k2,k3,k4,k5,k6];
+    this.modalId = 'signatureModalDialog';
+    this.modalInfo =['/Menu', '/SignatureKottu', 'Add another Kottu'];
   }
 
   getAllSignatureMenus(): void {

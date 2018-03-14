@@ -287,11 +287,11 @@ input[type="number"]{
   }
   &-signature-menu {
     &-info {
-      background-color: rgba($default-color, 0.7);
-      max-width: 270px;
+      //background-color: rgba($default-color, 0.7);
+      //max-width: 270px;
       padding: 15px;
-      margin: 25px auto 25px auto;
-      color: $primary-color;
+      margin: 25px auto 0px auto;
+      color: $txt-color;
       p {
         font: normal 16px 'Basic', sans-serif;
       }
@@ -321,7 +321,7 @@ input[type="number"]{
     }
     &-item{
       font-family: 'Basic', sans-serif;
-      margin-bottom: 30px;
+      //margin-bottom: 30px;
       color:$primary-color;
       h3{
         font-size:17px;
@@ -348,6 +348,10 @@ input[type="number"]{
       padding: 5px 10px;
       width:100%;
       box-sizing: border-box;
+      font-family: 'Basic', sans-serif;
+      margin-top: 1px;
+      margin-bottom: 30px;
+      color:$primary-color;
     }
     &-inputs{
       font-size:13px;
@@ -366,6 +370,7 @@ input[type="number"]{
       text-align:center;
       max-width:initial!important;
       padding:3px 5px 5px 5px;
+      min-height:80px;
     }
   }
   &-custom-kottu{

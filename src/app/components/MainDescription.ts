@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 
 const k1 = require('../../images/sea_food_kottu.jpg');
-const k2 = require('../../images/sea_food_kottu_01.jpg');
-const k3 = require('../../images/vegetable_kottu.jpg');
-const k4 = require('../../images/vegetable_kottu_top.jpg');
+const k2 = require('../../images/vegetable_kottu.jpg');
+const k3 = require('../../images/burgers.jpg');
+const k4 = require('../../images/kebab.jpg');
 
 @Component({
   selector: 'kottu-lab-home-desc',
@@ -17,8 +17,8 @@ export class MainDescriptionComponent {
 
   constructor() {
     this.kImg1 = k1;
-    this.kImg2 = k2;
-    this.kImg3 = k3;
+    this.kImg2 = k3;
+    this.kImg3 = k2;
     this.kImg4 = k4;
   }
 }
