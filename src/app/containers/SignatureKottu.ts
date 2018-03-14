@@ -5,9 +5,9 @@ import {Component} from '@angular/core';
   template: require('./SignatureKottu.html'),
 })
 export class SignatureKottuComponent {
-  public pageSubTitle: string;
+  public pageMenuTitle: string;
 
   constructor() {
-    this.pageSubTitle = 'CHOOSE YOUR SIGNATURE KOTTU ORDER';
+    this.pageMenuTitle = 'Choose a Signature Kottu';
   }
 }

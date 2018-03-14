@@ -5,9 +5,9 @@ import {Component} from '@angular/core';
   template: require('./CustomKottu.html'),
 })
 export class CustomKottuComponent {
-  public pageSubTitle: string;
+  public pageMenuTitle: string;
 
   constructor() {
-    this.pageSubTitle = 'CREATE YOUR OWN KOTTU ';
+    this.pageMenuTitle = 'SELECT YOUR CHOICE OF CARB, DRESSING AND PROTEIN';
   }
 }
