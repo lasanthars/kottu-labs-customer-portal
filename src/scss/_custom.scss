@@ -439,7 +439,7 @@ input[type="number"]{
       }
     }
     &-ingredients{
-      font:normal 13px 'Chelsea Market', cursive;
+      font:normal 13px 'Basic', sans-serif;
       text-align:left;
       padding:5px 0 0 2px;
       vertical-align: middle;
@@ -550,6 +550,11 @@ input[type="number"]{
   }
   &-starter-wrapper{
     padding:40px 0 40px;
+    .col-md-2{
+      float: none;
+      display: inline-block;
+      vertical-align:top;
+    }
   }
   &-starter-item{
     background-color: rgba($menus-color, 0.9);

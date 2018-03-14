@@ -1,8 +1,8 @@
 <div class="kottu-labs-starter-wrapper clearfix">
   <div class="container">
     <div class="row">
-      <div class="col-md-2" *ngFor="let item of otherMenus; let i = index;" [ngStyle]="item.type != '3' && {'display': 'none'}">
-        <div class="kottu-labs-starter-item clearfix" *ngIf="item.type == '3'">
+      <div class="col-md-2" *ngFor="let item of otherMenus; let i = index;" [ngStyle]="item.type != '5' && {'display': 'none'}">
+        <div class="kottu-labs-starter-item clearfix" *ngIf="item.type == '5'">
           <div class="kottu-labs-starter-item-title">
             {{item.name}}
           </div>
@@ -15,11 +15,11 @@
           </div>
           <div class="kottu-labs-starter-item-footer clearfix">
               <div class="col-01">
-                <input type="number" [(ngModel)]="this[i]" (keypress)="blockCharacters($event)" [placeholder]="0" min="1" max="99" (ngModelChange)="toggleQuantity(this[i], i, item.price)">
+                <input type="number" [(ngModel)]="this[i]" [placeholder]="0" min="1" max="99" (ngModelChange)="toggleQuantity(this[i], i, item.price)">
               </div>
               <div class="col-02">
-                <div *ngIf="checkKottu()" id="cartTooltipBeverages_{{i}}" class="cart-tooltip"></div>
-                <button type="button" data-toggle="modal" data-target="#beveragesModalDialog" (click)="addOrderToCart(item, this[i], 'cartTooltipBeverages_' + i)" [disabled]="!this[i]">Add to Cart</button>
+                <div *ngIf="checkKottu()" id="cartTooltipDeserts_{{i}}" class="cart-tooltip"></div>
+                <button type="button" data-toggle="modal" data-target="#addOnModalDialog" (click)="addOrderToCart(item, this[i], 'cartTooltipDeserts_' + i)" [disabled]="!this[i]">Add to Cart</button>
               </div>
           </div>
         </div>

@@ -33,6 +33,7 @@ import {CustomerFormWindowComponent} from './components/CustomerForm';
 import {PromosComponent} from './containers/Promos';
 import {PromosContentsComponent} from './components/PromosContents';
 import {InnerHeaderComponent} from './components/InnerHeader';
+import {AddonsComponent} from './components/Addons';
 
 
 import {HttpService} from './services';
@@ -73,7 +74,8 @@ import {HttpService} from './services';
     CustomerFormWindowComponent,
     PromosComponent,
     PromosContentsComponent,
-    InnerHeaderComponent
+    InnerHeaderComponent,
+    AddonsComponent
   ],
   providers: [HttpService],
   bootstrap: [RootComponent]

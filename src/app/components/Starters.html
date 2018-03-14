@@ -7,7 +7,7 @@
             {{item.name}}
           </div>
           <div class="kottu-labs-starter-item-image">
-            <img src="{{kImg1}}"/>
+            <img src="{{kImges[i]}}"/>
           </div>
           <div class="kottu-labs-starter-item-price">
             <span *ngIf="!item.newPrice">Rs. {{item.price}}/=</span>
@@ -15,7 +15,7 @@
           </div>
           <div class="kottu-labs-starter-item-footer clearfix">
               <div class="col-01">
-                <input type="number" [(ngModel)]="this[i]" [placeholder]="1" min="1" max="99" (ngModelChange)="toggleQuantity(this[i], i, item.price)">
+                <input type="number" [(ngModel)]="this[i]" [placeholder]="0" min="1" max="99" (ngModelChange)="toggleQuantity(this[i], i, item.price)">
               </div>
               <div class="col-02">
                 <div *ngIf="checkKottu()" id="cartTooltipStarter_{{i}}" class="cart-tooltip"></div>

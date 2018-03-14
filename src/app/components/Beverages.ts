@@ -4,7 +4,11 @@ import { OrderInterface } from '../interface/OrderInterface';
 import { CartInterface } from '../interface/CartInterface';
 import { HttpService } from '../services';
 
-const k1 = require( '../../images/sea_food_kottu.jpg');
+const bevImages = {
+    0: require( '../../images/egb.jpg'),
+    1: require( '../../images/coke.jpg'),
+    2: require( '../../images/water.jpg')
+};
 
 @Component({
   selector: 'kottu-lab-beverages',
@@ -14,7 +18,7 @@ export class BeveragesComponent {
   otherMenus: OtherMenuInterface[];
   finalOrder: OrderInterface[];
   cartInfo: CartInterface[];
-  public kImg1: any;
+  public kImges: any[];
   public modalId: string;
   public modalInfo: any[];
   public isKottuAvailable: boolean;
@@ -23,7 +27,7 @@ export class BeveragesComponent {
   constructor(private starterService: HttpService) {
     this.getCartDetails();
     this.getAllOtherMenus();
-    this.kImg1 = k1;
+    this.kImges = [];
     this.modalId = 'beveragesModalDialog';
     this.modalInfo =['/Menu', '/SignatureKottu', 'Add another Kottu'];
     this.isKottuAvailable = false;
@@ -47,9 +51,23 @@ export class BeveragesComponent {
       .getAllOtherMenus()
       .then(menus => {
         this.otherMenus = menus;
+        this.assignImages(this.otherMenus);
         this.starterService.hideUiBlocker();
       });
   }
+
+    assignImages(allMenus: Array<any>){
+        let l = 0;
+        for(let j = 0; j < allMenus.length; j++){
+            if(allMenus[j].type === '3') {
+                this.kImges.push(bevImages[l]);
+                l++
+            } else {
+                this.kImges.push('');
+            }
+
+        }
+    }
 
   getFinalOrder(): void {
       this.starterService.getOrders()

@@ -3,7 +3,12 @@ import { OtherMenuInterface } from '../interface/OtherMenuInterface';
 import { HttpService } from '../services';
 import { OrderInterface } from '../interface/OrderInterface';
 import { CartInterface } from '../interface/CartInterface';
-const k1 = require( '../../images/sea_food_kottu.jpg');
+const apptImages = {
+    0: require( '../../images/Mini-Chicken-Burger.jpg'),
+    1: require( '../../images/Pineapple-Fries.jpg'),
+    2: require( '../../images/Cheesy-Mashed-Potatoes.jpg'),
+    3: require( '../../images/Garlic-Rotti.jpg')
+};
 
 @Component({
   selector: 'kottu-lab-starters',
@@ -15,7 +20,7 @@ export class StartersComponent {
   cartInfo: CartInterface[];
   public modalInfo: any[];
   public modalId: string;
-  public kImg1: any;
+  public kImges: any[];
   public isKottuAvailable: boolean;
 
   constructor(private starterService: HttpService) {
@@ -23,7 +28,7 @@ export class StartersComponent {
     this.getCartDetails();
     this.starterService.showUiBlocker('Preparing menu(s)');
     this.isKottuAvailable = false;
-    this.kImg1 = k1;
+    this.kImges = [];
     this.modalId = 'starterModalDialog';
     this.modalInfo =['/Menu', '/SignatureKottu', 'Add another Kottu'];
   }
@@ -33,6 +38,7 @@ export class StartersComponent {
       .getAllOtherMenus()
       .then(menus => {
         this.otherMenus = menus;
+        this.assignImages(this.otherMenus);
         this.starterService.hideUiBlocker();
       });
   }
@@ -40,6 +46,19 @@ export class StartersComponent {
   toggleQuantity(value: number, index: number, price: number) {
     const newPrice = price * value;
     this.otherMenus[index].newPrice = newPrice;
+  }
+
+  assignImages(allMenus: Array<any>){
+      let l = 0;
+    for(let j = 0; j < allMenus.length; j++){
+        if(allMenus[j].type === '2') {
+            this.kImges.push(apptImages[l]);
+            l++
+        } else {
+            this.kImges.push('');
+        }
+
+    }
   }
 
   getFinalOrder(): void {

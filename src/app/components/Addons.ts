@@ -5,16 +5,18 @@ import { CartInterface } from '../interface/CartInterface';
 
 import { HttpService } from '../services';
 
-const desImages = {
-    0: require( '../../images/desert1.jpg'),
-    1: require( '../../images/desert2.jpg')
+const addImages = {
+    0: require( '../../images/Fried-Egg.jpg'),
+    1: require( '../../images/Omlette.jpg'),
+    2: require( '../../images/Chicken-Kebab.jpg'),
+    3: require( '../../images/Stuffed-Capsicum.jpg')
 };
 
 @Component({
-  selector: 'kottu-lab-deserts',
-  template: require('./Deserts.html')
+  selector: 'kottu-lab-addons',
+  template: require('./Addons.html')
 })
-export class DesertsComponent {
+export class AddonsComponent {
   otherMenus: OtherMenuInterface[];
   finalOrder: OrderInterface[];
   cartInfo: CartInterface[];
@@ -27,7 +29,7 @@ export class DesertsComponent {
     this.getAllOtherMenus();
     this.getCartDetails();
     this.kImges = [];
-    this.modalId = 'desertsModalDialog';
+    this.modalId = 'addOnModalDialog';
     this.modalInfo =['/Menu', '/SignatureKottu', 'Add another Kottu'];
     this.isKottuAvailable = false;
   }
@@ -58,8 +60,8 @@ export class DesertsComponent {
     assignImages(allMenus: Array<any>){
         let l = 0;
         for(let j = 0; j < allMenus.length; j++){
-            if(allMenus[j].type === '4') {
-                this.kImges.push(desImages[l]);
+            if(allMenus[j].type === '5') {
+                this.kImges.push(addImages[l]);
                 l++
             } else {
                 this.kImges.push('');
