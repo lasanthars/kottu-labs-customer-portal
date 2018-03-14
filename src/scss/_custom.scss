@@ -293,7 +293,7 @@ input[type="number"]{
       margin: 25px auto 25px auto;
       color: $primary-color;
       p {
-        font: normal 16px 'Chelsea Market', cursive;
+        font: normal 16px 'Basic', sans-serif;
       }
     }
     &-wrapper{
@@ -320,16 +320,20 @@ input[type="number"]{
       }
     }
     &-item{
-      font-family: 'Chelsea Market', cursive;
+      font-family: 'Basic', sans-serif;
       margin-bottom: 30px;
       color:$primary-color;
       h3{
         font-size:17px;
+        margin-top:5px;
+        border-bottom:1px solid $primary-color;
+        display:inline-block;
+        padding-bottom: 4px;
       }
     }
     &-ingredients-title{
       padding:5px;
-      font:normal 15px 'Jockey One', sans-serif;
+      font:normal 15px 'Basic', sans-serif;
       letter-spacing: 1px;
     }
     &-total{
@@ -358,10 +362,10 @@ input[type="number"]{
       }
     }
     &-ingredients{
-      font:normal 13px 'Chelsea Market', cursive!important;
-      text-align:left;
+      font:normal 14px 'Basic', sans-serif!important;
+      text-align:center;
       max-width:initial!important;
-      padding:3px 5px 3px 15px;
+      padding:3px 5px 5px 5px;
     }
   }
   &-custom-kottu{

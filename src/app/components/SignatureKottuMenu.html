@@ -10,14 +10,7 @@
         <div class="kottu-labs-signature-menu-item">
           <img src="{{kImg1}}"/>
           <h3>{{menu.setmenu.name}}</h3>
-          <div class="kottu-labs-signature-menu-ingredients-title clearfix">
-            Includes these ingredients
-          </div>
-          <div class="row">
-            <div class="col-sm-6" *ngFor="let ingredient of menu.ingredients">
-              <p class="kottu-labs-signature-menu-ingredients">{{ingredient.name}}</p>
-            </div>
-          </div>
+          <p class="kottu-labs-signature-menu-ingredients">{{menu.setmenu.description}}</p>
           <div class="kottu-labs-signature-menu-total clearfix">
             <span *ngIf="menu.setmenu.newPrice">Total - Rs.{{menu.setmenu.newPrice}}/=</span>
             <span *ngIf="!menu.setmenu.newPrice">Total - Rs.{{menu.portions[0].price}}/=</span>
@@ -25,7 +18,7 @@
           <div class="kottu-labs-signature-menu-inputs clearfix">
             <div class="row">
               <div class="col-lg-5">
-                <label>Portion</label>
+                <label>Spice Level</label>
               </div>
               <div class="col-lg-7">
                 <select [attr.id]="'portionDropDown' + i" (change)="convertTotalPortion($event, menu.portions, i, this[i])">
@@ -35,7 +28,7 @@
             </div>
             <div class="row">
               <div class="col-lg-5">
-                <label>Quantity</label>
+                <label>Nos</label>
               </div>
               <div class="col-lg-7">
                 <input name="input{{i}}" (keypress)="blockCharacters($event)"  value="1" type="number" min="1" max="999" [(ngModel)]="this[i]" (ngModelChange)="convertToTotalQuantity('portionDropDown' + i, menu.portions, i, this[i])"/>
