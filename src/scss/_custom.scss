@@ -67,14 +67,30 @@ input[type="number"]{
     }
   }
   &-Banner-wrapper{
-    @include bg-img('home-image.jpg', no-repeat, center top);
-    background-size: cover;
+    //@include bg-img('home-image.jpg', no-repeat, center top);
+    //background-size: cover;
     min-height:570px;
     position:relative;
     top:$header-height + px;
     a{
       text-decoration: none;
     }
+  }
+  &-Banner-video{
+    position: absolute;
+    left: 0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index: 0;
+  }
+  &-Banner-desc{
+    position: absolute;
+    left: 0;
+    right:0;
+    top:$header-height + px;
+    bottom:0;
+    z-index: 1;
   }
   &-banner-text{
     color:$primary-color;

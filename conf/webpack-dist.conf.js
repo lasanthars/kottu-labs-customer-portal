@@ -30,7 +30,7 @@ module.exports = {
         })
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg|eot|ttf|woff|woff2)$/,
+          test: /\.(png|jpg|jpeg|gif|svg|eot|ttf|woff|woff2|mp4)$/,
         loader: 'url-loader',
         options: {
           limit: 5000, // Convert images < 5kb to base64 strings
