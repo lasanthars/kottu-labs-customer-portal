@@ -19,6 +19,10 @@ export const routes: Routes = [
     component: AppComponent
   },
   {
+      path: 'Home',
+      component: AppComponent
+  },
+  {
     path: 'SignatureKottu',
     component: SignatureKottuComponent
   },
