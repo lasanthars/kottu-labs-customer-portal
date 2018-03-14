@@ -34,6 +34,9 @@ import {PromosComponent} from './containers/Promos';
 import {PromosContentsComponent} from './components/PromosContents';
 import {InnerHeaderComponent} from './components/InnerHeader';
 import {AddonsComponent} from './components/Addons';
+import {AboutUsComponent} from './containers/AboutUs';
+import {AboutUsBannerComponent} from './components/AboutUsBanner';
+import {AboutUsContentComponent} from './components/AboutUsContent';
 
 
 import {HttpService} from './services';
@@ -75,7 +78,10 @@ import {HttpService} from './services';
     PromosComponent,
     PromosContentsComponent,
     InnerHeaderComponent,
-    AddonsComponent
+    AddonsComponent,
+    AboutUsComponent,
+    AboutUsBannerComponent,
+    AboutUsContentComponent
   ],
   providers: [HttpService],
   bootstrap: [RootComponent]

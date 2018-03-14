@@ -75,6 +75,9 @@ input[type="number"]{
     a{
       text-decoration: none;
     }
+    &-about{
+      overflow: hidden;
+    }
   }
   &-Banner-video{
     position: absolute;
@@ -83,6 +86,9 @@ input[type="number"]{
     top:0;
     bottom:0;
     z-index: 0;
+    &-about{
+      top:-270px;
+    }
   }
   &-Banner-desc{
     position: absolute;
@@ -382,7 +388,7 @@ input[type="number"]{
     &-wrapper {
       position: relative;
       top: $header-height + px;
-      @include bg-img('red-about-us-one.png', repeat, center top);
+      @include bg-img('page-cover.png', repeat, center top);
       background-size: contain;
       padding: 40px 10px;
       text-align: center;
@@ -447,8 +453,9 @@ input[type="number"]{
       font:normal 13px 'Basic', sans-serif;
       text-align:left;
       padding:5px 0 0 2px;
-      vertical-align: middle;
+      vertical-align: top;
       display: inline-block;
+      width:75%;
     }
     &-check{
       vertical-align: middle;
