@@ -87,7 +87,7 @@ input[type="number"]{
     bottom:0;
     z-index: 0;
     &-about{
-      top:-270px;
+      top:-170px;
     }
   }
   &-Banner-desc{
@@ -878,6 +878,84 @@ input[type="number"]{
     &-heading{
       font:normal 25px 'Jockey One', sans-serif;
       margin-bottom:60px;
+    }
+  }
+
+  &-about{
+    &-container{
+      position: relative;
+      @include bg-img('page-cover.png', repeat, left top);
+      background-size: contain;
+      padding: 40px 0px;
+      h2{
+        font:normal 45px 'Jockey One', sans-serif;
+        color:$about-headings;
+        display: inline-block;
+        border-bottom: 2px solid $about-headings;
+      }
+      p{
+        font:normal 14px 'Basic', sans-serif;
+        color:$about-text;
+        line-height:21px;
+      }
+      img{
+        max-width:80%;
+      }
+    }
+    &-left{
+      float: left;
+      width:50%;
+      border-right: 1px dashed rgba($default-color, 0.5);
+      text-align:right;
+      padding-right:30px;
+      box-sizing: border-box;
+    }
+    &-right{
+      float: left;
+      width:50%;
+      text-align:left;
+      padding-left:30px;
+      box-sizing: border-box;
+    }
+    &-form-row{
+      margin-top:10px;
+      margin-bottom:10px;
+      input{
+        transition: all 0.2s;
+        width:80%;
+        border:1px solid $about-text;
+        padding: 8px;
+        box-sizing: border-box;
+        font:normal 14px 'Basic', sans-serif;
+        &:focus{
+          border-color: $about-headings;
+          outline:none;
+        }
+      }
+      button{
+        transition: all 0.2s;
+        background-color:$default-color;
+        color:$primary-color;
+        padding: 6px 15px;
+        border: 1px solid $default-color;
+        font:normal 14px 'Basic', sans-serif;
+        &:hover, &:focus{
+          background-color:$about-headings;
+          border-color: $about-headings;
+        }
+      }
+      textarea{
+        transition: all 0.2s;
+        width:80%;
+        border:1px solid $about-text;
+        padding: 8px;
+        box-sizing: border-box;
+        min-height:120px;
+        &:focus{
+          border-color: $about-headings;
+          outline:none;
+        }
+      }
     }
   }
 }

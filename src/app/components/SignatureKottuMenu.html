@@ -1,9 +1,6 @@
 <div class="kottu-labs-desc-wrapper clearfix">
   <div class="container">
     <div class="kottu-labs-signature-menu-info">
-      <!--<p>Large Kottu : Serves 200 g</p>-->
-      <!--<p>Medium Kottu : Serves 300g</p>-->
-      <!--<p>Small Kottu : Serves 200g</p>-->
       <p>Note: One portion of kottu serves one to two persons</p>
     </div>
     <div class="kottu-labs-signature-menu-wrapper row">
@@ -14,7 +11,7 @@
           <p class="kottu-labs-signature-menu-ingredients">{{menu.setmenu.description}}</p>
           <div class="kottu-labs-signature-menu-total clearfix">
             <span *ngIf="menu.setmenu.newPrice">Total - Rs.{{menu.setmenu.newPrice}}/=</span>
-            <span *ngIf="!menu.setmenu.newPrice">Total - Rs.{{menu.portions[0].price}}/=</span>
+            <span *ngIf="!menu.setmenu.newPrice">Total - Rs.{{menu.setmenu.price}}/=</span>
           </div>
           <div class="kottu-labs-signature-menu-inputs clearfix">
             <div class="row">
@@ -22,8 +19,8 @@
                 <label>Spice Level</label>
               </div>
               <div class="col-lg-7">
-                <select [attr.id]="'portionDropDown' + i" (change)="convertTotalPortion($event, menu.portions, i, this[i])">
-                  <option *ngFor="let portion of menu.portions" [value]="portion.id" [attr.selected]="portion.name === 'Small Kottu' ? true : null" >{{portion.name}}</option>
+                <select [attr.id]="'portionDropDown' + i">
+                  <option *ngFor="let portion of menu.portions" [value]="portion.id" [attr.selected]="portion.name === 'Mild' ? true : null" >{{portion.name}}</option>
                 </select>
               </div>
             </div>
@@ -32,12 +29,12 @@
                 <label>Nos</label>
               </div>
               <div class="col-lg-7">
-                <input name="input{{i}}" (keypress)="blockCharacters($event)"  value="1" type="number" min="1" max="999" [(ngModel)]="this[i]" (ngModelChange)="convertToTotalQuantity('portionDropDown' + i, menu.portions, i, this[i])"/>
+                <input name="input{{i}}" (keypress)="blockCharacters($event)"  value="1" type="number" min="1" max="999" [(ngModel)]="this[i]" (ngModelChange)="convertToTotalQuantity(menu.setmenu.price, i, this[i])"/>
               </div>
             </div>
           </div>
         </div>
-        <button type="button" class="kottu-labs-signature-menu-btn" data-toggle="modal" data-target="#signatureModalDialog" [disabled]="this[i] <= 0 || this[i] === ''|| this[i] === undefined" (click)="addOrderToCart(menu, this[i], 'portionDropDown' + i)">Add to cart</button>
+        <button type="button" class="kottu-labs-signature-menu-btn" data-toggle="modal" data-target="#signatureModalDialog" [disabled]="this[i] <= 0 || this[i] === ''|| this[i] === undefined" (click)="addOrderToCart(menu, this[i], i, 'portionDropDown' + i)">Add to cart</button>
       </div>
     </div>
   </div>
