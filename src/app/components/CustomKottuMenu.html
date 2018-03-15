@@ -1,16 +1,29 @@
 <div class="kottu-labs-custom-kottu-wrapper clearfix">
   <div class="container">
+    <div class="kottu-labs-custom-kottu-title" *ngIf="!showContents">
+      <h2>SELECT A QUANTITY</h2>
+    </div>
     <div class="kottu-labs-custom-kottu-quantity">
       <span>I would like to order
         <input name="customKottuMenu" type="number" (keypress)="blockCharacters($event)" min="1" max="999" [(ngModel)]="customKottuMenu" (change)="createNewCustomMenu(customKottuMenu)"/>
       </span> kottu portion(s)
     </div>
-    <div class="kottu-labs-signature-menu-info">
+      <div class="kottu-labs-custom-kottu-start" *ngIf="!showContents">
+          <button type="button" (click)="toggleShow()">
+              Let's get cooking!
+              <svg aria-hidden="true" data-prefix="fal" data-icon="chevron-circle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-chevron-circle-right fa-w-16"><path fill="currentColor" d="M8 256c0 137 111 248 248 248s248-111 248-248S393 8 256 8 8 119 8 256zM256 40c118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216 0-118.7 96.1-216 216-216zm86.6 224.5l-115.1 115c-4.7 4.7-12.3 4.7-17 0l-7.1-7.1c-4.7-4.7-4.7-12.3 0-17L303 256l-99.5-99.5c-4.7-4.7-4.7-12.3 0-17l7.1-7.1c4.7-4.7 12.3-4.7 17 0l115.1 115c4.6 4.8 4.6 12.4-.1 17.1z" class=""></path></svg>
+          </button>
+      </div>
+    <div *ngIf="showContents" class="kottu-labs-custom-kottu-bottom">
+        <div class="kottu-labs-custom-kottu-title">
+            <h2>SELECT YOUR CHOICE OF CARB, DRESSING AND PROTEIN</h2>
+        </div>
+     <div class="kottu-labs-signature-menu-info">
       <p>Large Kottu : Serves 200 g</p>
       <p>Medium Kottu : Serves 300g</p>
       <p>Small Kottu : Serves 200g</p>
     </div>
-    <div class="kottu-labs-signature-menu-wrapper row">
+        <div class="kottu-labs-signature-menu-wrapper row">
       <div class="col-lg-3" *ngFor="let menu of menus; let i = index;">
         <div class="kottu-labs-signature-menu-item kottu-labs-custom-kottu-menu-item">
           <h3>My Kottu</h3>
@@ -66,7 +79,8 @@
         </div>
       </div>
     </div>
-    <button type="button" data-toggle="modal" data-target="#customKottuModalDialog" (click)="addOrderToCart()" class="kottu-labs-custom-kottu-cart-btn" [disabled]="!itemCompleted">Add to cart</button>
-  </div>
+        <button type="button" data-toggle="modal" data-target="#customKottuModalDialog" (click)="addOrderToCart()" class="kottu-labs-custom-kottu-cart-btn" [disabled]="!itemCompleted">Add to cart</button>
+    </div>
+   </div>
   <kottu-lab-modal-window [urls]="[modalInfo]" [modalid]="modalId"></kottu-lab-modal-window>
 </div>

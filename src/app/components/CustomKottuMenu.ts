@@ -22,6 +22,7 @@ export class CustomKottuMenuComponent {
   public modalId: string;
   public modalInfo: any[];
   public timer: any[];
+  public showContents: boolean;
   private totalPrice: any;
   private finalOrderMenu: any;
   private finalCartMenu: any;
@@ -30,6 +31,7 @@ export class CustomKottuMenuComponent {
     this.kImg1 = k1;
     this.modalId = 'customKottuModalDialog';
     this.modalInfo =['/Menu', '/CustomKottu', 'Add another Kottu'];
+    this.showContents = false;
     this.finalOrderMenu = [{
         ingredients: [],
         orderDetail: {
@@ -74,6 +76,10 @@ export class CustomKottuMenuComponent {
         this.menuService.hideUiBlocker();
       });
   }
+
+    toggleShow(){
+        this.showContents = !this.showContents;
+    }
 
   addCustomMenu(): void {
     this.menuService
