@@ -7,8 +7,35 @@ const movie = require('../../images/about_us_page_video.mp4');
 })
 export class AboutUsBannerComponent {
   public movieClip: any;
+  public isPaused: boolean;
+  public isMuted: boolean;
 
   constructor() {
     this.movieClip = movie;
+    this.isPaused = false;
+    this.isMuted = false;
+  }
+
+  controlVideo(ele:any, action:string){
+    switch (action){
+        case 'play':
+            ele.pause();
+            this.isPaused = true;
+          break
+        case 'pause':
+            ele.play();
+            this.isPaused = false;
+            break
+        case 'audio':
+            ele.muted = true;
+            this.isMuted = true;
+            break
+        case 'mute':
+            ele.muted = false;
+            this.isMuted = false;
+            break
+        default:
+          break
+    }
   }
 }
