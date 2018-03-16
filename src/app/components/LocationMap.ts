@@ -9,7 +9,7 @@ export class LocationMapComponent {
   public lng: Number;
 
   constructor() {
-    this.lat = 6.8823497;
-    this.lng = 79.8788561;
+    this.lat = 6.8824139;
+    this.lng = 79.8845207;
   }
 }

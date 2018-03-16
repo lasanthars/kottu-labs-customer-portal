@@ -671,14 +671,14 @@ input[type="number"]{
       text-align: center;
       box-shadow: none;
       h2 {
-        font: normal 23px 'Chelsea Market', cursive;
+        font: normal 23px 'Basic', sans-serif;
         padding: 20px 5px 0;
         width:70%;
         margin:0 auto;
         color:$primary-color;
       }
       p {
-        font: normal 18px 'News Cycle', sans-serif;
+        font: normal 18px 'Basic', sans-serif;
         padding: 20px 5px 0;
         width:70%;
         margin:0 auto;
@@ -691,7 +691,7 @@ input[type="number"]{
       padding-bottom:15px;
       button{
         background-color: rgba($default-color, 0.95);
-        font: 700 22px 'Chelsea Market', cursive;
+        font: 700 22px 'Basic', sans-serif;
         border:2px solid $primary-color;
         padding: 10px;
         display: block;
@@ -711,7 +711,7 @@ input[type="number"]{
       padding: 20px 5px 20px;
     }
     button{
-      width:100%;font: 700 15px 'Chelsea Market', cursive;
+      width:100%;font: 700 15px 'Basic', sans-serif;
     }
   }
   &-customer-modal{
@@ -727,11 +727,11 @@ input[type="number"]{
         padding: 0px 5px;
       }
       p {
-        font: normal 18px 'News Cycle', sans-serif;
+        font: normal 18px 'Basic', sans-serif;
         padding: 20px 5px 0;
       }
       label {
-        font: normal 15px 'News Cycle', sans-serif;
+        font: normal 15px 'Basic', sans-serif;
       }
       input, textarea{
         color: $default-color;
@@ -741,7 +741,7 @@ input[type="number"]{
       border:none;
       margin-top:25px;
       background-color:$default-color;
-      font:normal 22px 'Chelsea Market', cursive;
+      font:normal 22px 'Basic', sans-serif;
       padding:8px 15px;
       box-sizing: border-box;
       color: $primary-color;
