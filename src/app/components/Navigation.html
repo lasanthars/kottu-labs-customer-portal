@@ -26,6 +26,7 @@
         <li><a routerLink="/" fragment="kottuLabLocationMap" (click)="scollToElement('kottuLabLocationMap')">Pick up location</a></li>
         <li><a routerLink="/AboutUs" routerLinkActive="active-link">About us</a></li>
         <li>
+          <span class="cart-items" *ngIf="cartInfo[0].cart.length > 0">{{cartInfo[0].cart.length}}</span>
           <button type="button" routerLink="/YourCart" class="kottu-labs-view-cart">view cart</button>
         </li>
       </ul>

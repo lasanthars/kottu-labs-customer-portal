@@ -53,8 +53,8 @@
           <div class="row">
             <div class="col-sm-6" *ngFor="let ingredient of menu.ingredients; let k = index;" [ngStyle]="ingredient.type != '1' && {'display': 'none'}">
               <div class="kottu-labs-custom-kottu-check-wrapper" *ngIf="ingredient.type == '1'">
-                <input [attr.name]="i.toString()+k.toString()" [attr.id]="i.toString()+k.toString()" type="checkbox" (change)="calculateAddons($event, ingredient.price, ingredient.id, ingredient.name, i)" class="kottu-labs-custom-kottu-check"/>
-                <label [attr.for]="i.toString()+k.toString()" class="kottu-labs-custom-kottu-ingredients">{{ingredient.name}}</label>
+                <input [attr.name]="i.toString()+k.toString()" [attr.id]="'veggies_'+ i.toString() + k.toString()" type="checkbox" (change)="calculateAddons($event, ingredient, i)" class="kottu-labs-custom-kottu-check"/>
+                <label [attr.for]="'veggies_'+ i.toString() + k.toString()" class="kottu-labs-custom-kottu-ingredients">{{ingredient.name}}</label>
               </div>
             </div>
           </div>
@@ -64,8 +64,8 @@
           <div class="row">
             <div class="col-sm-6" style="padding-right:0px" *ngFor="let ingredient of menu.ingredients; let j = index;" [ngStyle]="ingredient.type != '2' && {'display': 'none'}">
               <div class="kottu-labs-custom-kottu-check-wrapper" *ngIf="ingredient.type == '2'">
-                <input [attr.name]="i.toString()+j.toString()" [attr.id]="i.toString()+j.toString()" type="checkbox" (change)="calculateAddons($event, ingredient.price, ingredient.id, ingredient.name, i)" class="kottu-labs-custom-kottu-check"/>
-                <label [attr.for]="i.toString()+j.toString()" class="kottu-labs-custom-kottu-ingredients">{{ingredient.name}}</label>
+                <input [attr.name]="i.toString()+j.toString()" [attr.id]="'protein_'+ i.toString() + j.toString()" type="checkbox" (change)="calculateAddons($event, ingredient, i)" class="kottu-labs-custom-kottu-check"/>
+                <label [attr.for]="'protein_'+ i.toString() + j.toString()" class="kottu-labs-custom-kottu-ingredients">{{ingredient.name}}</label>
               </div>
             </div>
           </div>

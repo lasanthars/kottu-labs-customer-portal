@@ -18,10 +18,10 @@ export class CustomKottuMenuComponent {
   cartInfo: CartInterface[];
   public kImg1: any;
   public customKottuMenu: number;
-  public itemCompleted: boolean;
   public modalId: string;
   public modalInfo: any[];
-  public timer: any[];
+  public veggeies: any[];
+  public itemCompleted: boolean;
   public showContents: boolean;
   private totalPrice: any;
   private finalOrderMenu: any;
@@ -59,7 +59,8 @@ export class CustomKottuMenuComponent {
         isEdit: true,
         isKottu: true
     }];
-    this.timer = [];
+    this.veggeies = [];
+    this.itemCompleted = false;
   }
 
   getAllCustomMenus(): void {
@@ -68,6 +69,7 @@ export class CustomKottuMenuComponent {
       .then(menus => {
         this.menus = menus;
         const gross = this.menus[0].portions[0].price + this.menus[0].carbs[0].price;
+        this.menus[0].veggeies = [];
         this.menus[0].totalPrice = gross;
         this.finalOrderMenu[0].orderDetail.carbId = this.menus[0].carbs[0].id;
         this.finalCartMenu[0].carb = this.menus[0].carbs[0].name;
@@ -87,6 +89,7 @@ export class CustomKottuMenuComponent {
       .then(menus => {
         const resp = menus;
         const gross = this.menus[0].portions[0].price + this.menus[0].carbs[0].price;
+        resp[0].veggeies = [];
         resp[0].totalPrice = gross;
         this.menus.push(...resp);
         this.menuService.hideUiBlocker();
@@ -105,12 +108,8 @@ export class CustomKottuMenuComponent {
     this.getFinalOrder();
     this.totalPrice = 0;
     this.customKottuMenu = 1;
-    this.itemCompleted = false;
   }
 
-  setCustomInfo() {
-
-  }
     getFinalOrder(): void {
         this.menuService.getOrders()
             .subscribe(orders => {this.finalOrder = orders;});
@@ -161,20 +160,56 @@ export class CustomKottuMenuComponent {
       this.isCartDisable();
   }
 
-  calculateAddons(event: any, price: number, id: string, name: string, index: number) {
+  calculateAddons(event: any, ingredient: any, index: number) {
     if (event.target.checked) {
-      this.menus[index].totalPrice += price;
-      this.finalOrderMenu[index].ingredients.push(id);
-      this.finalCartMenu[index].ingredients.push(name);
+      this.disableOtherChecks(event.target.checked, ingredient, index);
+      this.menus[index].totalPrice =  (ingredient.type === 1 && this.menus[index].veggeies.length <= 1 || ingredient.type === 2) ? this.menus[index].totalPrice + ingredient.price : (this.menus[index].totalPrice - ingredient.price) + ingredient.price;
+      this.finalOrderMenu[index].ingredients.push(ingredient.id);
+      this.finalCartMenu[index].ingredients.push(ingredient.name);
     } else {
-      this.menus[index].totalPrice -= price;
-      const newOrderArray = this.finalOrderMenu[index].ingredients.filter(order => order !== id);
+      this.disableOtherChecks(event.target.checked, ingredient, index);
+      this.menus[index].totalPrice =  (ingredient.type === 1 && this.menus[index].veggeies.length === 0 || ingredient.type === 2) ? this.menus[index].totalPrice - ingredient.price : this.menus[index].totalPrice;
+      const newOrderArray = this.finalOrderMenu[index].ingredients.filter(order => order !== ingredient.id);
       this.finalOrderMenu[index].ingredients = newOrderArray;
-      const newCartArray = this.finalCartMenu[index].ingredients.filter(cart => cart !== id);
+      const newCartArray = this.finalCartMenu[index].ingredients.filter(cart => cart !== ingredient.id);
       this.finalCartMenu[index].ingredients = newCartArray;
     }
     this.isCartDisable();
   }
+
+  disableOtherChecks(checked: boolean, ingredient: any, menuIndex: number){
+    if(checked && ingredient.type === 1 && this.menus[menuIndex].veggeies.indexOf(ingredient.id) === -1){
+        this.menus[menuIndex].veggeies.push(ingredient.id);
+    } else{
+        this.menus[menuIndex].veggeies = this.menus[menuIndex].veggeies.filter(ingd => ingd !== ingredient.id);
+    }
+      for(let h = 0; h < this.menus[menuIndex].ingredients.length; h++) {
+          if(ingredient.type === 1 && this.menus[menuIndex].veggeies.length > 0 && this.menus[menuIndex].ingredients[h].id !== ingredient.id) {
+              for (let v = 0; v < this.menus[menuIndex].veggeies.length; v++) {
+                  if (checked && this.menus[menuIndex].veggeies.length === 4 && this.menus[menuIndex].ingredients[h].id !== this.menus[menuIndex].veggeies[v] && (<HTMLInputElement>document.getElementById('veggies_' + menuIndex + h)) && !(<HTMLInputElement>document.getElementById('veggies_' + menuIndex + h)).checked) {
+                      (<HTMLInputElement>document.getElementById('veggies_'+ menuIndex + h)).disabled = checked;
+                  } else if (!checked && this.menus[menuIndex].veggeies.length < 4 && this.menus[menuIndex].ingredients[h].id !== this.menus[menuIndex].veggeies[v] && (<HTMLInputElement>document.getElementById('veggies_' + menuIndex + h))){
+                        (<HTMLInputElement>document.getElementById('veggies_' + menuIndex + h)).disabled = false;
+                  }
+              }
+          }else if(ingredient.type === 2 && (<HTMLInputElement>document.getElementById('protein_' + menuIndex + h)) && this.menus[menuIndex].ingredients[h].id !== ingredient.id) {
+              (<HTMLInputElement>document.getElementById('protein_' + menuIndex + h)).disabled = checked;
+          }
+      }
+  }
+
+    isCartDisable() {
+        const checkAllItems = [];
+        for (let k = 0; k < this.finalOrderMenu.length; k++) {
+            if (this.finalOrderMenu[k].ingredients.length >= 5) {
+                checkAllItems.push('true');
+            } else {
+                checkAllItems.push('false');
+            }
+        }
+        const checkArray = checkAllItems.filter(check => check === 'true');
+        this.itemCompleted = checkArray.length === this.finalCartMenu.length ? true : false;
+    }
 
   initializeOrder(action: string) {
     if (action === 'add') {
@@ -232,26 +267,12 @@ export class CustomKottuMenuComponent {
     } else {
         this.menuService.hideUiBlocker();
     }
-    this.isCartDisable();
   }
 
     blockCharacters(event: any) {
         if (event.keyCode === 48 || event.keyCode === 43 || event.keyCode === 45) {
             event.preventDefault();
         }
-    }
-
-    isCartDisable() {
-        const checkAllItems = [];
-        for (let k = 0; k < this.finalOrderMenu.length; k++) {
-           if (this.finalOrderMenu[k].ingredients.length > 0) {
-               checkAllItems.push('true');
-           } else {
-               checkAllItems.push('false');
-           }
-        }
-        const checkArray = checkAllItems.filter(check => check === 'true');
-        this.itemCompleted = checkArray.length === this.finalCartMenu.length ? true : false;
     }
 
     addOrderToCart() {

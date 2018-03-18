@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 const movie = require('../../images/about_us_page_video.mp4');
 
 @Component({
@@ -38,4 +38,12 @@ export class AboutUsBannerComponent {
           break
     }
   }
+
+    @HostListener('window:resize') onResize() {
+        let videoHeight = document.getElementById('aboutVideo').offsetHeight;
+        document.getElementById('aboutVideoWrapper').style.top = '-' + videoHeight/4.5 + 'px';
+        if(videoHeight <= 570){
+            document.getElementById('aboutVideoBannerWrapper').style.height = videoHeight + 'px';
+        }
+    }
 }

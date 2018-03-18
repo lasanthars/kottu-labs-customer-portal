@@ -31,6 +31,7 @@ export class SignatureKottuMenuComponent {
   }
 
   getAllSignatureMenus(): void {
+      this.menuService.showUiBlocker('Preparing the signature kottu list...');
     this.menuService
       .getAllSignatureMenus()
       .then(menus => {
@@ -40,7 +41,6 @@ export class SignatureKottuMenuComponent {
   }
 
   ngOnInit(): void {
-    this.menuService.showUiBlocker('Preparing the signature kottu list...');
     this.getAllSignatureMenus();
   }
 
@@ -59,14 +59,6 @@ export class SignatureKottuMenuComponent {
   convertToTotalQuantity(price: any, index: number, quantity: number) {
       this.menus[index].setmenu.newPrice = price*quantity;
   }
-
-      // retreiveItemPrice(selectedMenu, selectedText: string){
-      //     for (let portionIndex of Object.keys(selectedMenu)) {
-      //       if(selectedMenu[portionIndex].name === selectedText) {
-      //           return selectedMenu[portionIndex].price;
-      //       }
-      //     }
-      // }
 
     blockCharacters(event: any) {
         if (event.keyCode === 48 || event.keyCode === 43 || event.keyCode === 45) {

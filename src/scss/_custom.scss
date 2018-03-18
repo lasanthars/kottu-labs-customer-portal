@@ -29,6 +29,9 @@ input[type="number"]{
     top:0;
     right:0;
     z-index: $header-zIndex + 1;
+    @media (max-width: 412px){
+
+    }
   }
   &-view-cart{
     transition: all 0.2s;
@@ -69,8 +72,9 @@ input[type="number"]{
   &-Banner-wrapper{
     //@include bg-img('home-image.jpg', no-repeat, center top);
     //background-size: cover;
-    min-height:570px;
+    height:570px;
     position:relative;
+    overflow: hidden;
     top:$header-height + px;
     a{
       text-decoration: none;
@@ -78,6 +82,9 @@ input[type="number"]{
     &-about{
       overflow: hidden;
     }
+    //@media (max-width: 845px) {
+    //  min-height:480px;
+    //}
   }
   &-Banner-video{
     position: absolute;
@@ -86,9 +93,20 @@ input[type="number"]{
     top:0;
     bottom:0;
     z-index: 0;
-    &-about{
-      top:-170px;
+    video{
+      width:100%;
     }
+    &-about{
+      top:-400px;
+    }
+  }
+  &-preload-Banner{
+    position: absolute;
+    left: 0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index: 0;
   }
   &-Banner-controllers{
     position: absolute;
@@ -121,14 +139,19 @@ input[type="number"]{
     position: absolute;
     left: 0;
     right:0;
-    top:$header-height + px;
+    top:0;
     bottom:0;
     z-index: 1;
+    text-align: center;
   }
   &-banner-text{
     color:$primary-color;
     font:normal 50px 'Jockey One', sans-serif;
-    padding:100px 0 40px 0;
+    padding:20% 0 40px 0;
+    @media (max-width: 845px) {
+      padding:80px 0 20px 0;
+      font:normal 25px 'Jockey One', sans-serif;
+    }
   }
   &-signature-kottu{
     a {
@@ -241,12 +264,13 @@ input[type="number"]{
         span{
           @extend .inline-block;
           width:30px;
-          vertical-align: middle;
+          vertical-align: top;
           color:$genuine-red;
         }
         label{
           padding-left: 15px;
           font-weight:normal;
+          width:90%;
           @extend .inline-block;
           @media (max-width: 640px) {
             display: block;
@@ -254,6 +278,22 @@ input[type="number"]{
         }
         @media (max-width: 640px) {
           text-align:center;
+        }
+      }
+    }
+    .col-md-6{
+      @media (max-width:991px) {
+        text-align: center;
+        h2{
+          padding-top: 15px;
+        }
+        p,ul{
+          margin: 0 auto;
+        }
+      }
+      @media (max-width:680px) {
+        p{
+          text-align: center;
         }
       }
     }
@@ -355,6 +395,7 @@ input[type="number"]{
         float: none;
         display: inline-block;
         vertical-align: top;
+        margin-bottom: 20px;
       }
     }
     &-item{
@@ -546,7 +587,7 @@ input[type="number"]{
     border:none;
     margin-top:25px;
     background-color:$location-info;
-    font:normal 26px 'Chelsea Market', cursive;
+    font:normal 26px 'Basic', sans-serif;
     padding:8px 15px;
     box-sizing: border-box;
     width:50%;
@@ -973,6 +1014,12 @@ input[type="number"]{
       text-align:right;
       padding-right:30px;
       box-sizing: border-box;
+      @media(max-width:800px){
+        width:100%;
+        border-right: transparent;
+        text-align:center;
+        padding-right:0;
+      }
     }
     &-right{
       float: left;
@@ -980,6 +1027,11 @@ input[type="number"]{
       text-align:left;
       padding-left:30px;
       box-sizing: border-box;
+      @media(max-width:800px){
+        width:100%;
+        text-align:center;
+        padding-left:0;
+      }
     }
     &-form-row{
       margin-top:10px;

@@ -1,23 +1,26 @@
-<div class="kottu-labs-Banner-wrapper clearfix">
+<div class="kottu-labs-Banner-wrapper clearfix" id="mainVideoBannerWrapper">
+    <div class="kottu-labs-preload-Banner" id="homeVideoPreloader">
+        <img src="{{mainBanner}}"/>
+    </div>
     <div class="kottu-labs-Banner-video">
-        <video id="introVideo" width="100%" autoplay loop>
+        <video #homeVideo id="introVideo" autoplay loop (canplay)="removePreloader('homeVideoPreloader')">
             <source src="{{movieClip}}" type="video/mp4">
             Your browser does not support HTML5 video.
         </video>
     </div>
-  <div class="container" style="text-align: center;">
       <div class="kottu-labs-Banner-desc">
-          <div class="kottu-labs-banner-text">Welcome to our LAB!</div>
-          <div class="kottu-labs-signature-kottu">
-              <a routerLink="/CustomKottu">
-                  <img src="{{ownKottu}}"/>
-                  <span>like to create your own kottu</span>
-              </a>
-            <a routerLink="/SignatureKottu">
-              <img src="{{sigKottu}}"/>
-              <span>or choose from our signature kottu’s</span>
-            </a>
-          </div>
-      </div>
+          <div class="container">
+              <div class="kottu-labs-banner-text">Welcome to our LAB!</div>
+              <div class="kottu-labs-signature-kottu">
+                  <a routerLink="/CustomKottu">
+                      <img src="{{ownKottu}}"/>
+                      <span>like to create your own kottu</span>
+                  </a>
+                <a routerLink="/SignatureKottu">
+                  <img src="{{sigKottu}}"/>
+                  <span>or choose from our signature kottu’s</span>
+                </a>
+              </div>
+            </div>
   </div>
 </div>
