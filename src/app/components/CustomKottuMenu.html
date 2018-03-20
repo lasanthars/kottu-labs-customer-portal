@@ -1,7 +1,7 @@
 <div class="kottu-labs-custom-kottu-wrapper clearfix">
   <div class="container">
     <div class="kottu-labs-custom-kottu-title" *ngIf="!showContents">
-      <h2>SELECT A QUANTITY</h2>
+      <h2>Select a Quantity</h2>
     </div>
     <div class="kottu-labs-custom-kottu-quantity">
       <span>I would like to order
@@ -16,20 +16,18 @@
       </div>
     <div *ngIf="showContents" class="kottu-labs-custom-kottu-bottom">
         <div class="kottu-labs-custom-kottu-title">
-            <h2>SELECT YOUR CHOICE OF CARB, DRESSING AND PROTEIN</h2>
+            <h2 class="inner-heading-text">Next, fill up the order cart below with your preferences</h2>
         </div>
-     <div class="kottu-labs-signature-menu-info">
-      <p>Large Kottu : Serves 200 g</p>
-      <p>Medium Kottu : Serves 300g</p>
-      <p>Small Kottu : Serves 200g</p>
+     <div class="kottu-labs-custom-menu-info">
+      <p>Note: one portion serves 1-2 people</p>
     </div>
-        <div class="kottu-labs-signature-menu-wrapper row">
+        <div class="kottu-labs-signature-menu-wrapper kottu-labs-custom-menu-wrapper row">
       <div class="col-lg-3" *ngFor="let menu of menus; let i = index;">
         <div class="kottu-labs-signature-menu-item kottu-labs-custom-kottu-menu-item">
           <h3>My Kottu</h3>
           <div class="row">
             <div class="col-md-6 kottu-labs-custom-kottu-lbls">
-              <span>Portion</span>
+              <span>Spice Level</span>
             </div>
             <div class="col-md-6 kottu-labs-custom-kottu-select">
               <select [attr.id]="'portionDropDown' + i" (change)="changePortion($event, menu.portions, 'portion', i, 'carbsDropDown' + i)">
@@ -48,7 +46,7 @@
             </div>
           </div>
           <div class="kottu-labs-custom-kottu-heading clearfix">
-              <h4>Dressing</h4>
+              <h4>Pick 4 veggies</h4>
           </div>
           <div class="row">
             <div class="col-sm-6" *ngFor="let ingredient of menu.ingredients; let k = index;" [ngStyle]="ingredient.type != '1' && {'display': 'none'}">
@@ -59,7 +57,7 @@
             </div>
           </div>
           <div class="kottu-labs-custom-kottu-heading clearfix">
-            <h4>Protein</h4>
+            <h4>Select a protein</h4>
           </div>
           <div class="row">
             <div class="col-sm-6" style="padding-right:0px" *ngFor="let ingredient of menu.ingredients; let j = index;" [ngStyle]="ingredient.type != '2' && {'display': 'none'}">

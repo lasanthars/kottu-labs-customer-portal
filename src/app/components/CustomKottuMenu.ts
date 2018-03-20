@@ -201,7 +201,7 @@ export class CustomKottuMenuComponent {
     isCartDisable() {
         const checkAllItems = [];
         for (let k = 0; k < this.finalOrderMenu.length; k++) {
-            if (this.finalOrderMenu[k].ingredients.length >= 5) {
+            if (this.finalOrderMenu[k].ingredients.length >= 2) {
                 checkAllItems.push('true');
             } else {
                 checkAllItems.push('false');

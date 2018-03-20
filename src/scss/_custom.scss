@@ -452,6 +452,12 @@ input[type="number"]{
       min-height:80px;
     }
   }
+  &-custom-menu {
+    &-wrapper {
+      padding: 30px 10px;
+      background-color:transparent;
+    }
+  }
   &-custom-kottu{
     &-wrapper {
       position: relative;
@@ -475,8 +481,8 @@ input[type="number"]{
       background-color: $quantity;
       padding: 10px 20px;
       max-width:580px;
-      margin:30px auto;
-      font:normal 20px 'Chelsea Market', cursive!important;
+      margin:0px auto 40px;
+      font:normal 20px 'Basic', sans-serif!important;
       color:$primary-color;
       input{
         padding:6px;
@@ -547,12 +553,16 @@ input[type="number"]{
     }
     &-title{
       h2{
-        font:normal 30px 'Jockey One', sans-serif;
+        font:normal 30px 'Basic', sans-serif;
         color:$about-text;
         border-bottom:3px solid $about-text;
         display:inline-block;
         padding-left:2px;
         padding-right:2px;
+        margin:0 0 40px 0;
+      }
+      h2.inner-heading-text{
+        margin:40px 0 40px 0;
       }
     }
     &-start{
@@ -576,16 +586,14 @@ input[type="number"]{
     &-bottom{
       background-color:rgba(230, 225, 225, 0.67);
       padding-bottom:20px;
-      .kottu-labs-signature-menu-info{
-        background-color: rgba(114, 114, 114, 0.7);
-        max-width:350px;
-        color:$primary-color;
+      .kottu-labs-signature-menu-info, .kottu-labs-custom-menu-info{
+        color:$promo-bg;
+        font:normal 15px 'Basic', sans-serif;
       }
     }
   }
   &-custom-kottu-cart-btn{
     border:none;
-    margin-top:25px;
     background-color:$location-info;
     font:normal 26px 'Basic', sans-serif;
     padding:8px 15px;
