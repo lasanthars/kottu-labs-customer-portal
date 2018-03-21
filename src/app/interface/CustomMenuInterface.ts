@@ -4,4 +4,5 @@ export class CustomMenuInterface {
     carbs: [{id: string, name: string, price: number}];
     totalPrice: number;
     veggeies: Array<any>;
+    protein: Array<any>;
 }

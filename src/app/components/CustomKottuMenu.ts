@@ -70,6 +70,7 @@ export class CustomKottuMenuComponent {
         this.menus = menus;
         const gross = this.menus[0].portions[0].price + this.menus[0].carbs[0].price;
         this.menus[0].veggeies = [];
+        this.menus[0].protein = [];
         this.menus[0].totalPrice = gross;
         this.finalOrderMenu[0].orderDetail.carbId = this.menus[0].carbs[0].id;
         this.finalCartMenu[0].carb = this.menus[0].carbs[0].name;
@@ -90,6 +91,7 @@ export class CustomKottuMenuComponent {
         const resp = menus;
         const gross = this.menus[0].portions[0].price + this.menus[0].carbs[0].price;
         resp[0].veggeies = [];
+          resp[0].protein = [];
         resp[0].totalPrice = gross;
         this.menus.push(...resp);
         this.menuService.hideUiBlocker();
@@ -182,6 +184,11 @@ export class CustomKottuMenuComponent {
         this.menus[menuIndex].veggeies.push(ingredient.id);
     } else{
         this.menus[menuIndex].veggeies = this.menus[menuIndex].veggeies.filter(ingd => ingd !== ingredient.id);
+        if(checked && ingredient.type === 2){
+            this.menus[menuIndex].protein.push(ingredient.id);
+        }else{
+            this.menus[menuIndex].protein = [];
+        }
     }
       for(let h = 0; h < this.menus[menuIndex].ingredients.length; h++) {
           if(ingredient.type === 1 && this.menus[menuIndex].veggeies.length > 0 && this.menus[menuIndex].ingredients[h].id !== ingredient.id) {
@@ -194,14 +201,15 @@ export class CustomKottuMenuComponent {
               }
           }else if(ingredient.type === 2 && (<HTMLInputElement>document.getElementById('protein_' + menuIndex + h)) && this.menus[menuIndex].ingredients[h].id !== ingredient.id) {
               (<HTMLInputElement>document.getElementById('protein_' + menuIndex + h)).disabled = checked;
+
           }
       }
   }
 
     isCartDisable() {
-        const checkAllItems = [];
-        for (let k = 0; k < this.finalOrderMenu.length; k++) {
-            if (this.finalOrderMenu[k].ingredients.length >= 2) {
+      const checkAllItems = [];
+        for (let k = 0; k < this.menus.length; k++) {
+            if (this.menus[k].veggeies.length > 0 && this.menus[k].protein.length > 0) {
                 checkAllItems.push('true');
             } else {
                 checkAllItems.push('false');

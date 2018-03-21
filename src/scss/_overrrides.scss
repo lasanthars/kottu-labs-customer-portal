@@ -62,6 +62,10 @@ img{
   position: absolute;
   right:132px;
   top:65px;
+  a{
+    color: $primary-color;
+    text-decoration: none;
+  }
 }
 
 .navbar-brand{
@@ -124,9 +128,9 @@ img{
         border-color:transparent;
       }
     }
-    @media (max-width:760px) {
-      display:block;
-    }
+    //@media (max-width:760px) {
+    //  display:block;
+    //}
   }
   >li.active{
     a{
@@ -197,4 +201,15 @@ img{
 }
 .modal{
   background-color: rgba($default-color, 0.85);
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select,
+  textarea,
+  input {
+    font-size: 14px;
+    &:focus{
+      font-size: 14px;
+    }
+  }
 }
