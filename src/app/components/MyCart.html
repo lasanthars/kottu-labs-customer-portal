@@ -26,6 +26,7 @@
         </div>
         <div class="col-md-1">
             <a *ngIf="!item.isEdit" role="button" class="kottu-labs-cart-action-btn" (click)="setReadOnly('cartEdit' + j)"><i class="fas fa-pencil-alt fa-lg"></i><span>Edit</span></a>
+          <a *ngIf="item.isEdit" role="button" class="kottu-labs-cart-action-btn" [routerLink]="['/CustomKottuEdit', j]"><i class="fas fa-pencil-alt fa-lg"></i><span>Edit</span></a>
         </div>
         <div class="col-md-1">
           <a role="button" class="kottu-labs-cart-action-btn kottu-labs-cart-action-delete" data-toggle="modal" data-target=".bs-example-modal-confirm" (click)="assignToConfirm(item, j)"><i class="fas fa-trash-alt fa-lg"></i><span>Delete</span></a>
@@ -37,7 +38,7 @@
   <div class="row">
     <div class="kottu-labs-cart-footer clearfix">
       <div class="col-md-7">
-        <p class="kottu-labs-cart-sub-total-label">Sub Total</p>
+        <p class="kottu-labs-cart-sub-total-label">Total</p>
       </div>
       <div class="col-md-3">
         <p class="kottu-labs-cart-sub-total">Rs {{cartGrandTotal}}/=</p>

@@ -3,10 +3,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './containers/App';
 import {SignatureKottuComponent} from './containers/SignatureKottu';
 import {CustomKottuComponent} from './containers/CustomKottu';
+import {CustomKottuEditComponent} from './containers/CustomKottuEdit';
 import {MenusComponent} from './containers/Menus';
 import {ViewCartComponent} from './containers/ViewCart';
 import {PromosComponent} from './containers/Promos';
 import {AboutUsComponent} from './containers/AboutUs';
+import {PrivacyPolicyComponent} from './containers/PrivacyPolicy';
 
 @Component({
   selector: 'kottu-labs-root',
@@ -35,6 +37,10 @@ export const routes: Routes = [
     path: 'CustomKottu',
     component: CustomKottuComponent
   },
+    {
+        path: 'CustomKottuEdit/:index',
+        component: CustomKottuEditComponent
+    },
   {
     path: 'Menu',
     component: MenusComponent
@@ -46,7 +52,11 @@ export const routes: Routes = [
   {
       path: 'Promos',
       component: PromosComponent
-  }
+  },
+    {
+        path: 'PrivacyPolicy',
+        component: PrivacyPolicyComponent
+    }
 ];
 
 export const routing = RouterModule.forRoot(routes);

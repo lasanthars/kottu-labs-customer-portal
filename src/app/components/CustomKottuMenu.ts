@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute }   from '@angular/router';
 import { CustomMenuInterface } from '../interface/CustomMenuInterface';
 
 import { HttpService } from '../services';
@@ -23,11 +24,13 @@ export class CustomKottuMenuComponent {
   public veggeies: any[];
   public itemCompleted: boolean;
   public showContents: boolean;
+  public editItem: any[];
   private totalPrice: any;
   private finalOrderMenu: any;
   private finalCartMenu: any;
+  private routerParam: number;
 
-  constructor(private menuService: HttpService) {
+  constructor(private menuService: HttpService, private route: ActivatedRoute) {
     this.kImg1 = k1;
     this.modalId = 'customKottuModalDialog';
     this.modalInfo =['/Menu', '/CustomKottu', 'Add another Kottu'];
@@ -61,6 +64,7 @@ export class CustomKottuMenuComponent {
     }];
     this.veggeies = [];
     this.itemCompleted = false;
+    this.editItem = [];
   }
 
   getAllCustomMenus(): void {
@@ -94,12 +98,15 @@ export class CustomKottuMenuComponent {
           resp[0].protein = [];
         resp[0].totalPrice = gross;
         this.menus.push(...resp);
+          this.isCartDisable();
         this.menuService.hideUiBlocker();
       });
   }
 
   removeCustomMenu(index: number) {
     this.menus.splice(index);
+      this.finalCartMenu.splice(index);
+      this.isCartDisable();
     this.menuService.hideUiBlocker();
   }
 
@@ -110,6 +117,10 @@ export class CustomKottuMenuComponent {
     this.getFinalOrder();
     this.totalPrice = 0;
     this.customKottuMenu = 1;
+    this.route.params.subscribe(params => {
+        this.routerParam = params['index'];
+    });
+    this.editItem.push(this.finalOrder[0].orderDetailDTO[this.routerParam]);
   }
 
     getFinalOrder(): void {
@@ -184,12 +195,21 @@ export class CustomKottuMenuComponent {
         this.menus[menuIndex].veggeies.push(ingredient.id);
     } else{
         this.menus[menuIndex].veggeies = this.menus[menuIndex].veggeies.filter(ingd => ingd !== ingredient.id);
-        if(checked && ingredient.type === 2){
-            this.menus[menuIndex].protein.push(ingredient.id);
-        }else{
-            this.menus[menuIndex].protein = [];
-        }
     }
+      if(checked && ingredient.type === 2 && this.menus[menuIndex].protein.indexOf(ingredient.id) === -1){
+          this.menus[menuIndex].protein.push(ingredient.id);
+      } else{
+          this.menus[menuIndex].protein = this.menus[menuIndex].protein.filter(ingd => ingd !== ingredient.id);
+      }
+
+
+
+
+      if(checked && ingredient.type === 2){
+          this.menus[menuIndex].protein.push(ingredient.id);
+      }else{
+
+      }
       for(let h = 0; h < this.menus[menuIndex].ingredients.length; h++) {
           if(ingredient.type === 1 && this.menus[menuIndex].veggeies.length > 0 && this.menus[menuIndex].ingredients[h].id !== ingredient.id) {
               for (let v = 0; v < this.menus[menuIndex].veggeies.length; v++) {

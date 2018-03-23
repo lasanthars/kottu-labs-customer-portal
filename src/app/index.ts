@@ -37,6 +37,8 @@ import {AddonsComponent} from './components/Addons';
 import {AboutUsComponent} from './containers/AboutUs';
 import {AboutUsBannerComponent} from './components/AboutUsBanner';
 import {AboutUsContentComponent} from './components/AboutUsContent';
+import {CustomKottuEditComponent} from './containers/CustomKottuEdit';
+import {PrivacyPolicyComponent} from './containers/PrivacyPolicy';
 
 
 import {HttpService} from './services';
@@ -81,7 +83,9 @@ import {HttpService} from './services';
     AddonsComponent,
     AboutUsComponent,
     AboutUsBannerComponent,
-    AboutUsContentComponent
+    AboutUsContentComponent,
+    CustomKottuEditComponent,
+    PrivacyPolicyComponent
   ],
   providers: [HttpService],
   bootstrap: [RootComponent]
