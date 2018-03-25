@@ -39,11 +39,21 @@ export class AboutUsBannerComponent {
     }
   }
 
+    ngAfterViewInit(){
+        this.resizeVideo();
+    }
+
     @HostListener('window:resize') onResize() {
+        this.resizeVideo();
+    }
+
+    resizeVideo(){
         let videoHeight = document.getElementById('aboutVideo').offsetHeight;
         document.getElementById('aboutVideoWrapper').style.top = '-' + videoHeight/4.5 + 'px';
         if(videoHeight <= 570){
-            document.getElementById('aboutVideoBannerWrapper').style.height = videoHeight + 'px';
+            document.getElementById('aboutVideoBannerWrapper').style.height = videoHeight - (videoHeight/4.5) + 'px';
         }
     }
+
+
 }

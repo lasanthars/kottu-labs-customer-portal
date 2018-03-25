@@ -107,6 +107,11 @@ img{
     display:inline-block;
     padding:22px 0 0 12px;
   }
+  @media (max-width:380px){
+    height:auto;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
 }
 
 .nav-tabs{
@@ -201,6 +206,12 @@ img{
 }
 .modal{
   background-color: rgba($default-color, 0.85);
+}
+
+.navbar{
+  @media (max-width:380px){
+    margin-bottom: 5px;
+  }
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {

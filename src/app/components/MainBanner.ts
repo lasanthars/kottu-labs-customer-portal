@@ -20,14 +20,24 @@ export class MainBannerComponent {
     this.movieClip = movie;
     this.mainBanner = bannerImage;
   }
+    ngAfterViewInit(){
+        this.resizeVideo();
+    }
+
+    @HostListener('window:resize') onResize() {
+      this.resizeVideo();
+    }
+
     removePreloader(preloader: any){
       document.getElementById(preloader).style.display = 'none';
     }
 
-    @HostListener('window:resize') onResize() {
+    resizeVideo(){
         let videoHeight = document.getElementById('introVideo').offsetHeight;
         if(videoHeight <= 570){
             document.getElementById('mainVideoBannerWrapper').style.height = videoHeight + 'px';
         }
     }
+
+
 }
