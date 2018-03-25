@@ -12,7 +12,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <style>
-      #uiBlockerLoader{
+      #uiBlockerLoader,.uiBlocker{
         background-color:rgba(0, 0, 0, 0.85);
         position: fixed;
         text-align: center;
@@ -33,7 +33,7 @@
   <body>
     <div class="kottuLabs">
       <div id="uiBlockerLoader"><i class="fas fa-circle-notch fa-spin fa-lg"></i><span>Preparing your Kottu...</span></div>
-      <kottu-labs-root><div style="text-align: center; padding-top: 10%;"> <i class="fas fa-circle-notch fa-spin fa-lg"></i><span>Preparing your Kottu...</span></div></kottu-labs-root>
+      <kottu-labs-root><div class="uiBlocker"><i class="fas fa-circle-notch fa-spin fa-lg"></i><span>Preparing your Kottu...</span></div></kottu-labs-root>
     </div>
   </body>
 </html>
