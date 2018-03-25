@@ -7,7 +7,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 Something went wrong. your order has not been placed. Please try again shortly.
             </div>
-            <p>Email Address is act as your user name. Please remember it to an easy checkout. (mandatory fields are marked with *)</p>
+            <p>Mandatory fields are marked with *</p>
             <form (ngSubmit)="onSubmit()" #customerForm="ngForm">
 
                 <div class="form-group">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email *</label>
-                    <input type="email" class="form-control" id="email" (blur)="checkIfExisting(customer.email, email.valid)"
+                    <input type="email" class="form-control" id="email"
                            required
                            [(ngModel)]="customer.email" name="email"
                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
