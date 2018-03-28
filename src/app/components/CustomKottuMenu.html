@@ -1,9 +1,9 @@
 <div class="kottu-labs-custom-kottu-wrapper clearfix">
   <div class="container">
-    <div class="kottu-labs-custom-kottu-title" *ngIf="!showContents">
+    <div class="kottu-labs-custom-kottu-title" *ngIf="!showContents && !this.routerParam">
       <h2>Select a Quantity</h2>
     </div>
-    <div class="kottu-labs-custom-kottu-quantity">
+    <div class="kottu-labs-custom-kottu-quantity" *ngIf="!this.routerParam">
       <span>I would like to order
         <input name="customKottuMenu" type="number" (keypress)="blockCharacters($event)" min="1" max="999" [(ngModel)]="customKottuMenu" (change)="createNewCustomMenu(customKottuMenu)"/>
       </span> kottu portion(s)
@@ -29,9 +29,14 @@
             <div class="col-md-6 kottu-labs-custom-kottu-lbls">
               <span>Spice Level</span>
             </div>
-            <div class="col-md-6 kottu-labs-custom-kottu-select">
+            <div class="col-md-6 kottu-labs-custom-kottu-select" *ngIf="!this.routerParam">
               <select [attr.id]="'portionDropDown' + i" (change)="changePortion($event, menu.portions, 'portion', i, 'carbsDropDown' + i)">
                 <option *ngFor="let portion of menu.portions" [attr.value]="portion.id" [attr.selected]="portion.name === menu.portions[0].name ? 'selected' : null" >{{portion.name}}</option>
+              </select>
+            </div>
+            <div class="col-md-6 kottu-labs-custom-kottu-select" *ngIf="this.routerParam">
+              <select [attr.id]="'portionDropDown' + i" (change)="changePortion($event, menu.portions, 'portion', i, 'carbsDropDown' + i)">
+                <option *ngFor="let portion of menu.portions" [attr.value]="portion.id" [attr.selected]="portion.id === this.editItem[0].portionId ? 'selected' : null" >{{portion.name}}</option>
               </select>
             </div>
           </div>
@@ -39,9 +44,14 @@
             <div class="col-md-6 kottu-labs-custom-kottu-lbls">
               <span>Carb</span>
             </div>
-            <div class="col-md-6 kottu-labs-custom-kottu-select">
+            <div class="col-md-6 kottu-labs-custom-kottu-select" *ngIf="!this.routerParam">
               <select [attr.id]="'carbsDropDown' + i" (change)="changePortion($event, menu.carbs, 'carb', i, 'portionDropDown' + i)">
                 <option *ngFor="let carb of menu.carbs;" [attr.value]="carb.id" [attr.selected]="carb.name === menu.carbs[0].name ? 'selected' : null" >{{carb.name}}</option>
+              </select>
+            </div>
+            <div class="col-md-6 kottu-labs-custom-kottu-select" *ngIf="this.routerParam">
+              <select [attr.id]="'carbsDropDown' + i" (change)="changePortion($event, menu.carbs, 'carb', i, 'portionDropDown' + i)">
+                <option *ngFor="let carb of menu.carbs;" [attr.value]="carb.id" [attr.selected]="carb.id === this.editItem[0].carbId ? 'selected' : null" >{{carb.name}}</option>
               </select>
             </div>
           </div>
@@ -77,7 +87,7 @@
         </div>
       </div>
     </div>
-        <button type="button" data-toggle="modal" data-target="#customKottuModalDialog" (click)="addOrderToCart()" class="kottu-labs-custom-kottu-cart-btn" [disabled]="!itemCompleted">Add to cart</button>
+        <button type="button" data-toggle="modal" data-target="#customKottuModalDialog" (click)="addOrderToCart()" class="kottu-labs-custom-kottu-cart-btn" [disabled]="!itemCompleted ">Add to cart</button>
     </div>
    </div>
   <kottu-lab-modal-window [urls]="[modalInfo]" [modalid]="modalId"></kottu-lab-modal-window>

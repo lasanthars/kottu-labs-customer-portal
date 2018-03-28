@@ -214,6 +214,11 @@ input[type="number"]{
     padding: 40px 0px 0;
     text-align: center;
     color:$txt-color;
+    p.i-phone-p{
+      @media (max-width:380px){
+        display: none;
+      }
+    }
     p{
       font: normal 21px 'Basic', sans-serif;
       margin:0 auto;
@@ -224,6 +229,14 @@ input[type="number"]{
     }
     p:nth-child(1){
       max-width:400px;
+      @media (max-width:380px){
+        padding-top:5px;
+      }
+    }
+    p.i-phone-p-one{
+      @media (max-width:380px){
+        padding-top:5px;
+      }
     }
     h2{
       font: normal 21px 'Lobster', cursive;
@@ -912,7 +925,6 @@ input[type="number"]{
       input{
         transition: all 0.2s;
         margin:5px 0 0;
-        width:70%;
         border:2px solid rgba($menu-bg, 0.7);
         padding:4px;
         font-weight:bold;
@@ -1073,6 +1085,10 @@ input[type="number"]{
           background-color:$default-color;
         }
       }
+    }
+    &-qty{
+      font:bold 16px 'Basic', sans-serif;
+      color:$cart-color;
     }
   }
   &-promos{

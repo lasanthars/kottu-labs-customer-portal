@@ -2,7 +2,7 @@
   <div class="container" *ngIf="cartInfo[0].cart.length > 0">
       <div class="row">
         <div class="col-md-6"><div class="kottu-labs-cart-title"> Item</div></div>
-        <div class="col-md-2"><div class="kottu-labs-cart-title">Nos</div></div>
+        <div class="col-md-2"><div class="kottu-labs-cart-title">Quantity</div></div>
         <div class="col-md-2"><div class="kottu-labs-cart-title">Price</div></div>
         <div class="col-md-1"></div>
       </div>
@@ -17,6 +17,7 @@
               </div>
               <div class="col-md-3">
                 <input id="cartEdit{{j}}" type="number" min="1" max="99" (keypress)="blockCharacters($event)" [(ngModel)]="item.qty" (ngModelChange)="toggleValue(item, item.qty, j);" readonly="readonly"/>
+                <span class="kottu-labs-cart-qty"> portion/s</span>
               </div>
               <div class="col-md-2">
                   <span class="kottu-labs-cart-item-price">Rs {{item.total}}/=</span>
@@ -26,7 +27,7 @@
         </div>
         <div class="col-md-1">
             <a *ngIf="!item.isEdit" role="button" class="kottu-labs-cart-action-btn" (click)="setReadOnly('cartEdit' + j)"><i class="fas fa-pencil-alt fa-lg"></i><span>Edit</span></a>
-          <!--<a *ngIf="item.isEdit" role="button" class="kottu-labs-cart-action-btn" [routerLink]="['/CustomKottuEdit', j]"><i class="fas fa-pencil-alt fa-lg"></i><span>Edit</span></a>-->
+            <a *ngIf="item.isEdit" role="button" class="kottu-labs-cart-action-btn" [routerLink]="['/CustomKottuEdit', j]"><i class="fas fa-pencil-alt fa-lg"></i><span>Edit</span></a>
         </div>
         <div class="col-md-1">
           <a role="button" class="kottu-labs-cart-action-btn kottu-labs-cart-action-delete" data-toggle="modal" data-target=".bs-example-modal-confirm" (click)="assignToConfirm(item, j)"><i class="fas fa-trash-alt fa-lg"></i><span>Delete</span></a>
