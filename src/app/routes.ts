@@ -10,6 +10,7 @@ import {PromosComponent} from './containers/Promos';
 import {AboutUsComponent} from './containers/AboutUs';
 import {PrivacyPolicyComponent} from './containers/PrivacyPolicy';
 import {OrderSuccessComponent} from './containers/OrderSuccess';
+import {TermsAndConditionsComponent} from './containers/TermsAndConditions';
 import {PageNotFoundComponent} from './containers/NotFound';
 
 @Component({
@@ -59,6 +60,10 @@ export const routes: Routes = [
         path: 'PrivacyPolicy',
         component: PrivacyPolicyComponent
     },
+    {
+      path: 'TermsAndConditions',
+      component: TermsAndConditionsComponent
+    }
     {
         path: 'Success',
         component: OrderSuccessComponent

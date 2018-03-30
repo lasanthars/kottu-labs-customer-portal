@@ -43,7 +43,7 @@ import {OrderSuccessComponent} from './containers/OrderSuccess';
 import {FinalOrderSuccessComponent} from './components/OrderSuccess';
 import {PageNotFoundComponent} from './containers/NotFound';
 import {PageNotFoundContentComponent} from './components/404';
-
+import {TermsAndConditionsComponent} from './containers/TermsAndConditions';
 
 import {HttpService} from './services';
 
@@ -93,7 +93,8 @@ import {HttpService} from './services';
     OrderSuccessComponent,
     FinalOrderSuccessComponent,
     PageNotFoundComponent,
-    PageNotFoundContentComponent
+    PageNotFoundContentComponent,
+    TermsAndConditionsComponent
   ],
   providers: [HttpService],
   bootstrap: [RootComponent]

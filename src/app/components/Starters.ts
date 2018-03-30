@@ -7,7 +7,8 @@ const apptImages = {
     0: require( '../../images/Mini-Chicken-Burger.jpg'),
     1: require( '../../images/Pineapple-Fries.jpg'),
     2: require( '../../images/Cheesy-Mashed-Potatoes.jpg'),
-    3: require( '../../images/Garlic-Rotti.jpg')
+    3: require( '../../images/Garlic-Rotti.jpg'),
+    4: require('../../images/Chrispy-Chicken-Wrap.png')
 };
 
 @Component({
