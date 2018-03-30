@@ -54,7 +54,7 @@ export class ConfirmWindowComponent {
             this.finalOrder = result;
             this.cartService.hideUiBlocker();
             setTimeout(()=>{
-                location.reload();
+               location.reload();
             },250)
 
         });

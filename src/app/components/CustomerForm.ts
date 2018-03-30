@@ -67,7 +67,7 @@ export class CustomerFormWindowComponent {
                     }
                     this.customerService.showUiBlocker('Your order has been placed successfully.');
                     setTimeout(() => {
-                        location.reload()
+                        window.location.href = '/Success';
                     },1000);
                 }
             }).catch(e => {

@@ -219,9 +219,22 @@ img{
   select,
   textarea,
   input {
-    font-size: 14px;
+    font-size: 16px;
     &:focus{
-      font-size: 14px;
+      font-size: 16px;
     }
   }
+}
+@media (max-width:380px) {
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+    &:focus{
+      font-size: 16px;
+    }
+  }
+}
+.bg-success, .bg-danger{
+  padding: 15px;
 }

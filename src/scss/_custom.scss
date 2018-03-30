@@ -155,6 +155,9 @@ input[type="number"]{
     @media (max-width:600px){
       padding:20% 0 10px 0;
     }
+    @media (max-width:380px){
+      padding:40% 0 10px 0;
+    }
   }
   &-signature-kottu{
     a {
@@ -203,6 +206,9 @@ input[type="number"]{
           font-size: 16px;
           margin-top: 0;
         }
+      }
+      @media (max-width:380px){
+        display: none;
       }
     }
   }
@@ -722,7 +728,7 @@ input[type="number"]{
   &-main-menus-item{
     display:block;
     text-align: center;
-    font: 600 18px 'Basic', sans-serif;
+    font: normal 18px 'Basic', sans-serif;
     color:$primary-color;
     margin-bottom: 15px;
     &:hover,&:focus{

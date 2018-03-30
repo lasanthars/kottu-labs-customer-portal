@@ -9,6 +9,8 @@ import {ViewCartComponent} from './containers/ViewCart';
 import {PromosComponent} from './containers/Promos';
 import {AboutUsComponent} from './containers/AboutUs';
 import {PrivacyPolicyComponent} from './containers/PrivacyPolicy';
+import {OrderSuccessComponent} from './containers/OrderSuccess';
+import {PageNotFoundComponent} from './containers/NotFound';
 
 @Component({
   selector: 'kottu-labs-root',
@@ -56,7 +58,17 @@ export const routes: Routes = [
     {
         path: 'PrivacyPolicy',
         component: PrivacyPolicyComponent
-    }
+    },
+    {
+        path: 'Success',
+        component: OrderSuccessComponent
+    },
+    {
+        path: '404',
+        component: PageNotFoundComponent
+    },
+    {path: '**', redirectTo: '/404'}
+
 ];
 
 export const routing = RouterModule.forRoot(routes);

@@ -39,6 +39,10 @@ import {AboutUsBannerComponent} from './components/AboutUsBanner';
 import {AboutUsContentComponent} from './components/AboutUsContent';
 import {CustomKottuEditComponent} from './containers/CustomKottuEdit';
 import {PrivacyPolicyComponent} from './containers/PrivacyPolicy';
+import {OrderSuccessComponent} from './containers/OrderSuccess';
+import {FinalOrderSuccessComponent} from './components/OrderSuccess';
+import {PageNotFoundComponent} from './containers/NotFound';
+import {PageNotFoundContentComponent} from './components/404';
 
 
 import {HttpService} from './services';
@@ -85,7 +89,11 @@ import {HttpService} from './services';
     AboutUsBannerComponent,
     AboutUsContentComponent,
     CustomKottuEditComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    OrderSuccessComponent,
+    FinalOrderSuccessComponent,
+    PageNotFoundComponent,
+    PageNotFoundContentComponent
   ],
   providers: [HttpService],
   bootstrap: [RootComponent]

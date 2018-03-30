@@ -74,7 +74,7 @@ export class CustomKottuMenuComponent {
       this.getAllCustomMenus();
       this.totalPrice = 0;
       this.customKottuMenu = 1;
-      if(this.routerParam){
+      if(this.routerParam && this.finalOrder[0].orderDetailDTO.length > this.routerParam){
         this.editItem.push(this.finalOrder[0].orderDetailDTO[this.routerParam]);
         this.menuInterval = setInterval(() => {
             if(this.menus){
@@ -88,6 +88,8 @@ export class CustomKottuMenuComponent {
         this.finalCartMenu.pop()
         this.finalCartMenu.push(this.cartInfo[0].cart[this.routerParam]);
         this.itemCompleted = true;
+      } else if(this.routerParam && this.finalOrder[0].orderDetailDTO.length <= this.routerParam){
+          window.location.href = '/404';
       }
 
   }
