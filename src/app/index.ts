@@ -39,7 +39,7 @@ import {AboutUsBannerComponent} from './components/AboutUsBanner';
 import {AboutUsContentComponent} from './components/AboutUsContent';
 import {CustomKottuEditComponent} from './containers/CustomKottuEdit';
 import {PrivacyPolicyComponent} from './containers/PrivacyPolicy';
-
+import {TermsAndConditionsComponent} from './containers/TermsAndConditions';
 
 import {HttpService} from './services';
 
@@ -85,7 +85,8 @@ import {HttpService} from './services';
     AboutUsBannerComponent,
     AboutUsContentComponent,
     CustomKottuEditComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    TermsAndConditionsComponent
   ],
   providers: [HttpService],
   bootstrap: [RootComponent]

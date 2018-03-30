@@ -9,6 +9,7 @@ import {ViewCartComponent} from './containers/ViewCart';
 import {PromosComponent} from './containers/Promos';
 import {AboutUsComponent} from './containers/AboutUs';
 import {PrivacyPolicyComponent} from './containers/PrivacyPolicy';
+import {TermsAndConditionsComponent} from './containers/TermsAndConditions';
 
 @Component({
   selector: 'kottu-labs-root',
@@ -56,6 +57,10 @@ export const routes: Routes = [
     {
         path: 'PrivacyPolicy',
         component: PrivacyPolicyComponent
+    },
+    {
+      path: 'TermsAndConditions',
+      component: TermsAndConditionsComponent
     }
 ];
 
