@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-const promos = require( '../../images/promos.jpg');
+const promos = require( '../../images/promos.png');
 
 @Component({
   selector: 'kottu-lab-promo-contents',
