@@ -167,7 +167,9 @@ export class CustomKottuMenuComponent {
     }
 
     getOtherPrice(obj: any, objIndex:number, selected: string) {
+        debugger;
         let newPrice = 0;
+        let hasIngredients = false;
         for (let innerIndex of Object.keys(obj)) {
             if  (obj[innerIndex].id === selected) {
                 newPrice = obj[innerIndex].price;
@@ -175,7 +177,14 @@ export class CustomKottuMenuComponent {
                     for (let j = 0; j < this.finalOrderMenu[objIndex].ingredients.length; j++) {
                         const ingId = this.finalOrderMenu[objIndex].ingredients[j];
                         const filterdArray = this.menus[objIndex].ingredients.filter(ing => ingId === ing.id);
-                        newPrice = newPrice + filterdArray[0].price;
+                        //this.menus[index].totalPrice =  (ingredient.type === 1 && this.menus[index].veggeies.length <= 1 || ingredient.type === 2) ? this.menus[index].totalPrice + ingredient.price : (this.menus[index].totalPrice - ingredient.price) + ingredient.price;
+                        if((hasIngredients === false && filterdArray[0].type === 1) || filterdArray[0].type === 2){
+                            newPrice = newPrice + filterdArray[0].price;
+                            hasIngredients = true;
+                        }
+                        else{
+                            newPrice = (newPrice - filterdArray[0].price )+ filterdArray[0].price;
+                        }
                     }
                     break;
                 }
@@ -246,7 +255,7 @@ export class CustomKottuMenuComponent {
       this.menus[index].totalPrice =  (ingredient.type === 1 && this.menus[index].veggeies.length === 0 || ingredient.type === 2) ? this.menus[index].totalPrice - ingredient.price : this.menus[index].totalPrice;
       const newOrderArray = this.finalOrderMenu[index].ingredients.filter(order => order !== ingredient.id);
       this.finalOrderMenu[index].ingredients = newOrderArray;
-      const newCartArray = this.finalCartMenu[index].ingredients.filter(cart => cart !== ingredient.id);
+      const newCartArray = this.finalCartMenu[index].ingredients.filter(cart => cart !== ingredient.name);
       this.finalCartMenu[index].ingredients = newCartArray;
     }
     this.isCartDisable();
