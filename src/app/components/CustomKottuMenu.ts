@@ -167,7 +167,6 @@ export class CustomKottuMenuComponent {
     }
 
     getOtherPrice(obj: any, objIndex:number, selected: string) {
-        debugger;
         let newPrice = 0;
         let hasIngredients = false;
         for (let innerIndex of Object.keys(obj)) {
@@ -382,10 +381,12 @@ export class CustomKottuMenuComponent {
             this.finalCartMenu[k].total = this.menus[k].totalPrice;
             this.finalOrder[0].order.grossTotal += this.menus[k].totalPrice;
             this.finalOrder[0].order.nettTotal += this.menus[k].totalPrice;
-            this.finalOrder[0].orderDetailDTO.push(this.finalOrderMenu[k]);
-            this.cartInfo[0].cart.push(this.finalCartMenu[k]);
+            if(!this.routerParam) {
+                this.finalOrder[0].orderDetailDTO.push(this.finalOrderMenu[k]);
+                this.cartInfo[0].cart.push(this.finalCartMenu[k]);
+            }
         }
         this.menuService.pushCart(this.cartInfo).subscribe(result => {this.cartInfo = result; this.menuService.hideUiBlocker()});
         this.menuService.pushOrder(this.finalOrder).subscribe(result => {this.finalOrder = result; this.menuService.hideUiBlocker()});
-    }
+  }
 }

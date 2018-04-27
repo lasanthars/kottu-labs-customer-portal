@@ -64,6 +64,7 @@ export const routes: Routes = [
       path: 'TermsAndConditions',
       component: TermsAndConditionsComponent
     },
+
     {
         path: 'Success',
         component: OrderSuccessComponent
