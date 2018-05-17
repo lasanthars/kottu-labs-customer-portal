@@ -18,7 +18,10 @@ export class CustomerFormWindowComponent {
     public payment: number;
     constructor(private customerService: HttpService) {
         this.getCustomerInfo();
-        this.getFinalOrder();
+        this.customerService.getOrders()
+            .subscribe(orders => {
+                this.finalOrder = orders;
+            });
         this.isExistingCustomer = false;
         this.orderError = false;
         this.payment = 0;
@@ -54,33 +57,32 @@ export class CustomerFormWindowComponent {
     }
 
     placeFinalOrder(){
-        this.customerService
-            .placeOrder(this.finalOrder[0])
-            .then(order => {
-                if(order){
+            this.customerService.getOrders()
+            .subscribe(orders => {
+                this.finalOrder = orders;
+                this.customerService
+                    .placeOrder(this.finalOrder[0])
+                    .then(order => {
+                        if(order){
+                            this.customerService.hideUiBlocker();
+                            if(localStorage.finalOrder) {
+                                localStorage.removeItem("finalOrder");
+                            }
+                            if(localStorage.myCart) {
+                                localStorage.removeItem("myCart");
+                            }
+                            this.customerService.showUiBlocker('Your order has been placed successfully.');
+                            setTimeout(() => {
+                                window.location.href = '/Success';
+                            },1000);
+                        }
+                    }).catch(e => {
                     this.customerService.hideUiBlocker();
-                    if(localStorage.finalOrder) {
-                        localStorage.removeItem("finalOrder");
-                    }
-                    if(localStorage.myCart) {
-                        localStorage.removeItem("myCart");
-                    }
-                    this.customerService.showUiBlocker('Your order has been placed successfully.');
-                    setTimeout(() => {
-                        window.location.href = '/Success';
-                    },1000);
-                }
-            }).catch(e => {
-            this.customerService.hideUiBlocker();
-            this.orderError = true;
-        });
+                    this.orderError = true;
+                });
+            });
     }
 
-    getFinalOrder(): void {
-        this.customerService.getOrders()
-            .subscribe(orders => {this.finalOrder = orders;});
-
-    }
 
     getCustomerInfo() : void {
         this.customer = new Customer('','','','','','','');
