@@ -235,7 +235,7 @@ export class CustomKottuMenuComponent {
         } else {
             const otherMenu = this.getOtherPrice(this.menus[index].portions, index, selectedPortion);
             this.menus[index].totalPrice = obj[key].price + otherMenu;
-            this.finalOrderMenu[index].carbId = obj[key].id;
+            this.finalOrderMenu[index].orderDetailDTO.carbId = obj[key].id;
             this.finalCartMenu[index].carb = obj[key].name;
         }
       }

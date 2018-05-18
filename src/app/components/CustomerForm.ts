@@ -3,7 +3,6 @@ import { HttpService } from '../services';
 import {Customer} from '../interface/CustomerInterface';
 import {OrderInterface} from "../interface/OrderInterface";
 import { CartInterface } from '../interface/CartInterface';
-import {location} from "@angular/platform-browser/src/facade/browser";
 
 @Component({
   selector: 'kottu-lab-customer-form-window',
@@ -35,52 +34,52 @@ export class CustomerFormWindowComponent {
     submitted = false;
 
     onSubmit() {
-        this.submitted = true;
-        const today = new Date();
-        this.finalOrder[0].order.notes = this.customer.notes;
-        this.finalOrder[0].order.orderDate = today.toJSON();
-        if (!this.isExistingCustomer) {
-            this.customerService
-                .saveCustomer(this.customer)
-                .then(customer => {
-                    this.finalOrder[0].order.customerId = customer['id'];
-                    this.placeFinalOrder();
-                    this.orderError = false;
-                }).catch(e => {
-                    this.customerService.hideUiBlocker();
-                    this.orderError = true;
+        this.customerService.getOrders()
+            .subscribe(orders => {
+                this.finalOrder = orders;
+                this.submitted = true;
+                const today = new Date();
+                this.finalOrder[0].order.notes = this.customer.notes;
+                this.finalOrder[0].order.orderDate = today.toJSON();
+                    if (!this.isExistingCustomer) {
+                        this.customerService
+                            .saveCustomer(this.customer)
+                            .then(customer => {
+                                this.finalOrder[0].order.customerId = customer['id'];
+                                this.placeFinalOrder();
+                                this.orderError = false;
+                            }).catch(e => {
+                            this.customerService.hideUiBlocker();
+                            this.orderError = true;
+                        });
+                    } else {
+                        this.finalOrder[0].order.customerId = this.customer.id;
+                        this.placeFinalOrder();
+                    }
             });
-        } else {
-            this.finalOrder[0].order.customerId = this.customer.id;
-            this.placeFinalOrder();
-        }
     }
 
     placeFinalOrder(){
-            this.customerService.getOrders()
-            .subscribe(orders => {
-                this.finalOrder = orders;
-                this.customerService
-                    .placeOrder(this.finalOrder[0])
-                    .then(order => {
-                        if(order){
-                            this.customerService.hideUiBlocker();
-                            if(localStorage.finalOrder) {
-                                localStorage.removeItem("finalOrder");
-                            }
-                            if(localStorage.myCart) {
-                                localStorage.removeItem("myCart");
-                            }
-                            this.customerService.showUiBlocker('Your order has been placed successfully.');
-                            setTimeout(() => {
-                                window.location.href = '/Success';
-                            },1000);
-                        }
-                    }).catch(e => {
+        this.customerService
+            .placeOrder(this.finalOrder[0])
+            .then(order => {
+                if(order){
                     this.customerService.hideUiBlocker();
-                    this.orderError = true;
-                });
-            });
+                    if(localStorage.finalOrder) {
+                        localStorage.removeItem("finalOrder");
+                    }
+                    if(localStorage.myCart) {
+                        localStorage.removeItem("myCart");
+                    }
+                    this.customerService.showUiBlocker('Your order has been placed successfully.');
+                    setTimeout(() => {
+                        window.location.href = '/Success';
+                    },1000);
+                }
+            }).catch(e => {
+            this.customerService.hideUiBlocker();
+            this.orderError = true;
+        });
     }
 
 
