@@ -224,6 +224,7 @@ export class CustomKottuMenuComponent {
   changePortion(event: any, obj: object, type: string, index: number, elementId: string) {
     const element = (document.getElementById(elementId)) as HTMLSelectElement;
     const selectedPortion = element.options[element.selectedIndex].value;
+    debugger;
     for (let key of Object.keys(obj)) {
       if (event.target.value === obj[key].id) {
         if (type === 'portion') {
@@ -235,7 +236,7 @@ export class CustomKottuMenuComponent {
         } else {
             const otherMenu = this.getOtherPrice(this.menus[index].portions, index, selectedPortion);
             this.menus[index].totalPrice = obj[key].price + otherMenu;
-            this.finalOrderMenu[index].orderDetailDTO.carbId = obj[key].id;
+            this.finalOrderMenu[index].orderDetail.carbId = obj[key].id;
             this.finalCartMenu[index].carb = obj[key].name;
         }
       }
