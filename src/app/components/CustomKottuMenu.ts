@@ -27,6 +27,7 @@ export class CustomKottuMenuComponent {
   public showContents: boolean;
   public menuInterval: any;
   public editItem: any[];
+  public oldPrice = 0;
   private totalPrice: any;
   private finalOrderMenu: any;
   private finalCartMenu: any;
@@ -74,6 +75,9 @@ export class CustomKottuMenuComponent {
       this.getAllCustomMenus();
       this.totalPrice = 0;
       this.customKottuMenu = 1;
+      if(this.routerParam) {
+          this.oldPrice = this.finalOrder[0].orderDetailDTO[this.routerParam].orderDetail.price;
+      }
       if(this.routerParam && this.finalOrder[0].orderDetailDTO.length > this.routerParam){
         this.editItem.push(this.finalOrder[0].orderDetailDTO[this.routerParam]);
         this.menuInterval = setInterval(() => {
@@ -143,19 +147,6 @@ export class CustomKottuMenuComponent {
     this.menuService.hideUiBlocker();
   }
 
-  // ngOnInit(): void {
-  //   this.menuService.showUiBlocker('Preparing your personalized kottu');
-  //   this.getAllCustomMenus();
-  //   this.getCartDetails();
-  //   this.getFinalOrder();
-  //   this.totalPrice = 0;
-  //   this.customKottuMenu = 1;
-  //   this.route.params.subscribe(params => {
-  //       this.routerParam = params['index'];
-  //   });
-  //   this.editItem.push(this.finalOrder[0].orderDetailDTO[this.routerParam]);
-  // }
-
     getFinalOrder(): void {
         this.menuService.getOrders()
             .subscribe(orders => {this.finalOrder = orders;});
@@ -205,7 +196,7 @@ export class CustomKottuMenuComponent {
                    this.menus[0].protein.push(this.editItem[0].ingredients[b]);
                    (<HTMLInputElement>document.getElementById('protein_0' + z)).checked = true;
                    (<HTMLInputElement>document.getElementById('protein_0' + z)).disabled = false;
-               }else if(this.menus[0].ingredients[z].type === 2 && this.menus[0].ingredients[z].id !== this.editItem[0].ingredients[b]){
+               }else if(this.menus[0].ingredients[z].type === 2 && this.menus[0].ingredients[z].id !== this.editItem[0].ingredients[b] && !(<HTMLInputElement>document.getElementById('protein_0' + z)).checked){
                    (<HTMLInputElement>document.getElementById('protein_0' + z)).disabled = true;
                }
            }
@@ -224,7 +215,6 @@ export class CustomKottuMenuComponent {
   changePortion(event: any, obj: object, type: string, index: number, elementId: string) {
     const element = (document.getElementById(elementId)) as HTMLSelectElement;
     const selectedPortion = element.options[element.selectedIndex].value;
-    debugger;
     for (let key of Object.keys(obj)) {
       if (event.target.value === obj[key].id) {
         if (type === 'portion') {
@@ -380,11 +370,14 @@ export class CustomKottuMenuComponent {
             this.finalOrderMenu[k].orderDetail.total = this.menus[k].totalPrice;
             this.finalCartMenu[k].price = this.menus[k].totalPrice;
             this.finalCartMenu[k].total = this.menus[k].totalPrice;
-            this.finalOrder[0].order.grossTotal += this.menus[k].totalPrice;
-            this.finalOrder[0].order.nettTotal += this.menus[k].totalPrice;
             if(!this.routerParam) {
                 this.finalOrder[0].orderDetailDTO.push(this.finalOrderMenu[k]);
                 this.cartInfo[0].cart.push(this.finalCartMenu[k]);
+                this.finalOrder[0].order.grossTotal += this.menus[k].totalPrice;
+                this.finalOrder[0].order.nettTotal += this.menus[k].totalPrice;
+            } else {
+                this.finalOrder[0].order.grossTotal =  (this.finalOrder[0].order.grossTotal - this.oldPrice) + this.menus[k].totalPrice;
+                this.finalOrder[0].order.nettTotal =  (this.finalOrder[0].order.nettTotal - this.oldPrice) + this.menus[k].totalPrice;
             }
         }
         this.menuService.pushCart(this.cartInfo).subscribe(result => {this.cartInfo = result; this.menuService.hideUiBlocker()});
