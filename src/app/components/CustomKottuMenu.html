@@ -36,7 +36,7 @@
             </div>
             <div class="col-md-6 kottu-labs-custom-kottu-select" *ngIf="this.routerParam">
               <select [attr.id]="'portionDropDown' + i" (change)="changePortion($event, menu.portions, 'portion', i, 'carbsDropDown' + i)">
-                <option *ngFor="let portion of menu.portions" [attr.value]="portion.id" [attr.selected]="portion.id === this.editItem[0].portionId ? 'selected' : null" >{{portion.name}}</option>
+                <option *ngFor="let portion of menu.portions" [attr.value]="portion.id" [attr.selected]="portion.id === this.editItem[0].orderDetail.portionId ? 'selected' : null" >{{portion.name}}</option>
               </select>
             </div>
           </div>

@@ -112,9 +112,9 @@ export class CustomKottuMenuComponent implements OnInit {
         if(!this.routerParam){
             this.finalOrderMenu[0].orderDetail.carbId = this.menus[0].carbs[0].id;
             this.finalCartMenu[0].carb = this.menus[0].carbs[0].name;
+            this.finalOrderMenu[0].orderDetail.portionId = this.menus[0].portions[0].id;
+            this.finalCartMenu[0].portion = this.menus[0].portions[0].name;
         }
-        this.finalOrderMenu[0].orderDetail.portionId = this.menus[0].portions[0].id;
-        this.finalCartMenu[0].portion = this.menus[0].portions[0].name;
         this.menuService.hideUiBlocker();
       });
   }
@@ -223,8 +223,8 @@ export class CustomKottuMenuComponent implements OnInit {
         if (type === 'portion') {
             const otherMenu = this.getOtherPrice(this.menus[index].carbs, index, selectedPortion);
             this.menus[index].totalPrice = obj[key].price + otherMenu;
-            this.finalOrderMenu[index].portionId = obj[key].id;
-            this.finalOrderMenu[index].setmenuId = obj[key].setmenu_type;
+            this.finalOrderMenu[index].orderDetail.portionId = obj[key].id;
+            this.finalOrderMenu[index].orderDetail.setmenuId = obj[key].setmenu_type;
             this.finalCartMenu[index].portion = obj[key].name;
         } else {
             const otherMenu = this.getOtherPrice(this.menus[index].portions, index, selectedPortion);
