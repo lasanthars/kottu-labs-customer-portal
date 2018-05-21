@@ -36,11 +36,13 @@ export class CustomerFormWindowComponent {
     onSubmit() {
         this.customerService.getOrders()
             .subscribe(orders => {
+                let userSelectedPaymentType = this.finalOrder[0].order.paymentType;
                 this.finalOrder = orders;
                 this.submitted = true;
                 const today = new Date();
                 this.finalOrder[0].order.notes = this.customer.notes;
                 this.finalOrder[0].order.orderDate = today.toJSON();
+                this.finalOrder[0].order.paymentType = userSelectedPaymentType;
                     if (!this.isExistingCustomer) {
                         this.customerService
                             .saveCustomer(this.customer)
