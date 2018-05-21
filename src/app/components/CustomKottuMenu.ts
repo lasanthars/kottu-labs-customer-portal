@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute }   from '@angular/router';
 import { CustomMenuInterface } from '../interface/CustomMenuInterface';
 
@@ -14,7 +14,7 @@ import { CartInterface } from '../interface/CartInterface';
   selector: 'kottu-lab-custom-kottu-menu',
   template: require('./CustomKottuMenu.html')
 })
-export class CustomKottuMenuComponent {
+export class CustomKottuMenuComponent implements OnInit {
   menus: CustomMenuInterface[];
   finalOrder: OrderInterface[];
   cartInfo: CartInterface[];
@@ -38,65 +38,66 @@ export class CustomKottuMenuComponent {
     this.modalId = 'customKottuModalDialog';
     this.modalInfo =['/Menu', '/CustomKottu', 'Add another Kottu'];
     this.showContents = false;
-    this.finalOrderMenu = [{
-        ingredients: [],
-        orderDetail: {
-            carbId: '',
-            id: '',
-            isCustom: true,
-            itemId: '',
-            orderId: '',
-            portionId: '',
-            price: 0,
-            qty: 1,
-            setmenuId: 1,
-            total: 0
-        }
-    }];
-    this.finalCartMenu = [{
-        carb: '',
-        item: 'My Kottu',
-        itemId: '',
-        portion: '',
-        ingredients: [],
-        qty: 1,
-        price: 0,
-        total: 0,
-        isEdit: true,
-        isKottu: true
-    }];
-    this.veggeies = [];
-    this.itemCompleted = false;
-    this.editItem = [];
+  }
+
+  ngOnInit():void {
+      this.finalOrderMenu = [{
+          ingredients: [],
+          orderDetail: {
+              carbId: '',
+              id: '',
+              isCustom: true,
+              itemId: '',
+              orderId: '',
+              portionId: '',
+              price: 0,
+              qty: 1,
+              setmenuId: 1,
+              total: 0
+          }
+      }];
+      this.finalCartMenu = [{
+          carb: '',
+          item: 'My Kottu',
+          itemId: '',
+          portion: '',
+          ingredients: [],
+          qty: 1,
+          price: 0,
+          total: 0,
+          isEdit: true,
+          isKottu: true
+      }];
+      this.veggeies = [];
+      this.itemCompleted = false;
+      this.editItem = [];
       this.menuService.showUiBlocker('Preparing your personalized kottu');
       this.getRouterParam();
-      this.getCartDetails();
       this.getFinalOrder();
+      this.getCartDetails();
       this.getAllCustomMenus();
       this.totalPrice = 0;
       this.customKottuMenu = 1;
-      if(this.routerParam) {
-          this.oldPrice = this.finalOrder[0].orderDetailDTO[this.routerParam].orderDetail.price;
-      }
       if(this.routerParam && this.finalOrder[0].orderDetailDTO.length > this.routerParam){
-        this.editItem.push(this.finalOrder[0].orderDetailDTO[this.routerParam]);
-        this.menuInterval = setInterval(() => {
-            if(this.menus){
-                this.menus[0].totalPrice = this.finalOrder[0].orderDetailDTO[this.routerParam].orderDetail.total;
-                this.checkTheDisability();
-                clearInterval(this.menuInterval);
-            }
+          this.oldPrice = this.finalOrder[0].orderDetailDTO[this.routerParam].orderDetail.price;
+          this.editItem.push(this.finalOrder[0].orderDetailDTO[this.routerParam]);
+          this.menuInterval = setInterval(() => {
+              if(this.menus){
+                  this.menus[0].totalPrice = this.finalOrder[0].orderDetailDTO[this.routerParam].orderDetail.total;
+                  this.checkTheDisability();
+                  clearInterval(this.menuInterval);
+              }
           },25);
-        this.finalOrderMenu.pop();
-        this.finalOrderMenu.push(this.finalOrder[0].orderDetailDTO[this.routerParam]);
-        this.finalCartMenu.pop()
-        this.finalCartMenu.push(this.cartInfo[0].cart[this.routerParam]);
-        this.itemCompleted = true;
+          this.finalOrderMenu.pop();
+          this.finalOrderMenu.push(this.finalOrder[0].orderDetailDTO[this.routerParam]);
+          this.finalCartMenu.pop();
+          this.finalCartMenu.push(this.cartInfo[0].cart[this.routerParam]);
+          this.itemCompleted = true;
       } else if(this.routerParam && this.finalOrder[0].orderDetailDTO.length <= this.routerParam){
           window.location.href = '/404';
       }
-
   }
+
 
 
   getAllCustomMenus(): void {
@@ -108,8 +109,10 @@ export class CustomKottuMenuComponent {
         this.menus[0].veggeies = [];
         this.menus[0].protein = [];
         this.menus[0].totalPrice = gross;
-        this.finalOrderMenu[0].orderDetail.carbId = this.menus[0].carbs[0].id;
-        this.finalCartMenu[0].carb = this.menus[0].carbs[0].name;
+        if(!this.routerParam){
+            this.finalOrderMenu[0].orderDetail.carbId = this.menus[0].carbs[0].id;
+            this.finalCartMenu[0].carb = this.menus[0].carbs[0].name;
+        }
         this.finalOrderMenu[0].orderDetail.portionId = this.menus[0].portions[0].id;
         this.finalCartMenu[0].portion = this.menus[0].portions[0].name;
         this.menuService.hideUiBlocker();
@@ -149,7 +152,7 @@ export class CustomKottuMenuComponent {
 
     getFinalOrder(): void {
         this.menuService.getOrders()
-            .subscribe(orders => {this.finalOrder = orders;});
+            .subscribe(orders => {this.finalOrder = orders; });
     }
 
     getCartDetails(): void {
@@ -376,6 +379,9 @@ export class CustomKottuMenuComponent {
                 this.finalOrder[0].order.grossTotal += this.menus[k].totalPrice;
                 this.finalOrder[0].order.nettTotal += this.menus[k].totalPrice;
             } else {
+                //debugger;
+                this.finalOrder[0].orderDetailDTO.splice(this.routerParam, 1);
+                this.finalOrder[0].orderDetailDTO.push(this.finalOrderMenu[k]);
                 this.finalOrder[0].order.grossTotal =  (this.finalOrder[0].order.grossTotal - this.oldPrice) + this.menus[k].totalPrice;
                 this.finalOrder[0].order.nettTotal =  (this.finalOrder[0].order.nettTotal - this.oldPrice) + this.menus[k].totalPrice;
             }

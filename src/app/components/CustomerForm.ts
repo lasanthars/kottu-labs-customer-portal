@@ -101,7 +101,6 @@ export class CustomerFormWindowComponent {
                     this.customerService.hideUiBlocker();
                 }).catch(e => {
                     this.isExistingCustomer = false;
-                    console.log('You are not an existing user');
                     this.customerService.hideUiBlocker();
                 });
         }

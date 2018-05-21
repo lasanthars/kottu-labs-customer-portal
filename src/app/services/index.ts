@@ -99,9 +99,9 @@ export class HttpService {
 
     pushCart(cart: any): Observable<CartInterface[]> {
         this.showUiBlocker('');
-        if (cart.length === 0 && localStorage.myCart) {
+        if (cart[0].cart.length === 0 && localStorage.myCart) {
             localStorage.removeItem("myCart");
-        } else if(cart.length > 0 && localStorage.myCart) {
+        } else if(cart[0].cart.length > 0 && localStorage.myCart) {
             localStorage.myCart = JSON.stringify(cart);
         } else {
             localStorage.setItem("myCart", JSON.stringify(cart));
@@ -111,9 +111,9 @@ export class HttpService {
 
     pushOrder(order: any): Observable<OrderInterface[]> {
         this.showUiBlocker('');
-        if (order.length === 0 && localStorage.finalOrder) {
+        if (order[0].orderDetailDTO.length === 0 && localStorage.finalOrder) {
             localStorage.removeItem("finalOrder");
-        } else if(order.length > 0 && localStorage.finalOrder) {
+        } else if(order[0].orderDetailDTO.length > 0 && localStorage.finalOrder) {
             localStorage.setItem("finalOrder", JSON.stringify(order));
         } else {
             localStorage.setItem("finalOrder", JSON.stringify(order));
