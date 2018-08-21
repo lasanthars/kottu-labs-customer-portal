@@ -7,7 +7,8 @@ import { HttpService } from '../services';
 const bevImages = {
     0: require( '../../images/egb.jpg'),
     1: require( '../../images/coke.jpg'),
-    2: require( '../../images/water.jpg')
+    2: require( '../../images/water.jpg'),
+    3: require( '../../images/Cranberry_Fizz.jpg')
 };
 
 @Component({

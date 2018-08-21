@@ -8,8 +8,8 @@ import { HttpService } from '../services';
 const addImages = {
     0: require( '../../images/Fried-Egg.jpg'),
     1: require( '../../images/Omlette.jpg'),
-    2: require( '../../images/Chicken-Kebab.jpg'),
-    3: require( '../../images/Stuffed-Capsicum.jpg')
+    //2: require( '../../images/Stuffed-Capsicum.jpg'),
+    2: require( '../../images/cheese.jpeg')
 };
 
 @Component({
