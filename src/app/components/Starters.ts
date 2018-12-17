@@ -5,11 +5,12 @@ import { OrderInterface } from '../interface/OrderInterface';
 import { CartInterface } from '../interface/CartInterface';
 const apptImages = {
     
-    0: require( '../../images/Pineapple-Fries.jpg'),
-    1: require( '../../images/Cheesy-Mashed-Potatoes.jpg'),
-    2: require( '../../images/Garlic-Rotti.jpg'),
+    0: require('../../images/Parata_Meal.jpg'),
+    1: require( '../../images/Pineapple-Fries.jpg'),
+    2: require( '../../images/Cheesy-Mashed-Potatoes.jpg'),
     3: require( '../../images/Chicken-Kebab.jpg'),
     4: require('../../images/Chrispy-Chicken-Wrap.png')
+    
     
    //2: require( '../../images/Chicken-Kebab.jpg'),
 };

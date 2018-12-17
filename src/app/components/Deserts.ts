@@ -6,7 +6,7 @@ import { CartInterface } from '../interface/CartInterface';
 import { HttpService } from '../services';
 
 const desImages = {
-    0: require( '../../images/desert1.jpg'),
+    0: require( '../../images/Strawberry-Jam-Rotti.png'),
     1: require( '../../images/desert2.jpg')
 };
 

@@ -806,6 +806,10 @@ input[type="number"]{
         width: 100%;
       }
     }
+    &-image {
+      max-height: 117px;
+      overflow: hidden;
+    }
     @media (max-width: 991px) {
       font-size:22px;
     }
@@ -1249,4 +1253,20 @@ input[type="number"]{
 }
 .sebm-google-map-container{
   height:280px;
+}
+
+.no_pading_col {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.menu-item-wrapper {
+  padding-right: 15px;
+}
+
+.signature-menu-img {
+  @media (min-width: 1200px) {
+    height: 200px;
+    overflow: hidden;
+  }
 }

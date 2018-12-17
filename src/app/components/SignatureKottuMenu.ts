@@ -11,7 +11,13 @@ const k3 = require( '../../images/Crabbin_with_Pittu.jpg');
 const k4 = require( '../../images/Beef-it-up.jpg');
 const k5 = require( '../../images/Devilled_Dalla.jpg');
 const k6 = require( '../../images/Cheese_n_Chicken-Liver.jpg');
-const k7 = require( '../../images/Mini_Cheese_n_Chicken.jpg');
+const k7 = require( '../../images/Turkey_Parata_Meal.jpg');
+const k8 = require( '../../images/Mini_Cheese_n_Chicken.jpg');
+const k9 = require( '../../images/Beef_Parata_Meal.jpg')
+const k10 = require( '../../images/Seafood_Parata_Meal.jpg')
+const k11 = require( '../../images/Mini-Sausage-Noodles-Kottu.png')
+const k12 = require( '../../images/Mini-Prawn-Noodle-Kottu.png')
+const k13 = require( '../../images/Mini-Beef-Kottu.png')
 
 @Component({
   selector: 'kottu-lab-signature-kottu-menu',
@@ -26,7 +32,7 @@ export class SignatureKottuMenuComponent {
   public modalInfo: any[];
 
   constructor(private menuService: HttpService) {
-    this.kImages = [k1,k2,k3,k4,k5,k6,k7];
+    this.kImages = [k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12,k13];
     this.modalId = 'signatureModalDialog';
     this.modalInfo =['/Menu', '/SignatureKottu', 'Add another Kottu'];
   }

@@ -4,37 +4,43 @@
       <p>Note: One portion of kottu serves one to two persons</p>
     </div>
     <div class="kottu-labs-signature-menu-wrapper row">
-      <div class="col-md-3" *ngFor="let menu of menus; let i = index">
-        <div class="kottu-labs-signature-menu-item">
-          <img src="{{kImages[i]}}"/>
-          <h3>{{menu.setmenu.name}}</h3>
-          <p class="kottu-labs-signature-menu-ingredients">{{menu.setmenu.description}}</p>
-          <div class="kottu-labs-signature-menu-total clearfix">
-            <span *ngIf="menu.setmenu.newPrice">Total - Rs.{{menu.setmenu.newPrice}}/=</span>
-            <span *ngIf="!menu.setmenu.newPrice">Total - Rs.{{menu.setmenu.price}}/=</span>
-          </div>
-          <div class="kottu-labs-signature-menu-inputs clearfix">
-            <div class="row">
-              <div class="col-lg-5">
-                <label>Spice Level</label>
+      <div class="col-md-3 no_pading_col" *ngFor="let menu of menus; let i = index">
+        <div id="menuItemWrapper" class="menu-item-wrapper">
+          <div class="kottu-labs-signature-menu-item">
+            <img src="{{kImages[i]}}" class="signature-menu-img" />
+            <h3>{{menu.setmenu.name}}</h3>
+            <p class="kottu-labs-signature-menu-ingredients">{{menu.setmenu.description}}</p>
+            <div class="kottu-labs-signature-menu-total clearfix">
+              <span *ngIf="menu.setmenu.newPrice">Total - Rs.{{menu.setmenu.newPrice}}/=</span>
+              <span *ngIf="!menu.setmenu.newPrice">Total - Rs.{{menu.setmenu.price}}/=</span>
+            </div>
+            <div class="kottu-labs-signature-menu-inputs clearfix">
+              <div class="row">
+                <div class="col-lg-5">
+                  <label>Spice Level</label>
+                </div>
+                <div class="col-lg-7">
+                  <select [attr.id]="'portionDropDown' + i">
+                    <option *ngFor="let portion of menu.portions" [value]="portion.id" [attr.selected]="portion.name === 'Mild' ? true : null">{{portion.name}}</option>
+                  </select>
+                </div>
               </div>
-              <div class="col-lg-7">
-                <select [attr.id]="'portionDropDown' + i">
-                  <option *ngFor="let portion of menu.portions" [value]="portion.id" [attr.selected]="portion.name === 'Mild' ? true : null" >{{portion.name}}</option>
-                </select>
+              <div class="row">
+                <div class="col-lg-5">
+                  <label>Nos</label>
+                </div>
+                <div class="col-lg-7">
+                  <input name="input{{i}}" (keypress)="blockCharacters($event)" value="1" type="number" min="1" max="999"
+                    [(ngModel)]="this[i]" (ngModelChange)="convertToTotalQuantity(menu.setmenu.price, i, this[i])" />
+                </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-5">
-                <label>Nos</label>
-              </div>
-              <div class="col-lg-7">
-                <input name="input{{i}}" (keypress)="blockCharacters($event)"  value="1" type="number" min="1" max="999" [(ngModel)]="this[i]" (ngModelChange)="convertToTotalQuantity(menu.setmenu.price, i, this[i])"/>
-              </div>
-            </div>
           </div>
+        
+        <button type="button" class="kottu-labs-signature-menu-btn" data-toggle="modal" data-target="#signatureModalDialog"
+          [disabled]="this[i] <= 0 || this[i] === ''|| this[i] === undefined" (click)="addOrderToCart(menu, this[i], i, 'portionDropDown' + i)">Add
+          to cart</button>
         </div>
-        <button type="button" class="kottu-labs-signature-menu-btn" data-toggle="modal" data-target="#signatureModalDialog" [disabled]="this[i] <= 0 || this[i] === ''|| this[i] === undefined" (click)="addOrderToCart(menu, this[i], i, 'portionDropDown' + i)">Add to cart</button>
       </div>
     </div>
   </div>
