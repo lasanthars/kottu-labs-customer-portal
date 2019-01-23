@@ -6,8 +6,8 @@ import { CartInterface } from '../interface/CartInterface';
 import { HttpService } from '../services';
 
 const desImages = {
-    0: require( '../../images/Strawberry-Jam-Rotti.png'),
-    1: require( '../../images/desert2.jpg')
+    0: require( '../../images/Strawberry_Jam_Rotti.jpg'),
+    1: require( '../../images/Chocolate_Rotti.jpg')
 };
 
 @Component({

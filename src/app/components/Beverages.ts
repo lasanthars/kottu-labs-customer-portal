@@ -9,7 +9,9 @@ const bevImages = {
     1: require( '../../images/coke.jpg'),
     2: require( '../../images/water.jpg'),
     3: require( '../../images/Reviva_Iced_Tea-Strawberry.jpg'),
-    4: require( '../../images/Cranberry_Fizz.jpg')
+    4: require( '../../images/Reviva_Iced_Tea- Blueberry_Blast.jpg'),
+    5: require( '../../images/Reviva_Iced_Tea-Pomegranate.jpg'),
+    6: require( '../../images/Cranberry_Fizz.jpg')
 };
 
 @Component({
